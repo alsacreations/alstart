@@ -3,7 +3,7 @@ var gulp = require('gulp');
 
 // Include plugins
 var less = require('gulp-less');
-var sass = require('gulp-sass');
+//var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minify = require('gulp-minify-css');
@@ -14,7 +14,7 @@ var autoprefixer = require('gulp-autoprefixer');
 // var styledown = require('gulp-styledown');
 
 // Common tasks
-gulp.task('styles', ['styles-less', 'styles-sass']);
+gulp.task('styles', ['styles-less'/*, 'styles-sass'*/]);
 gulp.task('doallthethings', ['styles','scripts']);
 
 // Styles LESS
@@ -30,6 +30,7 @@ gulp.task('styles-less', function () {
 });
 
 // Styles SASS
+/*
 gulp.task('styles-sass', function () {
   gulp.src('./src/assets/css/*.scss')
     .pipe(sass())
@@ -40,6 +41,7 @@ gulp.task('styles-sass', function () {
     .pipe(sourcemaps.write('.', {includeContent: false}))
     .pipe(gulp.dest('./dist/assets/css/'));
 });
+*/
 
 // Scripts
 gulp.task('scripts',function() {
@@ -66,7 +68,7 @@ gulp.task('watch', function() {
   browserSync({
     proxy: 'http://localhost:5000'
   });
-  gulp.watch(['./src/assets/css/*.scss'], ['styles-sass', browserSync.reload /*,'styleguide'*/ ]);
+  //gulp.watch(['./src/assets/css/*.scss'], ['styles-sass', browserSync.reload /*,'styleguide'*/ ]);
   gulp.watch(['./src/assets/css/*.less'], ['styles-less', browserSync.reload /*,'styleguide'*/ ]);
   gulp.watch(['./src/assets/js/src/*.js'], ['scripts']);
 });
