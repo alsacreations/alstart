@@ -45,7 +45,7 @@ This should be your own `knacss.less` file :
 @import "/src/vendor/knacss/less/_10-styling"; // minor stylings
 
 // WordPress base styles
-@import "/dist/vendor/knacss/less/_11-wordpress"; // WordPress reset and basic styles
+@import "/src/vendor/knacss/less/_11-wordpress"; // WordPress reset and basic styles
 ```
 
 
