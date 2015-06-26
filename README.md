@@ -18,11 +18,11 @@ Choucroute, knacks, et picon bière
 - run `gulp` / `gulp watch`
 
 ## Using with KNACSS :
-- Create your own `knacss.less` in your `src/assets/css/` folder (= don't use `src/vendor/knacss/less/knacss.less` for development)
+- Create your own `styles.less` in your `src/assets/css/` folder (= don't use `src/vendor/knacss/less/knacss.less` for development)
 - Create your own `_00-config.less` in your `src/assets/css/` folder (= don't use `src/vendor/knacss/less/_00-config.less` for development)
-- During development, `knacss.less` and `_00-config.less` file have to be in your `src/assets/css/` folder, and @import all the other modules from `src/vendor/knacss/less/`
+- During development, `styles.less` and `_00-config.less` file have to be in your `src/assets/css/` folder, and @import all the other modules from `src/vendor/knacss/less/`
 
-This should be your own `knacss.less` file :
+This should be your own `styles.less` file :
 
 ```
 @import "_00-config";

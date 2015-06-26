@@ -1,9 +1,8 @@
 {
   "name": "alstart",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "devDependencies": {
     "gulp": "latest",
-    "gulp-sass": "latest",
     "gulp-minify-css": "latest",
     "gulp-sourcemaps": "latest",
     "gulp-rename": "latest",
