@@ -18,9 +18,9 @@ Choucroute, knacks, et picon bière
 - run `gulp` / `gulp watch`
 
 ## Using with KNACSS :
-- Create your own `knacss.less` in your `src/assets/css/` folder (= don't use `dist/vendor/knacss/less/knacss.less` for development)
-- Create your own `_00-config.less` in your `src/assets/css/` folder (= don't use `dist/vendor/knacss/less/_00-config.less` for development)
-- During development, `knacss.less` and `_00-config.less` file have to be in your `src/assets/css/` folder, and @import all the other modules from `dist/vendor/knacss/less/`
+- Create your own `knacss.less` in your `src/assets/css/` folder (= don't use `src/vendor/knacss/less/knacss.less` for development)
+- Create your own `_00-config.less` in your `src/assets/css/` folder (= don't use `src/vendor/knacss/less/_00-config.less` for development)
+- During development, `knacss.less` and `_00-config.less` file have to be in your `src/assets/css/` folder, and @import all the other modules from `src/vendor/knacss/less/`
 
 This should be your own `knacss.less` file :
 
@@ -28,21 +28,21 @@ This should be your own `knacss.less` file :
 @import "_00-config";
 
 // normalize include
-@import "/dist/vendor/knacss/less/_01a-normalize"; // normalize
+@import "/src/vendor/knacss/less/_01a-normalize"; // normalize
 
 // LESS base styles
-@import "/dist/vendor/knacss/less/_01b-base"; // reset and basic styles
+@import "/src/vendor/knacss/less/_01b-base"; // reset and basic styles
 
 // LESS files : chose the ones you need
-@import "/dist/vendor/knacss/less/_02-layout"; // alignment, modules, positionning
-@import "/dist/vendor/knacss/less/_03-grids"; // grids
-@import "/dist/vendor/knacss/less/_04-tables"; // data tables consistency
-@import "/dist/vendor/knacss/less/_05-forms"; // forms consistency
-@import "/dist/vendor/knacss/less/_06-helpers"; // width and spacers visually classes
-@import "/dist/vendor/knacss/less/_07-responsive"; // Responsive Web Design helpers
-@import "/dist/vendor/knacss/less/_08-print"; // print quick reset
-@import "/dist/vendor/knacss/less/_09-misc"; // skip links, google maps and hyphens
-@import "/dist/vendor/knacss/less/_10-styling"; // minor stylings
+@import "/src/vendor/knacss/less/_02-layout"; // alignment, modules, positionning
+@import "/src/vendor/knacss/less/_03-grids"; // grids
+@import "/src/vendor/knacss/less/_04-tables"; // data tables consistency
+@import "/src/vendor/knacss/less/_05-forms"; // forms consistency
+@import "/src/vendor/knacss/less/_06-helpers"; // width and spacers visually classes
+@import "/src/vendor/knacss/less/_07-responsive"; // Responsive Web Design helpers
+@import "/src/vendor/knacss/less/_08-print"; // print quick reset
+@import "/src/vendor/knacss/less/_09-misc"; // skip links, google maps and hyphens
+@import "/src/vendor/knacss/less/_10-styling"; // minor stylings
 
 // WordPress base styles
 @import "/dist/vendor/knacss/less/_11-wordpress"; // WordPress reset and basic styles
