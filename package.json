@@ -10,6 +10,8 @@
     "gulp-concat": "latest",
     "gulp-uglify": "latest",
     "browser-sync": "latest",
-    "gulp-autoprefixer": "latest"
+    "gulp-autoprefixer": "latest",
+    "gulp-imagemin": "latest",
+    "merge-stream": "latest"
   }
 }
