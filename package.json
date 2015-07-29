@@ -12,6 +12,7 @@
     "browser-sync": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-imagemin": "latest",
+    "gulp-styledown":"latest",
     "merge-stream": "latest"
   }
 }
