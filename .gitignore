@@ -1,5 +1,10 @@
+# Node & Bower gitignore
 node_modules/*
 npm-debug.log
+src/vendor/
+
+# gulp destination file ignore
+dist/
 
 #Map Crap
 
