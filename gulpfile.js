@@ -27,6 +27,12 @@ var imagemin = require('gulp-imagemin');
 var merge = require('merge-stream');
 // var styledown = require('gulp-styledown');
 
+// behaviour on error
+function onError(e) {
+  console.log(e);
+  this.emit('end');
+}
+
 // Common tasks
 gulp.task('styles', ['styles-less']);
 gulp.task('doallthethings', ['styles','scripts','images']);
@@ -35,6 +41,7 @@ gulp.task('doallthethings', ['styles','scripts','images']);
 gulp.task('styles-less', function () {
   return gulp.src(path_less_src)
     .pipe(less())
+    .on('error', onError)
     .pipe(autoprefixer())
     .pipe(rename({suffix: '.min'}))
     //.pipe(sourcemaps.init())
@@ -47,6 +54,7 @@ gulp.task('styles-less', function () {
 gulp.task('scripts',function() {
   return gulp.src(path_js)
     .pipe(uglify())
+    .on('error', onError)
     .pipe(concat(path_js_dest_filename))
     .pipe(gulp.dest(path_js_dest));
 });
@@ -58,11 +66,13 @@ gulp.task('images',function() {
       .pipe(imagemin({
         svgoPlugins: [{removeViewBox: false}, {cleanupIDs:false}],
       }))
+      .on('error', onError)
       .pipe(gulp.dest(path_svgfolders_dest));
   });
   var tasks_jpgpng = path_jpgpngfolders_src.map(function(folder) {
     return gulp.src(folder+'*.{png,jpg}')
       .pipe(imagemin())
+      .on('error', onError)
       .pipe(gulp.dest(path_jpgpngfolders_dest));
   });
   return merge(tasks_svg,tasks_jpgpng);
@@ -75,6 +85,7 @@ gulp.task('styleguide', function() {
     config: 'assets/css/config.md',
     filename: 'styleguide.html'
   }))
+  .on('error', onError)
   .pipe(gulp.dest('.'));
 });
 
