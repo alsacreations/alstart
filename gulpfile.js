@@ -8,8 +8,8 @@ var path_js_dest_filename = 'global.min.js';
 
 var path_svgfolders_src = ['./src/assets/img/svg/'];
 var path_jpgpngfolders_src = ['./src/assets/img/'];
-var path_svgfolders_dest = ['./dist/assets/img/svg/'];
-var path_jpgpngfolders_dest = ['./dist/assets/img/'];
+var path_svgfolders_dest = './dist/assets/img/svg/';
+var path_jpgpngfolders_dest = './dist/assets/img/';
 
 // Requires
 var gulp = require('gulp');
@@ -25,7 +25,7 @@ var browserSync = require('browser-sync').create();
 var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
 var merge = require('merge-stream');
-// var styledown = require('gulp-styledown');
+var styledown = require('gulp-styledown');
 
 // behaviour on error
 function onError(e) {
@@ -52,7 +52,7 @@ gulp.task('styles-less', function () {
 
 // Scripts
 gulp.task('scripts',function() {
-  return gulp.src(path_js)
+  return gulp.src(path_js_src)
     .pipe(uglify())
     .on('error', onError)
     .pipe(concat(path_js_dest_filename))
@@ -82,7 +82,7 @@ gulp.task('images',function() {
 gulp.task('styleguide', function() {
   gulp.src('./src/assets/css/*.less')
   .pipe(styledown({
-    config: 'assets/css/config.md',
+    config: 'dist/assets/css/config.md',
     filename: 'styleguide.html'
   }))
   .on('error', onError)
