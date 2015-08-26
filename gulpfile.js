@@ -1,15 +1,16 @@
 // Config
-var path_less_src = './src/assets/css/*.less';
-var path_css_dest = './dist/assets/css/';
+var path_less_src = './assets/src/css/*.less';
+var path_css_dest = './assets/dist/css/';
 
-var path_js_src = './src/assets/js/src/*.js';
-var path_js_dest = './dist/assets/js/';
+var path_js_src = './assets/src/js/*.js';
+var path_js_dest = './assets/dist/js/';
 var path_js_dest_filename = 'global.min.js';
 
-var path_svgfolders_src = ['./src/assets/img/svg/'];
-var path_jpgpngfolders_src = ['./src/assets/img/'];
-var path_svgfolders_dest = './dist/assets/img/svg/';
-var path_jpgpngfolders_dest = './dist/assets/img/';
+var path_imgfolders_src = ['./assets/src/img/'];
+var path_imgfolders_dest = './assets/dist/img/';
+
+var path_fonts_src = './assets/src/fonts/*';
+var path_fonts_dest = './assets/dist/fonts/';
 
 // Requires
 var gulp = require('gulp');
@@ -59,30 +60,34 @@ gulp.task('scripts',function() {
     .pipe(gulp.dest(path_js_dest));
 });
 
+// Fonts déplacées
+gulp.task('fonts',function() {
+  return gulp.src(path_fonts_src)
+    .pipe(gulp.dest(path_fonts_dest));
+});
+
 // Images optimisées
 gulp.task('images',function() {
-  var tasks_svg = path_svgfolders_src.map(function(folder) {
-    return gulp.src(folder+'*.svg')
-      .pipe(imagemin({
-        svgoPlugins: [{removeViewBox: false}, {cleanupIDs:false}],
-      }))
-      .on('error', onError)
-      .pipe(gulp.dest(path_svgfolders_dest));
-  });
-  var tasks_jpgpng = path_jpgpngfolders_src.map(function(folder) {
-    return gulp.src(folder+'*.{png,jpg}')
-      .pipe(imagemin())
-      .on('error', onError)
-      .pipe(gulp.dest(path_jpgpngfolders_dest));
-  });
-  return merge(tasks_svg,tasks_jpgpng);
+  return gulp.src(path_imgfolders_src+'*.{png,jpg,svg}')
+    .pipe(imagemin({
+      svgoPlugins: [
+        {
+          removeViewBox: false
+        },
+        {
+          cleanupIDs: false
+        }
+      ]
+    }))
+    .on('error', onError)
+    .pipe(gulp.dest(path_imgfolders_dest));
 });
 
 // Styledown (styleguide)
 gulp.task('styleguide', function() {
-  gulp.src('./src/assets/css/*.less')
+  gulp.src('./assets/src/css/*.less')
   .pipe(styledown({
-    config: 'dist/assets/css/config.md',
+    config: 'assets/src/css/config.md',
     filename: 'styleguide.html'
   }))
   .on('error', onError)
