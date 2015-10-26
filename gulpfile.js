@@ -2,7 +2,7 @@
 var path_less_src = './src/assets/css/*.less';
 var path_css_dest = './dist/assets/css/';
 
-var path_js_src = './src/assets/js/src/*.js';
+var path_js_src = './src/assets/js/*.js';
 var path_js_dest = './dist/assets/js/';
 var path_js_dest_filename = 'global.min.js';
 
