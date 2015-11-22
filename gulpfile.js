@@ -9,6 +9,9 @@ var path_js_dest_filename = 'global.min.js';
 var path_img_src = ['./src/assets/img/'];
 var path_img_dest = './dist/assets/img/';
 
+var path_fonts_src = './src/assets/css/fonts/*';
+var path_fonts_dest = './dist/assets/css/fonts/';
+
 // Requires
 var gulp = require('gulp');
 
@@ -16,7 +19,7 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var minify = require('gulp-minify-css');
+var csso = require('gulp-csso');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync').create();
@@ -33,7 +36,7 @@ function onError(e) {
 
 // Common tasks
 gulp.task('styles', ['styles-less']);
-gulp.task('doallthethings', ['styles','scripts','images']);
+gulp.task('doallthethings', ['styles','scripts','images','fonts']);
 
 // Styles LESS
 gulp.task('styles-less', function () {
@@ -60,7 +63,7 @@ gulp.task('scripts',function() {
 // Images optimisées
 gulp.task('images', function () {
   return gulp.src(path_img_src + '*.{png,jpg,jpeg,gif,svg}')
-    .pipe(plugins.imagemin({
+    .pipe(imagemin({
       svgoPlugins: [{
         removeViewBox: false
       }, {
@@ -68,6 +71,12 @@ gulp.task('images', function () {
       }]
     }))
     .pipe(gulp.dest(path_img_dest));
+});
+
+// Tâche "fonts" = simple copie des fontes (src -> prod)
+gulp.task('fonts', function () {
+  return gulp.src(path_fonts_src)
+    .pipe(gulp.dest(path_fonts_dest));
 });
 
 // Styledown (styleguide)
