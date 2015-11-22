@@ -4,27 +4,26 @@
 
 **alstart** est une base de départ pour les projets de l'agence Alsacréations ("alstart" signifiant "alsacreations" + "start").
 
-**alstart** est configuré pour fonctionner dans un environnement axé sur les trois outils Gulp, LESS et KNACSS.
+**alstart** est configuré pour fonctionner dans un environnement axé sur les outils NPM, Gulp, LESS et KNACSS.
 
-## Fonctionnalités :
-- HTML5 Boilerplate .htaccess file
+## Fonctionnalités
+- HTML5 Boilerplate .htaccess
 - Bower
 - Gulpfile pour LESS (building - autoprefix - minify), JavaScript (Concat & Uglify), Fontes, Images (optimisation), etc.
-- KNACSS
-- Basic Schnapsit index.html
-- SourceMaps generé sur demande
+- Usage de KNACSS
+- Template HTML basique de Schnaps.it
+- SourceMaps généré sur demande
 
-## Par où commencer :
+## Par où commencer
 - `git clone` ce repo
-- `cd` vers le fichier
-- lancer `npm install` où `npm update`
+- lancer `npm install` (ou `npm update`)
 - lancer `bower update`
-- lancer `gulp` / `gulp watch`
+- lancer `gulp` pour les tâches de base, ou `gulp watch` pour surveiller les modifications
 
-## Tâches Gulp : 
-- `gulp styles` : compile uniquement les LESS
-- `gulp doallthethings` : toutes les tâches (styles, scripts, images, fontes)
-- `gulp` : idem `gulp doallthethings`
+## Tâches Gulp
+- `gulp styles` : compile uniquement les fichiers LESS
+- `gulp doallthethings` : exécute toutes les tâches (styles, scripts, images, fontes)
+- `gulp` : alias de `gulp doallthethings`
 - `gulp watch` : surveille styles et scripts
 
 ## Architecture alstart
