@@ -46,7 +46,7 @@ gulp.task('styles-less', function () {
     .pipe(autoprefixer())
     .pipe(rename({suffix: '.min'}))
     //.pipe(sourcemaps.init())
-    .pipe(minify())
+    .pipe(csso())
     //.pipe(sourcemaps.write('.', {includeContent: false}))
     .pipe(gulp.dest(path_css_dest));
 });
