@@ -1,54 +1,47 @@
 # alstart
-Choucroute, knacks, et picon bière
 
-## Features :
+> Choucroute, knacks, et picon bière
+
+**alstart** est une base de départ pour les projets de l'agence Alsacréations ("alstart" signifiant "alsacreations" + "start").
+
+**alstart** est configuré pour fonctionner dans un environnement axé sur les trois outils Gulp, LESS et KNACSS.
+
+## Fonctionnalités :
 - HTML5 Boilerplate .htaccess file
 - Bower
-- Gulpfile for Sass / Less building - autoprefix - minify
-- Knacss
+- Gulpfile pour LESS (building - autoprefix - minify), JavaScript (Concat & Uglify), Fontes, Images (optimisation), etc.
+- KNACSS
 - Basic Schnapsit index.html
-- Concat & Uglify Javascript files
-- SourceMaps generated for Sass & Less
+- SourceMaps generé sur demande
 
-## How to start :
+## Par où commencer :
 - git clone this repo
 - cd to cloned folder
 - run `npm install` or `npm update`
 - run `bower update`
 - run `gulp` / `gulp watch`
 
-## Using with KNACSS :
-- Create your own `styles.less` in your `src/assets/css/` folder (= don't use `src/vendor/knacss/less/knacss.less` for development)
-- Create your own `_00-config.less` in your `src/assets/css/` folder (= don't use `src/vendor/knacss/less/_00-config.less` for development)
-- During development, `styles.less` and `_00-config.less` file have to be in your `src/assets/css/` folder, and @import all the other modules from `src/vendor/knacss/less/`
+## Tâches Gulp : 
+- `gulp styles` : compile uniquement les LESS
+- `gulp doallthethings` : toutes les tâches (styles, scripts, images, fontes)
+- `gulp` : idem `gulp doallthethings`
+- `gulp watch` : surveille styles et scripts
 
-This should be your own `styles.less` file :
+## Architecture alstart
 
-```
-@import "_00-config";
+Voici comment est architecturé **alstart** par défaut :
 
-// normalize include
-@import "/src/vendor/knacss/less/_01a-normalize"; // normalize
+![structure-type alstart](https://raw.githubusercontent.com/alsacreations/alstart/master/architecture.png)
 
-// LESS base styles
-@import "/src/vendor/knacss/less/_01b-base"; // reset and basic styles
-
-// LESS files : chose the ones you need
-@import "/src/vendor/knacss/less/_02-layout"; // alignment, modules, positionning
-@import "/src/vendor/knacss/less/_03-grids"; // grids
-@import "/src/vendor/knacss/less/_04-tables"; // data tables consistency
-@import "/src/vendor/knacss/less/_05-forms"; // forms consistency
-@import "/src/vendor/knacss/less/_06-helpers"; // width and spacers visually classes
-@import "/src/vendor/knacss/less/_07-responsive"; // Responsive Web Design helpers
-@import "/src/vendor/knacss/less/_08-print"; // print quick reset
-@import "/src/vendor/knacss/less/_09-misc"; // skip links, google maps and hyphens
-@import "/src/vendor/knacss/less/_10-styling"; // minor stylings
-
-// WordPress base styles
-@import "/src/vendor/knacss/less/_11-wordpress"; // WordPress reset and basic styles
-```
+## Usage avec KNACSS :
+- Créez ou modifiez le fichier `_00-config.less` dans votre dossier `src/assets/css/`
+- N'utilisez **pas** `src/vendor/knacss/less/_00-config.less`, car il sera écrasé à chaque misé à jour de KNACSS
+- Choisissez les fichiers KNACSS à importer au sein du fichier `_01-imports.less`
+- Votre fichier de travail est `styles.less` et commencera par : `@import "_01-imports";`, puis suivront vos styles perso.
 
 
 ## Crédits :
+
+Projet lancé par (https://github.com/edenpulse)[Matthieu Bousendorfer], et tenu à jour par Alsacréations.
 
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
