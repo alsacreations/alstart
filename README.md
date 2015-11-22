@@ -15,11 +15,11 @@
 - SourceMaps generé sur demande
 
 ## Par où commencer :
-- git clone this repo
-- cd to cloned folder
-- run `npm install` or `npm update`
-- run `bower update`
-- run `gulp` / `gulp watch`
+- `git clone` ce repo
+- `cd` vers le fichier
+- lancer `npm install` où `npm update`
+- lancer `bower update`
+- lancer `gulp` / `gulp watch`
 
 ## Tâches Gulp : 
 - `gulp styles` : compile uniquement les LESS
