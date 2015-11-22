@@ -37,8 +37,9 @@ function onError(e) {
 // Common tasks
 gulp.task('styles', ['styles-less']);
 gulp.task('doallthethings', ['styles','scripts','images','fonts']);
+gulp.task('default', ['doallthethings']);
 
-// Styles LESS
+// Styles LESS (LESS, autoprefixer, minify)
 gulp.task('styles-less', function () {
   return gulp.src(path_less_src)
     .pipe(less())
@@ -51,7 +52,7 @@ gulp.task('styles-less', function () {
     .pipe(gulp.dest(path_css_dest));
 });
 
-// Scripts
+// Scripts (minifiés, concaténés)
 gulp.task('scripts',function() {
   return gulp.src(path_js_src)
     .pipe(uglify())
@@ -73,7 +74,7 @@ gulp.task('images', function () {
     .pipe(gulp.dest(path_img_dest));
 });
 
-// Tâche "fonts" = simple copie des fontes (src -> prod)
+// Fonts (simple copie des fontes)
 gulp.task('fonts', function () {
   return gulp.src(path_fonts_src)
     .pipe(gulp.dest(path_fonts_dest));
@@ -102,4 +103,3 @@ gulp.task('watch', function() {
   gulp.watch([path_js_src], ['scripts']);
 });
 
-gulp.task('default', ['doallthethings']);
