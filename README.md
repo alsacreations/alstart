@@ -15,15 +15,18 @@
 - SourceMaps généré sur demande
 
 ## Par où commencer
-- `git clone` ce repo
-- lancer `npm install` (ou `npm update`)
-- lancer `bower update`
-- lancer `gulp` pour les tâches de base, ou `gulp watch` pour surveiller les modifications
+1. (créer le repo sur gitlab)
+2. [récupérer ce repo](https://github.com/alsacreations/alstart/archive/master.zip) (zip)
+3. lancer `npm install` (ou `npm update`)
+4. lancer `bower update`
+5. lancer `gulp` pour les tâches de base, ou `gulp watch` pour surveiller les modifications
+
 
 ## Tâches Gulp
 - `gulp styles` : compile uniquement les fichiers LESS
-- `gulp doallthethings` : exécute toutes les tâches (styles, scripts, images, fontes)
-- `gulp` : alias de `gulp doallthethings`
+- `gulp scripts`, `gulp images`, `gulp fonts` : toi même tu sais
+- `gulp all` : exécute toutes les tâches (styles, scripts, images, fontes)
+- `gulp` : alias de `gulp all`
 - `gulp watch` : surveille styles et scripts
 
 ## Architecture alstart
