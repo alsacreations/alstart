@@ -44,6 +44,6 @@ Voici comment est architecturé **alstart** par défaut :
 
 ## Crédits :
 
-Projet lancé par [https://github.com/edenpulse](Matthieu Bousendorfer), et tenu à jour par Alsacréations.
+Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu à jour par Alsacréations.
 
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
