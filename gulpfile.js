@@ -1,5 +1,6 @@
 // Config
 var path_less_src = './src/assets/css/styles.less';
+var path_all_less_src = './src/assets/css/*.less';
 var path_css_dest = './dist/assets/css/';
 
 var path_js_src = './src/assets/js/*.js';
@@ -34,13 +35,8 @@ function onError(e) {
   this.emit('end');
 }
 
-// Common tasks
-gulp.task('styles', ['styles-less']);
-gulp.task('doallthethings', ['styles','scripts','images','fonts']);
-gulp.task('default', ['doallthethings']);
-
 // Styles LESS (LESS, autoprefixer, minify)
-gulp.task('styles-less', function () {
+gulp.task('styles', function () {
   return gulp.src(path_less_src)
     .pipe(less())
     .on('error', onError)
@@ -82,7 +78,7 @@ gulp.task('fonts', function () {
 
 // Styledown (styleguide)
 gulp.task('styleguide', function() {
-  gulp.src('./src/assets/css/*.less')
+  gulp.src(path_all_less_src)
   .pipe(styledown({
     config: 'dist/assets/css/config.md',
     filename: 'styleguide.html'
@@ -91,7 +87,12 @@ gulp.task('styleguide', function() {
   .pipe(gulp.dest('.'));
 });
 
-// Watcher
+// Common tasks
+gulp.task('styles', ['styles']);
+gulp.task('all', ['styles','scripts','images','fonts']);
+gulp.task('default', ['all']);
+
+// Watcher (je surveille tous les *.less et *.js)
 gulp.task('watch', function() {
   /*browserSync.init({
     //proxy: 'http://localhost:5000',
@@ -99,7 +100,7 @@ gulp.task('watch', function() {
         baseDir: './dist/'
     }
   });*/
-  gulp.watch([path_less_src], ['styles-less', /*browserSync.reload, */ /*'styleguide'*/ ]);
+  gulp.watch([path_all_less_src], ['styles', /*browserSync.reload, */ /*'styleguide'*/ ]);
   gulp.watch([path_js_src], ['scripts']);
 });
 
