@@ -38,12 +38,12 @@ Voici comment est architecturé **alstart** par défaut :
 ## Usage avec KNACSS :
 - Créez ou modifiez le fichier `_00-config.less` dans votre dossier `src/assets/css/`
 - N'utilisez **pas** `src/vendor/knacss/less/_00-config.less`, car il sera écrasé à chaque misé à jour de KNACSS
-- Choisissez les fichiers KNACSS à importer au sein du fichier `_01-imports.less`
-- Votre fichier de travail est `styles.less` et commencera par : `@import "_01-imports";`, puis suivront vos styles perso.
+- Choisissez les fichiers KNACSS à importer au sein du fichier `knacss.less`
+- Votre fichier de travail est `styles.less` et commencera par : `@import "knacss";`, puis suivront vos styles perso.
 
 
 ## Crédits :
 
-Projet lancé par (https://github.com/edenpulse)[Matthieu Bousendorfer], et tenu à jour par Alsacréations.
+Projet lancé par [https://github.com/edenpulse](Matthieu Bousendorfer), et tenu à jour par Alsacréations.
 
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
