@@ -2,7 +2,7 @@
 
 > Choucroute, knacks, et picon bière
 
-**Bretzel** est une base de départ pour les projets de l'agence Alsacréations ("bretzel" signifiant "alsacreations" + "start").
+**Bretzel** est une base de départ pour les projets de l'agence Alsacréations.
 
 **Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils NPM, Gulp, LESS et KNACSS.
 
