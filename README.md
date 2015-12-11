@@ -33,7 +33,7 @@
 
 Voici comment est architecturé **alstart** par défaut :
 
-![structure-type alstart](https://raw.githubusercontent.com/alsacreations/alstart/master/architecture.png)
+![structure-type alstart](https://raw.githubusercontent.com/alsacreations/alstart/master/src/assets/img/architecture.png)
 
 ## Usage avec KNACSS :
 - Créez ou modifiez le fichier `_00-config.less` dans votre dossier `src/assets/css/`
