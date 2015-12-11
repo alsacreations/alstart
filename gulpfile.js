@@ -1,106 +1,231 @@
-// Config
-var path_less_src = './src/assets/css/styles.less';
-var path_all_less_src = './src/assets/css/*.less';
-var path_css_dest = './dist/assets/css/';
+// Usage Général :
+// Tâche "build" : fichiers compilés dans "/dist" (ni minifiés ni concaténés). Le client peut modifier, améliorer et mettre en prod lui-même
+// Tâche "prod" : fichiers compilés dans "/dist" (minifiés, concaténés, optimisés, etc.). Le client utilise tel quel.
 
-var path_js_src = './src/assets/js/*.js';
-var path_js_dest = './dist/assets/js/';
-var path_js_dest_filename = 'global.min.js';
-
-var path_img_src = ['./src/assets/img/'];
-var path_img_dest = './dist/assets/img/';
-
-var path_fonts_src = './src/assets/css/fonts/*';
-var path_fonts_dest = './dist/assets/css/fonts/';
-
-// Requires
+// Requis
 var gulp = require('gulp');
 
 // Include plugins
-var less = require('gulp-less');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var csso = require('gulp-csso');
-var sourcemaps = require('gulp-sourcemaps');
-var rename = require('gulp-rename');
-var browserSync = require('browser-sync').create();
-var autoprefixer = require('gulp-autoprefixer');
-var imagemin = require('gulp-imagemin');
-var merge = require('merge-stream');
-var styledown = require('gulp-styledown');
+var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
+var critical = require('critical').stream; // + critical
+var gulpsync = require('gulp-sync')(gulp); // + gulp-sync
+var browserSync = require('browser-sync').create(); // + browser-sync
+var del = require('del'); // + del
 
-// behaviour on error
-function onError(e) {
-  console.log(e);
-  this.emit('end');
-}
+// Variables de chemins
+var source = './src/'; // dossier de travail
+var destination = './dist/'; // dossier à livrer
+var vendor = './src/vendor/'; // dossier des dépendances
 
-// Styles LESS (LESS, autoprefixer, minify)
-gulp.task('styles', function () {
-  return gulp.src(path_less_src)
-    .pipe(less())
-    .on('error', onError)
-    .pipe(autoprefixer())
-    .pipe(rename({suffix: '.min'}))
-    //.pipe(sourcemaps.init())
-    .pipe(csso())
-    //.pipe(sourcemaps.write('.', {includeContent: false}))
-    .pipe(gulp.dest(path_css_dest));
+var lessFiles = 'assets/css/styles.less'; // fichier LESS à compiler
+var jsFiles = 'assets/js/*.js'; // fichiers JavaScript (hors vendor)
+var htmlFiles = '{,includes/}*.html'; // fichiers / dossiers HTML à compiler/copier
+var phpFiles = '{,includes/}*.php'; // fichiers / dossiers PHP à copier
+var fontFiles = 'assets/css/fonts/'; // fichiers de fontes à copier
+var imgFiles = 'assets/{,css/}img/*.{png,jpg,jpeg,gif,svg}'; // fichiers images à compresser
+
+// dépendances JavaScript dans l'ordre (ajouter jsFiles aussi)
+var vendorJS = [
+  vendor + 'jquery/dist/jquery.min.js',
+  vendor + 'jquery_lazyload/jquery.lazyload.js',
+  source + jsFiles
+];
+
+
+// -------------------------------------------
+// Tâches de Build : css, html, php, js, img, fonts
+// -------------------------------------------
+// Les fichiers ne sont ni minifiés ni concaténés
+
+// Tâche "css" = LESS + autoprefixer + CSScomb + beautify (source -> destination)
+gulp.task('css', function () {
+  return gulp.src(source + lessFiles)
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.less())
+    .pipe(plugins.csscomb())
+    .pipe(plugins.cssbeautify({indent: '  '}))
+    .pipe(plugins.autoprefixer())
+    .pipe(gulp.dest(destination + 'assets/css/'));
 });
 
-// Scripts (minifiés, concaténés)
-gulp.task('scripts',function() {
-  return gulp.src(path_js_src)
-    .pipe(uglify())
-    .on('error', onError)
-    .pipe(concat(path_js_dest_filename))
-    .pipe(gulp.dest(path_js_dest));
+// Tâche "html" = includes HTML (source -> destination)
+gulp.task('html', function () {
+  // lister tous les fichiers HTML
+  return gulp.src(source + htmlFiles)
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.htmlExtend({
+      annotations: false,
+      verbose: false
+    }))
+    .pipe(gulp.dest(destination))
 });
 
-// Images optimisées
-gulp.task('images', function () {
-  return gulp.src(path_img_src + '*.{png,jpg,jpeg,gif,svg}')
-    .pipe(imagemin({
+// Tâche "php" = simple copie des fichiers PHP (source -> destination)
+gulp.task('php', function () {
+  return gulp.src(source + phpFiles)
+    .pipe(gulp.dest(destination));
+});
+
+// Tâche "js" = simple copie des fichiers JS (source -> destination)
+gulp.task('js', function () {
+  // Lister tous les fichiers, penser aux vendor
+  return gulp.src(vendorJS)
+    .pipe(gulp.dest(destination + 'assets/js/'));
+});
+
+// Tâche "img" = images optimisées (source -> destination)
+gulp.task('img', function () {
+  return gulp.src(source + imgFiles)
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.imagemin({
       svgoPlugins: [{
         removeViewBox: false
       }, {
         cleanupIDs: false
       }]
     }))
-    .pipe(gulp.dest(path_img_dest));
+    .pipe(gulp.dest(destination + 'assets/'));
 });
 
-// Fonts (simple copie des fontes)
+// Tâche "fonts" = simple copie des fontes (source -> destination)
 gulp.task('fonts', function () {
-  return gulp.src(path_fonts_src)
-    .pipe(gulp.dest(path_fonts_dest));
+  return gulp.src(source + fontFiles + '*')
+    .pipe(gulp.dest(destination + fontFiles));
 });
 
-// Styledown (styleguide)
-gulp.task('styleguide', function() {
-  gulp.src(path_all_less_src)
-  .pipe(styledown({
-    config: 'dist/assets/css/config.md',
-    filename: 'styleguide.html'
-  }))
-  .on('error', onError)
-  .pipe(gulp.dest('.'));
+// Tâche "styleguide" = guide de styles
+gulp.task('styleguide', function () {
+  gulp.src(destination + 'assets/css/styles.css')
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.styledown({
+      config: source + 'assets/css/config.md',
+      filename: 'styleguide.html'
+    }))
+    .pipe(gulp.dest(destination));
 });
 
-// Common tasks
-gulp.task('styles', ['styles']);
-gulp.task('all', ['styles','scripts','images','fonts']);
-gulp.task('default', ['all']);
 
-// Watcher (je surveille tous les *.less et *.js)
-gulp.task('watch', function() {
-  /*browserSync.init({
+// ------------------------------------------------------------------
+// Tâches de Prod : (build +) uncss, minify, concat, critical
+// ------------------------------------------------------------------
+
+// Tâche "uncss" = suppression styles non utilisés (destination -> destination)
+gulp.task('uncss', function () {
+  return gulp.src(destination + 'assets/css/*.css')
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.uncss({
+//   lister tous les fichiers HTML
+      html: [destination + htmlFiles]
+    }))
+    .pipe(gulp.dest(destination + 'assets/css/'));
+});
+
+// Tâche "minify" = minification CSS (destination -> destination)
+gulp.task('minify', function () {
+  return gulp.src(destination + 'assets/css/*.css')
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.rename({
+        suffix: '.min'
+      }))
+    .pipe(plugins.csso())
+    .pipe(gulp.dest(destination + 'assets/css/'));
+});
+
+// Tâche "concat" = minification + concaténation JS (destination -> destination)
+gulp.task('concat', function () {
+  return gulp.src(vendorJS)
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.uglify())
+    .pipe(plugins.concat('global.min.js'))
+    .pipe(gulp.dest(destination + 'assets/js/'));
+});
+
+// Tâche "clean-js" = supprime JS inutiles en prod (destination -> destination)
+gulp.task('clean-js', function () {
+  return del([
+    destination + 'assets/js/*.js',
+    // Attention : ne pas supprimer global.min.js
+    '!' + destination + 'assets/js/global.min.js'
+  ]);
+});
+
+// Tâche "critical" = critical inline CSS (destination -> destination)
+ gulp.task('critical', function () {
+// Critical ne s'occupe que des fichiers HTML à la racine
+  return gulp.src(destination + '*.html')
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(critical({
+      base: destination,
+      inline: true,
+      width: 320,
+      height: 480,
+      minify: true
+    }))
+    .pipe(gulp.dest(destination));
+});
+
+// Tâches, récapitulatif
+
+// Tâche "build"
+gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php']);
+
+// Tâche "prod" = Build + (uncss), minify, concat, (critical) (dans l'ordre)
+gulp.task('prod', gulpsync.sync(['build', /*'uncss',*/ 'minify', 'concat', 'clean-js', /*'critical'*/]));
+
+// Tâche "watch" = je surveille LESS et HTML et PHP
+gulp.task('watch', function () {
+  
+  // l'adresse par défaut de BrowserSync est http://localhost:3000/
+  browserSync.init({
     //proxy: 'http://localhost:5000',
     server: {
-        baseDir: './dist/'
+      baseDir: destination
     }
-  });*/
-  gulp.watch([path_all_less_src], ['styles', /*browserSync.reload, */ /*'styleguide'*/ ]);
-  gulp.watch([path_js_src], ['scripts']);
+  });
+  gulp.watch([source + lessFiles], ['css', browserSync.reload]);
+  gulp.watch([source + htmlFiles, source + phpFiles], ['html', 'php']);
+  gulp.watch([source + jsFiles], ['js']);
 });
 
+// Tâche par défaut
+gulp.task('default', ['build']);

@@ -1,10 +1,10 @@
-# alstart
+# Bretzel
 
 > Choucroute, knacks, et picon bière
 
-**alstart** est une base de départ pour les projets de l'agence Alsacréations ("alstart" signifiant "alsacreations" + "start").
+**Bretzel** est une base de départ pour les projets de l'agence Alsacréations ("bretzel" signifiant "alsacreations" + "start").
 
-**alstart** est configuré pour fonctionner dans un environnement axé sur les outils NPM, Gulp, LESS et KNACSS.
+**Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils NPM, Gulp, LESS et KNACSS.
 
 ## Fonctionnalités
 - HTML5 Boilerplate .htaccess
@@ -16,7 +16,10 @@
 
 ## Par où commencer
 1. (créer le repo sur gitlab)
-2. [récupérer ce repo](https://github.com/alsacreations/alstart/archive/master.zip) (zip)
+2. récupérer ce repo :
+  - [en enregistrant le .zip](https://github.com/alsacreations/bretzel/archive/master.zip)
+  - ou via `npm install alsacreations/bretzel`
+  - ou grâce au plugin npm [create-project](https://www.npmjs.com/package/create-project) ❤
 3. lancer `npm install` (ou `npm update`)
 4. lancer `bower update`
 5. lancer `gulp` pour les tâches de base, ou `gulp watch` pour surveiller les modifications
@@ -29,11 +32,11 @@
 - `gulp` : alias de `gulp all`
 - `gulp watch` : surveille styles et scripts
 
-## Architecture alstart
+## Architecture Bretzel
 
-Voici comment est architecturé **alstart** par défaut :
+Voici comment est architecturé **bretzel** par défaut :
 
-![structure-type alstart](https://raw.githubusercontent.com/alsacreations/alstart/master/src/assets/img/architecture.png)
+![structure-type bretzel](https://raw.githubusercontent.com/alsacreations/bretzel/master/src/assets/img/architecture.png)
 
 ## Usage avec KNACSS :
 - Créez ou modifiez le fichier `_00-config.less` dans votre dossier `src/assets/css/`
@@ -47,3 +50,10 @@ Voici comment est architecturé **alstart** par défaut :
 Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu à jour par Alsacréations.
 
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+
+## Changelog :
+
+### v2 (11/12/2015)
+
+- renommage de "alstart" en "bretzel"
+- refonte complète du workflow (basé à présent sur une tâche de "build" et une tâche de "prod" différentes)

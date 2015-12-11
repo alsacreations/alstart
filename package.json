@@ -1,18 +1,25 @@
 {
   "name": "alstart",
-  "version": "0.1.6",
+  "version": "2.0.0",
   "devDependencies": {
     "gulp": "latest",
-    "gulp-csso": "latest",
-    "gulp-sourcemaps": "latest",
+    "gulp-load-plugins": "latest",
     "gulp-rename": "latest",
+    "gulp-html-extend": "latest",
+    "critical": "latest",
+    "del": "latest",
+    "gulp-csso": "latest",
     "gulp-less": "latest",
+    "gulp-plumber": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-cssbeautify": "latest",
+    "gulp-uncss": "latest",
     "gulp-concat": "latest",
     "gulp-uglify": "latest",
-    "browser-sync": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-imagemin": "latest",
-    "gulp-styledown":"latest",
-    "merge-stream": "latest"
+    "gulp-sync": "latest",
+    "gulp-styledown": "latest",
+    "browser-sync": "latest"
   }
 }
