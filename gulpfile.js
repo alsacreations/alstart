@@ -1,5 +1,6 @@
 // Config
 var path_less_src = './src/assets/css/styles.less';
+var path_all_less_src = './src/assets/css/*.less';
 var path_css_dest = './dist/assets/css/';
 
 var path_js_src = './src/assets/js/*.js';
@@ -11,6 +12,9 @@ var path_img_dest = './dist/assets/img/';
 
 var path_fonts_src = './src/assets/css/fonts/*';
 var path_fonts_dest = './dist/assets/css/fonts/';
+
+var path_styleguide_src = './src/assets/styleguide/patterns/*.md';
+var path_styleguide_dest = '.';
 
 // Requires
 var gulp = require('gulp');
@@ -82,13 +86,13 @@ gulp.task('fonts', function () {
 
 // Styledown (styleguide)
 gulp.task('styleguide', function() {
-  gulp.src('./src/assets/css/*.less')
+  gulp.src(path_styleguide_src)
   .pipe(styledown({
-    config: 'dist/assets/css/config.md',
+    config: './src/assets/styleguide/config.md',
     filename: 'styleguide.html'
   }))
   .on('error', onError)
-  .pipe(gulp.dest('.'));
+  .pipe(gulp.dest(path_styleguide_dest));
 });
 
 // Watcher
@@ -99,7 +103,8 @@ gulp.task('watch', function() {
         baseDir: './dist/'
     }
   });*/
-  gulp.watch([path_less_src], ['styles-less', /*browserSync.reload, */ /*'styleguide'*/ ]);
+  gulp.watch([path_less_src, path_all_less_src], ['styles-less', /*browserSync.reload, */ /*'styleguide'*/ ]);
+  gulp.watch([path_styleguide_src], ['styleguide']);
   gulp.watch([path_js_src], ['scripts']);
 });
 

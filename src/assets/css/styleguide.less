@@ -1,0 +1,231 @@
+/*
+ * Styleguide
+ */
+
+
+/* body */
+.sg {
+  position: relative;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* Header */
+.sg-header {
+  padding: @large-value;
+  margin-bottom: @large-value;
+  text-align: center;
+  background: #F8F8F8;
+
+  .icon-kiwi-leaf {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+  }
+}
+
+
+/*
+ * Sidebar/Menu
+ */
+.sg-menu {
+  position: absolute;
+    top: 27rem; left: 2rem;
+  display: none;
+  width: 250px;
+  padding: @medium-value;
+  background: #F8F8F8;
+
+  &.is-fixed {
+    position: fixed;
+      top: 2rem;
+  }
+}
+@media (min-width: 768px) {
+  .sg-menu {
+    display: block;
+  }
+}
+/* Menu with Tocify */
+.tocify-header {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  ul {
+    margin: 0 0 @small-value;
+    padding-left: @medium-value;
+    list-style-type: none;
+    font-size: 90%;
+  }
+}
+.tocify-item {
+  margin: 0;
+  padding: @tiny-value 0;
+
+  a {
+    padding-bottom: .25rem;
+    text-decoration: none;
+    border-bottom: 0 solid;
+
+    &:focus, &:hover {
+      border-bottom-width: 1px;
+    }
+  }
+}
+.tocify-focus {
+  a {
+    font-weight: bold;
+  }
+}
+.tocify-subheader {
+  display: none;
+}
+.tocify-extend-page {
+  display: none !important;
+}
+
+
+/*
+ * Typography 
+ */
+/* main title */
+.sg-title {
+  margin-top: @small-value;
+  font-size: @h1-size;
+}
+/* copyright */
+.sg-copyright {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+}
+/* section title */
+.sg-section {
+  & > h2.sg {
+    padding-bottom: .15em;
+    font-size: @h1-size;
+    color: @headings-color;
+    border-bottom: 2px solid #eee;
+  }
+  &:first-child > h2.sg {
+    margin-top: 0;
+  }
+}
+.sg-text h3.sg {
+  color: @headings-1-color;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    border-bottom: 2px solid;
+  }
+}
+/* text */
+.sg-text {
+  p {
+    line-height: 2;
+  }
+}
+
+
+/*
+ * Styleguide Content
+ */
+.sg-content {
+  max-width: 980px;
+  margin: auto;
+  position: relative;
+  padding: @medium-value;
+}
+@media (min-width: 768px) {
+  .sg-content {
+    padding: @medium-value @large-value;
+  }
+}
+
+/* section */
+.sg-section {
+  margin-bottom: @extra-large-value;
+}
+
+/* example & canvas */
+.sg-example {
+  margin-top: @small-value;
+  margin-bottom: @medium-value;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+.sg-canvas {
+  position: relative;
+  padding: @large-value 3rem;
+  overflow-x: auto;
+}
+
+
+/*
+ * Code
+ */
+/* inline: <code> */
+code.sg {
+  display: inline-block;
+  padding: .2rem .5rem;
+  font-family: @font-stack-monospace;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  border: solid 1px #eaeaea;
+  border-radius: 2px;
+  background-color: #f8f8f8;
+}
+
+/* block: <pre> */
+.sg-code {
+  padding: @medium-value;
+  margin-top: 0;
+  font-family: @font-stack-monospace;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  border-top: solid 1px #eaeaea;
+  background-color: #f8f8f8;
+}
+/* markup color */
+.sg-code .hljs-tag,
+.sg-code .hljs-title {
+  color: #2f6f9f;
+}
+.sg-code .hljs-attribute {
+  color: #4f9fcf;
+}
+.sg-code .hljs-string,
+.sg-code .hljs-number,
+.sg-code .hljs-value {
+  color: #d44950;
+}
+.sg-code .hljs-comment {
+  color: #999988;
+}
+/* toggle button */
+.sg-code-toggle {
+  position: absolute;
+    right: 0; bottom: 0;
+  width: 100px;
+  padding: @tiny-value;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #777;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  border-width: 1px 0 0 1px;
+  border-top-left-radius: 3px;
+
+  &:focus, &:hover {
+    background-color: #f8f8f8;
+  }
+}
+
+
+
+
