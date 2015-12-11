@@ -26,11 +26,17 @@
 
 
 ## Tâches Gulp
-- `gulp styles` : compile uniquement les fichiers LESS
-- `gulp scripts`, `gulp images`, `gulp fonts` : toi même tu sais
-- `gulp all` : exécute toutes les tâches (styles, scripts, images, fontes)
-- `gulp` : alias de `gulp all`
-- `gulp watch` : surveille styles et scripts
+
+### Tâches principales
+
+- `gulp build` : tâche de build (styles, scripts, images, fontes) (`gulp` est alias de `gulp build`)
+- `gulp prod` : tâche de build (build + concaténations et minifications)
+- `gulp watch` : surveille styles, html, php et scripts
+
+### Tâches individuelles
+- `gulp css` : compile uniquement les fichiers LESS
+- `gulp js`, `gulp img`, `gulp fonts` : toi même tu sais
+
 
 ## Architecture Bretzel
 
