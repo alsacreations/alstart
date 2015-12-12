@@ -58,7 +58,7 @@
 | src/assets/css/*.less  | dist/assets/css/styles.css <br>*(autoprefixer, csscomb, beautify)*  | dist/assets/css/styles.min.css <br>dist/assets/css/styles.css <br>*("build" + csso-minify)*<br>*(option: unCSS si activé)*   | tâche "css" exécutée si modification \*.less<br>*(+ Browsersync)*  |
 | src/assets/\*.html<br>src/assets/includes/\*.html  | dist/assets/\*.html<br>dist/assets/includes/\*.html<br>*(htmlExtend = include de partiels si présents)*  | dist/assets/\*.html<br>dist/assets/includes/\*.html<br>*(option : Critical si activé)*  | tâche "html+php" exécutée si modification \*.html<br>*(+ Browsersync)*  |
 | src/assets/\*.php<br>src/assets/includes/\*.php  | dist/assets/\*.php<br>dist/assets/includes/\*.php<br>*(simple copie)*  | dist/assets/\*.php<br>dist/assets/includes/\*.php<br>*(simple copie)*  | tâche "html+php" exécutée si modification \*.php<br>*(+ Browsersync)* |
-| src/assets/img/\*<br>src/assets/css/img/\*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imagemin)*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imageoptim)*  | pas de watch |
+| src/assets/img/\*<br>src/assets/css/img/\*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imagemin)*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imagemin)*  | pas de watch |
 | src/assets/js/\*.js<br>src/vendor/.../\*.js  | dist/assets/js/\*.js<br>*(fichiers JS et JS vendor rassemblés, non concaténés)*  | dist/assets/js/global.min.js<br>*(concat, uglify)*  | tâche "js" exécutée si modification \*.js<br>*(+ Browsersync)* |
 | src/assets/css/fonts/\*  | dist/assets/css/fonts/\* <br>*(simple copie)*  | dist/assets/css/fonts/\* <br>*(simple copie)*   | pas de watch  |
 
