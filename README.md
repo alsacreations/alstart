@@ -13,6 +13,8 @@
   - réordonnement des propriétés (csscomb)
   - réindentation du code (beautify)
   - minification (csso)
+  - possibilité de supprimer les règles CSS inutilisées sur demande (unCSS)
+  - possibilité d'*inliner* les CSS critiques sur demande (Critical)
 - HTML :
   - possibilité de réaliser des *include* de fichiers (html-extend)
 - images :
