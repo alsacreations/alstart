@@ -46,10 +46,12 @@ gulp.task('css', function () {
             this.emit('end');
         }
     }))
+    .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less())
     .pipe(plugins.csscomb())
     .pipe(plugins.cssbeautify({indent: '  '}))
     .pipe(plugins.autoprefixer())
+    .pipe(plugins.sourcemaps.write('/maps'))
     .pipe(gulp.dest(destination + 'assets/css/'));
 });
 
@@ -130,12 +132,10 @@ gulp.task('styleguide', function () {
 // Tâche "minify" = minification et sourcemaps CSS (destination -> destination)
 gulp.task('minify', function () {
   return gulp.src(destination + 'assets/css/styles.css')
-    .pipe(plugins.sourcemaps.init())
     .pipe(plugins.rename({
         suffix: '.min'
       }))
     .pipe(plugins.csso())
-    .pipe(plugins.sourcemaps.write('maps'))
     .pipe(gulp.dest(destination + 'assets/css/'));
 });
 
