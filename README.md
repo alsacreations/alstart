@@ -23,7 +23,7 @@
   - rassemblements des JS projet et des JS "vendor" dans le même dossier
   - concaténation des fichiers (concat)
   - minification (uglify)
-- workflow intelligent : les tâches ne sont exécutées que si les fichiers concernés ont été modifiés ou ajoutés (HTML, PHP, images, fontes)
+- workflow intelligent : les tâches ne sont exécutées que pour les fichiers modifiés ou ajoutés (HTML, PHP, images, fontes)
 - intégration de KNACSS, la feuille de style de départ de tout bon projet
 - intégration Schnaps.it (template HTML basique)
 - intégration de Bower
