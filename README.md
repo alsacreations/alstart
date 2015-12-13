@@ -23,6 +23,7 @@
   - rassemblements des JS projet et des JS "vendor" dans le même dossier
   - concaténation des fichiers (concat)
   - minification (uglify)
+- workflow intelligent : ne traite que les fichiers modifiés ou ajoutés (HTML, PHP, images, fontes)
 - intégration de KNACSS, la feuille de style de départ de tout bon projet
 - intégration Schnaps.it (template HTML basique)
 - intégration de Bower
@@ -86,7 +87,11 @@ GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/
 
 ## Changelog :
 
-### v2 (11/12/2015)
+### v2.0.1 (13 décembre 2015)
+
+- ajout de gulp-changed pour ne traiter que les fichiers modifiés ou ajouter
+
+### v2.0.0 (11 décembre 2015)
 
 - renommage de "alstart" en "bretzel"
 - refonte complète du workflow (basé à présent sur une tâche de "build" et une tâche de "prod" différentes)

@@ -57,6 +57,7 @@ gulp.task('css', function () {
 gulp.task('html', function () {
   // lister tous les fichiers HTML
   return gulp.src(source + htmlFiles)
+    .pipe(plugins.changed(destination))
     .pipe(plugins.plumber({
         handleError: function (err) {
             console.log(err);
@@ -73,6 +74,7 @@ gulp.task('html', function () {
 // Tâche "php" = simple copie des fichiers PHP (source -> destination)
 gulp.task('php', function () {
   return gulp.src(source + phpFiles)
+    .pipe(plugins.changed(destination))
     .pipe(gulp.dest(destination));
 });
 
@@ -86,12 +88,7 @@ gulp.task('js', function () {
 // Tâche "img" = images optimisées (source -> destination)
 gulp.task('img', function () {
   return gulp.src(source + imgFiles)
-    .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
-    }))
+    .pipe(plugins.changed(destination + 'assets/'))
     .pipe(plugins.imagemin({
       svgoPlugins: [{
         removeViewBox: false
@@ -105,6 +102,7 @@ gulp.task('img', function () {
 // Tâche "fonts" = simple copie des fontes (source -> destination)
 gulp.task('fonts', function () {
   return gulp.src(source + fontFiles + '*')
+    .pipe(plugins.changed(destination + fontFiles))
     .pipe(gulp.dest(destination + fontFiles));
 });
 
