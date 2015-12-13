@@ -89,7 +89,7 @@ GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/
 
 ### v2.0.1 (13 décembre 2015)
 
-- ajout de gulp-changed pour ne traiter que les fichiers modifiés ou ajouter
+- ajout de gulp-changed pour ne traiter que les fichiers modifiés ou ajoutés
 
 ### v2.0.0 (11 décembre 2015)
 
