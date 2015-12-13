@@ -12,7 +12,7 @@
   - ajout automatiques de préfixes CSS3 (autoprefixer)
   - réordonnement des propriétés (csscomb)
   - réindentation du code (beautify)
-  - minification (csso)
+  - minification (csso), avec sourcemaps
   - possibilité de supprimer les règles CSS inutilisées sur demande (unCSS)
   - possibilité d'*inliner* les CSS critiques sur demande (Critical)
 - HTML :
@@ -29,7 +29,6 @@
 - intégration de Bower
 - actualisation automatique du navigateur (browsersync)
 - styleguide (guide de styles) généré sur demande
-- SourceMaps généré sur demande
 
 ## Par où commencer ?
 1. (créer le repo sur gitlab)

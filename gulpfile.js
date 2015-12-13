@@ -127,35 +127,15 @@ gulp.task('styleguide', function () {
 // Tâches de Prod : (build +) uncss, minify, concat, critical
 // ------------------------------------------------------------------
 
-// Tâche "uncss" = suppression styles non utilisés (destination -> destination)
-gulp.task('uncss', function () {
-  return gulp.src(destination + 'assets/css/*.css')
-    .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
-    }))
-    .pipe(plugins.uncss({
-//   lister tous les fichiers HTML
-      html: [destination + htmlFiles]
-    }))
-    .pipe(gulp.dest(destination + 'assets/css/'));
-});
-
-// Tâche "minify" = minification CSS (destination -> destination)
+// Tâche "minify" = minification et sourcemaps CSS (destination -> destination)
 gulp.task('minify', function () {
-  return gulp.src(destination + 'assets/css/*.css')
-    .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
-    }))
+  return gulp.src(destination + 'assets/css/styles.css')
+    .pipe(plugins.sourcemaps.init())
     .pipe(plugins.rename({
         suffix: '.min'
       }))
     .pipe(plugins.csso())
+    .pipe(plugins.sourcemaps.write('maps'))
     .pipe(gulp.dest(destination + 'assets/css/'));
 });
 
@@ -180,6 +160,22 @@ gulp.task('clean-js', function () {
     // Attention : ne pas supprimer global.min.js
     '!' + destination + 'assets/js/global.min.js'
   ]);
+});
+
+// Tâche "uncss" = suppression styles non utilisés (destination -> destination)
+gulp.task('uncss', function () {
+  return gulp.src(destination + 'assets/css/*.css')
+    .pipe(plugins.plumber({
+        handleError: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(plugins.uncss({
+//   lister tous les fichiers HTML
+      html: [destination + htmlFiles]
+    }))
+    .pipe(gulp.dest(destination + 'assets/css/'));
 });
 
 // Tâche "critical" = critical inline CSS (destination -> destination)
