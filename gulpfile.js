@@ -17,7 +17,7 @@ var source = './src/'; // dossier de travail
 var destination = './dist/'; // dossier à livrer
 var vendor = './src/vendor/'; // dossier des dépendances
 
-var lessFiles = 'assets/css/styles.less'; // fichier LESS à compiler
+var lessFiles = 'assets/css/*.less'; // fichiers LESS à compiler
 var jsFiles = 'assets/js/*.js'; // fichiers JavaScript (hors vendor)
 var htmlFiles = '{,includes/}*.html'; // fichiers / dossiers HTML à compiler/copier
 var phpFiles = '{,includes/}*.php'; // fichiers / dossiers PHP à copier
@@ -39,7 +39,7 @@ var vendorJS = [
 
 // Tâche "css" = LESS + autoprefixer + CSScomb + beautify (source -> destination)
 gulp.task('css', function () {
-  return gulp.src(source + lessFiles)
+  return gulp.src(source + 'assets/css/styles.less')
     .pipe(plugins.plumber({
         handleError: function (err) {
             console.log(err);
