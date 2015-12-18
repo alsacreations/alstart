@@ -170,7 +170,8 @@
  * Code
  */
 /* inline: <code> */
-code.sg {
+code.sg,
+.sg-code-inline {
   display: inline-block;
   padding: .2rem .5rem;
   font-family: @font-stack-monospace;
@@ -229,3 +230,75 @@ code.sg {
 
 
 
+/*
+ * Colors section
+ */
+
+// mixin pour générer le code hexadécimal
+.hexa(@lesscolor) {
+  &::before {
+    background: @@lesscolor;
+  }
+  &::after {
+    content: %("%a", @@lesscolor);
+  }
+}
+
+.sg-section-couleurs {
+  .sg-code-toggle {
+    display: none;
+  }
+}
+
+.sg-color {
+  & + & {
+    margin-top: @large-value;
+  }
+}
+
+.sg-color-item {
+  display: inline-block;
+  vertical-align: top;
+  width: 150px;
+
+  & + & {
+    margin-left: @medium-value;
+  }
+
+  // color example
+  &::before {
+    content: '';
+    display: block;
+    height: 80px;
+  }
+
+  // code hexadécimal
+  &::after {
+    display: block;
+    .sg-code-inline();
+  }
+
+  // nom de la variable LESS
+  span {
+    display: block;
+    margin: @tiny-value 0;
+    font-size: 1.2rem;
+  }
+
+  // Couleurs
+  &.base-color { .hexa(base-color); }
+  &.primary-color { .hexa(primary-color); }
+  &.secondary-color { .hexa(secondary-color); }
+
+  &.headings-color { .hexa(headings-color); }
+  &.headings-1-color { .hexa(headings-1-color); }
+  &.headings-2-color { .hexa(headings-2-color); }
+  &.headings-3-color { .hexa(headings-3-color); }
+
+  &.base-color-link { .hexa(base-color-link); }
+  &.base-color-link-hover { .hexa(base-color-link-hover); }
+
+  &.base-background { .hexa(base-background); }
+  &.primary-background { .hexa(primary-background); }
+  &.secondary-background { .hexa(secondary-background); }
+}

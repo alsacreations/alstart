@@ -2,7 +2,7 @@
 
 ### Head
 
-    link(rel="stylesheet" href="./dist/assets/css/styles.min.css")
+    link(rel="stylesheet" href="assets/css/styles.css")
 
 ### Body
 
@@ -17,5 +17,5 @@
         .sg-copyright &copy; Alsacréations
 
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="./src/assets/styleguide/scroll.js"></script>
-    <script src="./src/vendor/styledown-skins/dist/Default/styleguide.min.js"></script>
+    <script src="assets/js/styleguide-scroll.js"></script>
+    <script src="assets/js/styleguide.min.js"></script>

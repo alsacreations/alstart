@@ -1,18 +1,27 @@
 {
-  "name": "alstart",
-  "version": "0.1.6",
+  "name": "bretzel",
+  "version": "2.0.1",
   "devDependencies": {
     "gulp": "latest",
-    "gulp-csso": "latest",
-    "gulp-sourcemaps": "latest",
-    "gulp-rename": "latest",
-    "gulp-less": "latest",
-    "gulp-concat": "latest",
-    "gulp-uglify": "latest",
     "browser-sync": "latest",
+    "critical": "latest",
+    "del": "latest",
     "gulp-autoprefixer": "latest",
+    "gulp-changed": "latest",
+    "gulp-concat": "latest",
+    "gulp-cssbeautify": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-csso": "latest",
+    "gulp-html-extend": "latest",
     "gulp-imagemin": "latest",
-    "gulp-styledown":"latest",
-    "merge-stream": "latest"
+    "gulp-less": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-plumber": "latest",
+    "gulp-rename": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-styledown": "latest",
+    "gulp-sync": "latest",
+    "gulp-uglify": "latest",
+    "gulp-uncss": "latest"
   }
 }
