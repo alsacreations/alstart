@@ -2,6 +2,37 @@
  * Styleguide
  */
 
+/*
+ * LESS Mixins
+ */
+// mixin pour afficher la valeur de font-size
+.fontsize(@fontsize) {
+  &::after {
+    content: %('%a', @@fontsize);
+    .sg-code-inline();
+    margin-left: @small-value;
+    font-weight: normal;
+    vertical-align: middle;
+  }
+}
+
+// mixin pour afficher le code hexadécimal d'une couleur
+.hexa(@lesscolor) {
+  &::before {
+    background: @@lesscolor;
+  }
+  &::after {
+    content: %('%a', @@lesscolor);
+  }
+}
+
+// mixin pour afficher la font-family
+.font(@font) {
+  &::before {
+    content: %('%a', @@font);
+    font-weight: bold;
+  }
+}
 
 /* body */
 .sg {
@@ -170,6 +201,7 @@
  * Code
  */
 /* inline: <code> */
+code,
 code.sg,
 .sg-code-inline {
   display: inline-block;
@@ -234,16 +266,7 @@ code.sg,
  * Colors section
  */
 
-// mixin pour générer le code hexadécimal
-.hexa(@lesscolor) {
-  &::before {
-    background: @@lesscolor;
-  }
-  &::after {
-    content: %("%a", @@lesscolor);
-  }
-}
-
+// pour cacher le bouton "show markup"
 .sg-section-couleurs {
   .sg-code-toggle {
     display: none;
@@ -301,4 +324,91 @@ code.sg,
   &.base-background { .hexa(base-background); }
   &.primary-background { .hexa(primary-background); }
   &.secondary-background { .hexa(secondary-background); }
+}
+
+
+
+/*
+ * Fonts section
+ */
+[class*="sg-font-"] {
+  & + & {
+    margin-top: @medium-value;
+  }
+}
+// pour cacher le bouton "show markup"
+.sg-section-fonts {
+  .sg-code-toggle {
+    display: none;
+  }
+}
+.sg-font-common {
+  font-family: @font-stack-common;
+  .font(font-stack-common);
+}
+.sg-font-headings {
+  font-family: @font-stack-headings;
+  .font(font-stack-headings);
+}
+.sg-font-monospace {
+  font-family: @font-stack-monospace;
+  .font(font-stack-monospace);
+}
+.sg-font-universal {
+  font-family: @font-stack-universal;
+  .font(font-stack-universal);
+}
+
+
+/*
+ * Title section
+ */
+.sg-section-titres {
+  h1 { .fontsize(h1-size); }
+  h2 { .fontsize(h2-size); }
+  h3 { .fontsize(h3-size); }
+  h4 { .fontsize(h4-size); }
+  h5 { .fontsize(h5-size); }
+  h6 { .fontsize(h6-size); }
+}
+
+/*
+ * Grids section
+ */
+.sg-grid {
+  & + & {
+    margin-top: @medium-value;
+  }
+
+  & > * {
+    padding: @medium-value;
+    background: #f8f8f8;
+  }
+}
+
+
+/*
+ * Bloc alignment section
+ */
+.sg-align-block {
+  padding: @medium-value;
+  background: #f8f8f8;
+
+  & + & {
+    margin-top: @medium-value;
+  }
+}
+.sg-align-float {
+  padding: @medium-value;
+  background: #f8f8f8;
+  .clearfix();
+
+  & + & {
+    margin-top: @medium-value;
+  }
+
+  & > div[class*="f"] {
+    padding: @small-value;
+    background: #ddd;
+  }
 }
