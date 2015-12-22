@@ -54,7 +54,7 @@
 ### Tâches individuelles
 - `gulp css` : compile uniquement les fichiers LESS
 - `gulp js`, `gulp html`, `gulp php`, `gulp img`, `gulp fonts` : toi même tu sais
-- `guilp build-zip` et `guilp prod-zip` : création d'une archive zip. Ex. `projectName-build-2015-11-22-13h37.zip` ou `projectName-prod-2015-11-22-13h37.zip`
+- `guilp build-zip` et `guilp prod-zip` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2015-11-22-13h37.zip` ou `projectName-prod-2015-11-22-13h37.zip`
 
 ### Comparatif des tâches
 
