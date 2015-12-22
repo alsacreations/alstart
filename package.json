@@ -22,6 +22,8 @@
     "gulp-styledown": "latest",
     "gulp-sync": "latest",
     "gulp-uglify": "latest",
-    "gulp-uncss": "latest"
+    "gulp-uncss": "latest",
+    "gulp-zip": "latest"
   }
 }
+
