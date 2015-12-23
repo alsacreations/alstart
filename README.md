@@ -33,14 +33,23 @@
 - styleguide (guide de styles) généré sur demande
 
 ## Par où commencer ?
-1. (créer le repo sur gitlab)
-2. récupérer ce repo :
-  - [en enregistrant le .zip](https://github.com/alsacreations/bretzel/archive/master.zip)
-  - ou via `npm install alsacreations/bretzel`
-  - ou grâce au plugin npm [create-project](https://www.npmjs.com/package/create-project) ❤
-3. lancer `npm install` (ou `npm update`) pour installer les plugins gulps nécessaires
-4. lancer `bower update` pour installer les dépendances (ici KNACSS)
-5. lancer `gulp` pour les tâches de base, ou `gulp watch` pour surveiller les modifications
+
+### Choisissez un distributeur de Bretzels
+
+En clair, récupérez ce repo :
+- grâce au plugin npm [bretzel-start](https://github.com/alsacreations/bretzel-start) ❤
+- ou bien [en enregistrant le .zip](https://github.com/alsacreations/bretzel/archive/master.zip)
+- ou au pire via `npm install alsacreations/bretzel`
+
+### Prenez une Bretzel
+
+Au sein de votre dossier de projet :
+- lancez `npm install` (ou `npm update`) pour installer les plugins gulps nécessaires
+- lancez `bower update` pour installer les dépendances (ici KNACSS)
+
+### Mangez votre Bretzel !
+
+Compilez vos fichiers avec `gulp` pour les tâches de base, ou `gulp watch` pour surveiller les modifications.
 
 
 ## Tâches Gulp
