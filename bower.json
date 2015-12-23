@@ -1,6 +1,7 @@
 {
     "name": "bretzel",
     "dependencies": {
-        "knacss": "latest"
+        "knacss": "^4.4.0",
+        "jquery": "^2.1.0"
     }
 }

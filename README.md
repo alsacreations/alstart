@@ -2,7 +2,7 @@
 
 > Choucroute, knacks, et picon bière
 
-**Bretzel** *(Bretzel Project Starter)* est une base de départ pour les projets de l'agence Alsacréations.
+**Bretzel** *(Bretzel Project Starter)* est une base de départ pour des projets HTML / CSS et JS créé par l'agence Alsacréations.
 
 **Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, LESS et KNACSS. Des connaissances minimales de ces outils sont un pré-requis.
 
