@@ -44,7 +44,7 @@ En clair, récupérez ce repo :
 ### Prenez une Bretzel
 
 Au sein de votre dossier de projet :
-- lancez `npm install` (ou `npm update`) pour installer les plugins gulps nécessaires
+- lancez `npm install` (ou `npm update`) pour installer les plugins gulp nécessaires
 - lancez `bower update` pour installer les dépendances (ici KNACSS)
 
 ### Mangez votre Bretzel !
