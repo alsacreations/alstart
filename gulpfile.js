@@ -250,7 +250,7 @@ gulp.task('watch', function () {
       baseDir: destination
     }
   });
-  gulp.watch([source + lessFiles], ['css', browserSync.reload]);
+  gulp.watch([source + 'assets/css/*.less'], ['css', browserSync.reload]);
   gulp.watch([source + htmlFiles, source + phpFiles], ['html', 'php']);
   gulp.watch([source + jsFiles], ['js']);
 });
