@@ -7,7 +7,7 @@ var gulp = require('gulp');
 
 // Include plugins
 var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
-// var critical = require('critical').stream; // + critical
+// var critical = require('critical').stream; // + critical (add it to package.json)
 var gulpsync = require('gulp-sync')(gulp); // + gulp-sync
 var browserSync = require('browser-sync').create(); // + browser-sync
 var del = require('del'); // + del
