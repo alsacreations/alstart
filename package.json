@@ -1,11 +1,11 @@
 {
   "name": "bretzel",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "base de départ pour des projets HTML / CSS / JS dans un environnement nodeJS, Gulp et KNACSS",
   "devDependencies": {
     "gulp": "^3.9.0",
     "browser-sync": "^2.10.0",
-    "critical": "^0.7.0",
+//    "critical": "^0.7.0",
     "del": "^2.2.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-changed": "^1.3.0",
