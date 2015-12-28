@@ -66,7 +66,6 @@ gulp.task('css', function () {
 gulp.task('html', function () {
   // lister tous les fichiers HTML
   return gulp.src(source + htmlFiles)
-    .pipe(plugins.changed(destination))
     .pipe(plugins.plumber({
         handleError: function (err) {
             console.log(err);
@@ -83,7 +82,6 @@ gulp.task('html', function () {
 // Tâche "php" = simple copie des fichiers PHP (source -> destination)
 gulp.task('php', function () {
   return gulp.src(source + phpFiles)
-    .pipe(plugins.changed(destination))
     .pipe(gulp.dest(destination));
 });
 
