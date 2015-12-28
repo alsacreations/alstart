@@ -21,7 +21,8 @@ var source = './src/'; // dossier de travail
 var destination = './dist/'; // dossier à livrer
 var vendor = './src/vendor/'; // dossier des dépendances
 
-var lessFiles = 'assets/css/styles.less'; // fichier LESS à compiler
+var lessFile = 'assets/css/styles.less'; // fichier LESS principal
+var lessFiles = 'assets/css/*.less'; // fichiers LESS à surveiller
 var jsFiles = 'assets/js/*.js'; // fichiers JavaScript (hors vendor)
 var htmlFiles = '{,includes/}*.html'; // fichiers / dossiers HTML à compiler/copier
 var phpFiles = '{,includes/}*.php'; // fichiers / dossiers PHP à copier
@@ -45,7 +46,7 @@ var vendorJS = [
 // Tâche "css" = LESS + autoprefixer + CSScomb + beautify (source -> destination)
 gulp.task('css', function () {
   zipName = 'build';
-  return gulp.src(source + lessFiles)
+  return gulp.src(source + lessFile)
     .pipe(plugins.plumber({
         handleError: function (err) {
             console.log(err);
@@ -250,9 +251,9 @@ gulp.task('watch', function () {
       baseDir: destination
     }
   });
-  gulp.watch([source + 'assets/css/*.less'], ['css', browserSync.reload]);
-  gulp.watch([source + htmlFiles, source + phpFiles], ['html', 'php']);
-  gulp.watch([source + jsFiles], ['js']);
+  gulp.watch([source + lessFiles], ['css', browserSync.reload]);
+  gulp.watch([source + htmlFiles, source + phpFiles], ['html', 'php', browserSync.reload]);
+  gulp.watch([source + jsFiles], ['js', browserSync.reload]);
 });
 
 // Tâche par défaut
