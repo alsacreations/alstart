@@ -1,6 +1,6 @@
 {
   "name": "bretzel",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "base de départ pour des projets HTML / CSS / JS dans un environnement nodeJS, Gulp et KNACSS",
   "devDependencies": {
     "gulp": "^3.9.0",

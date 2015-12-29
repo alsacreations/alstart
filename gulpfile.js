@@ -22,7 +22,7 @@ var destination = './dist/'; // dossier à livrer
 var vendor = './src/vendor/'; // dossier des dépendances
 
 var lessFile = 'assets/css/styles.less'; // fichier LESS principal
-var lessFiles = 'assets/css/*.less'; // fichiers LESS à surveiller
+var lessFiles = 'assets/css/{,includes/}*.less'; // fichiers LESS à surveiller
 var jsFiles = 'assets/js/*.js'; // fichiers JavaScript (hors vendor)
 var htmlFiles = '{,includes/}*.html'; // fichiers / dossiers HTML à compiler/copier
 var phpFiles = '{,includes/}*.php'; // fichiers / dossiers PHP à copier
