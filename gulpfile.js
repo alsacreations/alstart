@@ -7,6 +7,7 @@ var gulp = require('gulp');
 
 // Include plugins
 var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
+var gutil = require('gulp-util');
 // var critical = require('critical').stream; // + critical (add it to package.json)
 var gulpsync = require('gulp-sync')(gulp); // + gulp-sync
 var browserSync = require('browser-sync').create(); // + browser-sync
@@ -37,6 +38,14 @@ var vendorJS = [
   source + jsFiles
 ];
 
+// gestion d'erreurs
+var onError = function (err) {
+  gutil.beep();
+  console.log(err);
+  this.emit('end');
+};
+
+
 
 // -------------------------------------------
 // Tâches de Build : css, html, php, js, img, fonts
@@ -48,10 +57,7 @@ gulp.task('css', function () {
   zipName = 'build';
   return gulp.src(source + lessFile)
     .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
+      errorHandler: onError
     }))
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less())
@@ -67,10 +73,7 @@ gulp.task('html', function () {
   // lister tous les fichiers HTML
   return gulp.src(source + htmlFiles)
     .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
+      errorHandler: onError
     }))
     .pipe(plugins.htmlExtend({
       annotations: false,
@@ -124,10 +127,7 @@ gulp.task('misc', function () {
 gulp.task('styleguide', function () {
   return gulp.src(destination + 'assets/css/styles.css')
     .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
+      errorHandler: onError
     }))
     .pipe(plugins.styledown({
       config: source + 'assets/css/config.md',
@@ -156,10 +156,7 @@ gulp.task('minify', function () {
 gulp.task('concat', function () {
   return gulp.src(vendorJS)
     .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
+      errorHandler: onError
     }))
     .pipe(plugins.uglify())
     .pipe(plugins.concat('global.min.js'))
@@ -179,10 +176,7 @@ gulp.task('clean-js', function () {
 gulp.task('uncss', function () {
   return gulp.src(destination + 'assets/css/*.css')
     .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
+      errorHandler: onError
     }))
     .pipe(plugins.uncss({
 //   lister tous les fichiers HTML
@@ -196,10 +190,7 @@ gulp.task('uncss', function () {
 // Critical ne s'occupe que des fichiers HTML à la racine
   return gulp.src(destination + '*.html')
     .pipe(plugins.plumber({
-        handleError: function (err) {
-            console.log(err);
-            this.emit('end');
-        }
+      errorHandler: onError
     }))
     .pipe(critical({
       base: destination,
@@ -216,7 +207,7 @@ gulp.task('zip', function () {
   var d = new Date();
   var date = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours() + 'h' + d.getMinutes();
   return gulp.src(destination + '/**/')
-      .pipe(plugins.zip(project + '-' + zipName + '-' + date + '.zip'))
+      .pipe(plugins.zip('Alsacreations-' + project + '-' + zipName + '-' + date + '.zip'))
       .pipe(gulp.dest('./'));
  });
 
