@@ -205,7 +205,8 @@ gulp.task('uncss', function () {
 // Tâche "zip" = création de fichier .zip du projet
 gulp.task('zip', function () {
   var d = new Date();
-  var date = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours() + 'h' + d.getMinutes();
+  var mois = d.getMonth() + 1;
+  var date = d.getFullYear() + '-' + mois + '-' + d.getDate() + '-' + d.getHours() + 'h' + d.getMinutes();
   return gulp.src(destination + '/**/')
       .pipe(plugins.zip('Alsacreations-' + project + '-' + zipName + '-' + date + '.zip'))
       .pipe(gulp.dest('./'));
