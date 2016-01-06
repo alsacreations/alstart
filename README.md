@@ -79,7 +79,7 @@ Compilez vos fichiers avec `gulp` pour les tâches de base, ou `gulp watch` pour
 
 ## Architecture Bretzel
 
-Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empêche de modifier cette structure en changeant les variables présentes dans `gulpconfig.js` :
+Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empêche de modifier cette structure en changeant les variables présentes dans `gulpfile.js` :
 
 ![structure-type bretzel](https://raw.githubusercontent.com/alsacreations/bretzel/master/src/assets/img/architecture.png)
 
