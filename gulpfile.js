@@ -1,249 +1,315 @@
-// Usage Général :
-// Tâche "build" : fichiers compilés dans "/dist" (ni minifiés ni concaténés). Le client peut modifier, améliorer et mettre en prod lui-même
-// Tâche "prod" : fichiers compilés dans "/dist" (minifiés, concaténés, optimisés, etc.). Le client utilise tel quel.
+/*jshint node: true */
+'use strict';
 
-// Requis
-var gulp = require('gulp');
-
-// Include plugins
-var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
-var gutil = require('gulp-util');
-// var critical = require('critical').stream; // + critical (add it to package.json)
-var gulpsync = require('gulp-sync')(gulp); // + gulp-sync
-var browserSync = require('browser-sync').create(); // + browser-sync
-var del = require('del'); // + del
-
-// Nom du projet (pour .zip)
-var project = 'projectName';
-var zipName = ''; // sera "build" ou "prod" selon la tâche
-
-// Variables de chemins
-var source = './src/'; // dossier de travail
-var destination = './dist/'; // dossier à livrer
-var vendor = './src/vendor/'; // dossier des dépendances
-
-var lessFile = 'assets/css/styles.less'; // fichier LESS principal
-var lessFiles = 'assets/css/{,includes/}*.less'; // fichiers LESS à surveiller
-var jsFiles = 'assets/js/*.js'; // fichiers JavaScript (hors vendor)
-var htmlFiles = '{,includes/}*.html'; // fichiers / dossiers HTML à compiler/copier
-var phpFiles = '{,includes/}*.php'; // fichiers / dossiers PHP à copier
-var fontFiles = 'assets/css/fonts/'; // fichiers de fontes à copier
-var imgFiles = 'assets/{,css/}img/*.{png,jpg,jpeg,gif,svg}'; // fichiers images à compresser
-var miscFiles = '*.{ico,htaccess,txt}'; // fichiers divers à copier
-
-// dépendances JavaScript dans l'ordre (ajouter jsFiles aussi)
-var vendorJS = [
-  vendor + 'jquery/dist/jquery.min.js',
-  vendor + 'swiper/dist/js/swiper.min.js',
-  source + jsFiles
-];
-
-// gestion d'erreurs
-var onError = function (err) {
-  gutil.beep();
-  console.log(err);
-  this.emit('end');
-};
+/**
+ * Usage général :
+ *
+ *  - tâche "build" : fichiers compilés dans "/dist" (ni minifiés ni concaténés).
+ *    Le client peut modifier, améliorer et mettre en prod lui-même.
+ *
+ *  - tâche "prod" : fichiers compilés dans "/dist" (minifiés, concaténés,
+ *    optimisés, etc.). Le client utilise tel quel.
+ */
 
 
-
-// -------------------------------------------
-// Tâches de Build : css, html, php, js, img, fonts
-// -------------------------------------------
-// Les fichiers ne sont ni minifiés ni concaténés
-
-// Tâche "css" = LESS + autoprefixer + CSScomb + beautify (source -> destination)
-gulp.task('css', function () {
-  zipName = 'build';
-  return gulp.src(source + lessFile)
-    .pipe(plugins.plumber({
-      errorHandler: onError
-    }))
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.less())
-    .pipe(plugins.csscomb())
-    .pipe(plugins.cssbeautify({indent: '  '}))
-    .pipe(plugins.autoprefixer())
-    .pipe(plugins.sourcemaps.write('/maps'))
-    .pipe(gulp.dest(destination + 'assets/css/'));
-});
-
-// Tâche "html" = includes HTML (source -> destination)
-gulp.task('html', function () {
-  // lister tous les fichiers HTML
-  return gulp.src(source + htmlFiles)
-    .pipe(plugins.plumber({
-      errorHandler: onError
-    }))
-    .pipe(plugins.htmlExtend({
-      annotations: false,
-      verbose: false
-    }))
-    .pipe(gulp.dest(destination));
-});
-
-// Tâche "php" = simple copie des fichiers PHP (source -> destination)
-gulp.task('php', function () {
-  return gulp.src(source + phpFiles)
-    .pipe(gulp.dest(destination));
-});
-
-// Tâche "js" = simple copie des fichiers JS (source -> destination)
-gulp.task('js', function () {
-  // Lister tous les fichiers, penser aux vendor
-  return gulp.src(vendorJS)
-    .pipe(gulp.dest(destination + 'assets/js/'));
-});
-
-// Tâche "img" = images optimisées (source -> destination)
-gulp.task('img', function () {
-  return gulp.src(source + imgFiles)
-    .pipe(plugins.changed(destination + 'assets/'))
-    .pipe(plugins.imagemin({
-      svgoPlugins: [{
-        removeViewBox: false
-      }, {
-        cleanupIDs: false
-      }]
-    }))
-    .pipe(gulp.dest(destination + 'assets/'));
-});
-
-// Tâche "fonts" = simple copie des fontes (source -> destination)
-gulp.task('fonts', function () {
-  return gulp.src(source + fontFiles + '*')
-    .pipe(plugins.changed(destination + fontFiles))
-    .pipe(gulp.dest(destination + fontFiles));
-});
-
-// Tâche "misc" = simple copie des fichiers divers (source -> destination)
-gulp.task('misc', function () {
-  return gulp.src(source + miscFiles, { dot: true })
-    .pipe(plugins.changed(destination))
-    .pipe(gulp.dest(destination));
-});
-
-// Tâche "styleguide" = guide de styles
-gulp.task('styleguide', function () {
-  return gulp.src(destination + 'assets/css/styles.css')
-    .pipe(plugins.plumber({
-      errorHandler: onError
-    }))
-    .pipe(plugins.styledown({
-      config: source + 'assets/css/config.md',
-      filename: 'styleguide.html'
-    }))
-    .pipe(gulp.dest(destination));
-});
+/**
+ * Chargement et initialisation des composants utilisés
+ */
+var gulp = require('gulp'),
+    $ = require('gulp-load-plugins')(),
+    gulpSync = require('gulp-sync')(gulp),
+    browserSync = require('browser-sync').create(),
+    del = require('del');
 
 
-// ------------------------------------------------------------------
-// Tâches de Prod : (build +) minify, concat, uncss, critical
-// ------------------------------------------------------------------
-
-// Tâche "minify" = minification CSS (destination -> destination)
-gulp.task('minify', function () {
-  zipName = 'prod';
-  return gulp.src(destination + 'assets/css/styles.css')
-    .pipe(plugins.rename({
-        suffix: '.min'
-      }))
-    .pipe(plugins.csso())
-    .pipe(gulp.dest(destination + 'assets/css/'));
-});
-
-// Tâche "concat" = minification + concaténation JS (destination -> destination)
-gulp.task('concat', function () {
-  return gulp.src(vendorJS)
-    .pipe(plugins.plumber({
-      errorHandler: onError
-    }))
-    .pipe(plugins.uglify())
-    .pipe(plugins.concat('global.min.js'))
-    .pipe(gulp.dest(destination + 'assets/js/'));
-});
-
-// Tâche "clean-js" = supprime JS inutiles en prod (destination -> destination)
-gulp.task('clean-js', function () {
-  return del([
-    destination + 'assets/js/*.js',
-    // Attention : ne pas supprimer global.min.js
-    '!' + destination + 'assets/js/global.min.js'
-  ]);
-});
-
-// Tâche "uncss" = suppression styles non utilisés (destination -> destination)
-gulp.task('uncss', function () {
-  return gulp.src(destination + 'assets/css/*.css')
-    .pipe(plugins.plumber({
-      errorHandler: onError
-    }))
-    .pipe(plugins.uncss({
-//   lister tous les fichiers HTML
-      html: [destination + htmlFiles]
-    }))
-    .pipe(gulp.dest(destination + 'assets/css/'));
-});
-
-// Tâche "critical" = critical inline CSS (destination -> destination)
- gulp.task('critical', function () {
-// Critical ne s'occupe que des fichiers HTML à la racine
-  return gulp.src(destination + '*.html')
-    .pipe(plugins.plumber({
-      errorHandler: onError
-    }))
-    .pipe(critical({
-      base: destination,
+/**
+ * Configuration générale du projet et des composants utilisés
+ */
+var project = {
+  name: 'projectName', // nom du projet, utilisé notamment pour le fichier ZIP
+  url: 'http://localhost/', // url du projet, utilisée par browserSync en mode proxy
+  zip: {
+    name: '', // "build" ou "prod" selon la tâche, généré automatiquement par ce script
+    namespace: 'alsacreations', // préfixe du fichier ZIP
+  },
+  globalJSFile: 'global.min.js', // nom du fichier JS après concaténation
+  plugins: { // activation ou désactivation de certains plugins à la carte
+    browserSync: {
+      status: true, // utilisation du plugin browserSync lors du Watch ?
+      proxyMode: true, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
+    },
+    critical: false, // utilisation du plugin critical pour insérer le CSS critique en INLINE dans le HTML
+    uncss: false, // utilisation du plugin uncss pour supprimer le CSS non utilisé (avec fichiers HTML seulement)
+  },
+  configuration: { // configuration des différents composants de ce projet
+    critical: {
+      base: './',
       inline: true,
       width: 320,
       height: 480,
-      minify: true
-    }))
-    .pipe(gulp.dest(destination));
+      minify: true,
+    },
+    cssbeautify: {
+      indent: '  ',
+    },
+    htmlExtend: {
+      annotations: false,
+      verbose: false,
+    },
+    imagemin: {
+      svgoPlugins: [
+        {
+          removeViewBox: false,
+        }, {
+          cleanupIDs: false,
+        },
+      ],
+    },
+    styledown: {
+      config: './dist/assets/css/config.md',
+      filename: 'styleguide.html',
+    },
+  },
+};
+
+
+/**
+ * Chemins vers les ressources ciblées
+ */
+var paths = {
+  root: './', // dossier actuel
+  src: './src/', // dossier de travail
+  dest: './dist/', // dossier destiné à la livraison
+  vendors: './src/vendor/', // dossier des dépendances du projet
+  assets: 'assets/',
+  styles: {
+    root: 'assets/css/', // fichier contenant les fichiers CSS & Less
+    css: {
+      mainFile: 'assets/css/styles.css', // fichier CSS principal
+      files: 'assets/css/*.css', // cible tous les fichiers CSS
+      styleguide: 'assets/css/config.md', // fichier MD de configuration du styleguide
+    },
+    less: {
+      mainFile: 'assets/css/styles.less', // fichier Less principal
+      files: 'assets/css/{,includes/}*.less', // fichiers Less à surveiller
+    },
+  },
+  scripts: {
+    root: 'assets/js/', // dossier contenant les fichiers JavaScript
+    files: 'assets/js/*.js', // fichiers JavaScript (hors vendor)
+  },
+  html: {
+    racine: '*.html', // fichiers & dossiers HTML à compiler / copier à la racine uniquement
+    allFiles: '{,includes/}*.html', // fichiers & dossiers HTML à compiler / copier à la racine et dans le dossier includes/
+  },
+  php: '{,includes/}*.php', // fichiers & dossiers PHP à copier
+  fonts: 'assets/css/fonts/', // fichiers typographiques à copier,
+  images: 'assets/{,css/}img/*.{png,jpg,jpeg,gif,svg}', // fichiers images à compresser
+  misc: '*.{ico,htaccess,txt}', // fichiers divers à copier
+  maps: '/maps', // fichiers provenant de sourcemaps
+};
+
+
+/**
+ * Ressources JavaScript utilisées par ce projet (vendors + scripts JS spécifiques)
+ */
+var vendors = [
+  paths.vendors + 'jquery/dist/jquery.min.js',
+  paths.vendors + 'swiper/dist/js/swiper.min.js',
+  paths.src + paths.scripts.files,
+];
+
+
+/**
+ * Tâche de gestion des erreurs à la volée
+ */
+var onError = {
+  errorHandler: function (err) {
+    $.util.beep();
+    console.log(err);
+    this.emit('end');
+  }
+};
+
+
+/* ------------------------------------------------
+ * Tâches de Build : css, html, php, js, img, fonts
+ * ------------------------------------------------
+ * Les fichiers ne sont ni minifiés, ni concaténés
+ */
+
+// Tâche CSS : Less + autoprefixer + CSScomb + beautify (source -> destination)
+gulp.task('css', function () {
+  project.zip.name = 'build';
+  return gulp.src(paths.src + paths.styles.less.mainFile)
+    .pipe($.plumber(onError))
+    .pipe($.sourcemaps.init())
+    .pipe($.less())
+    .pipe($.csscomb())
+    .pipe($.cssbeautify(project.configuration.cssbeautify))
+    .pipe($.autoprefixer())
+    .pipe($.sourcemaps.write(paths.maps))
+    .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
 
-// Tâche "zip" = création de fichier .zip du projet
+// Tâche HTML : includes HTML (source -> destination)
+gulp.task('html', function () {
+  return gulp.src(paths.src + paths.html.allFiles)
+    .pipe($.plumber(onError))
+    .pipe($.htmlExtend(project.configuration.htmlExtend))
+    .pipe(gulp.dest(paths.dest));
+});
+
+// Tâche PHP : simple copie des fichiers PHP (source -> destination)
+gulp.task('php', function () {
+  return gulp.src(paths.src + paths.php)
+    .pipe(gulp.dest(paths.dest));
+});
+
+// Tâche JS : simple copie des fichiers JS (source -> destination)
+gulp.task('js', function () {
+  return gulp.src(vendors)
+    .pipe(gulp.dest(paths.dest + paths.scripts.root));
+});
+
+// Tâche IMG : images optimisées (source -> destination)
+gulp.task('img', function () {
+  return gulp.src(paths.src + paths.images)
+    .pipe($.changed(paths.dest + paths.assets))
+    .pipe($.imagemin(project.configuration.imagemin))
+    .pipe(gulp.dest(paths.dest + paths.assets));
+});
+
+// Tâche FONTS : simple copie des fichiers typographiques (source -> destination)
+gulp.task('fonts', function () {
+  return gulp.src(paths.src + paths.fonts + '*')
+    .pipe($.changed(paths.dest + paths.fonts))
+    .pipe(gulp.dest(paths.dest + paths.fonts));
+});
+
+// Tâche MISC : simple copie des fichiers divers (source -> destination)
+gulp.task('misc', function () {
+  var dottedFiles = { dot: true };
+  return gulp.src(paths.src + paths.misc, dottedFiles)
+    .pipe($.changed(paths.dest))
+    .pipe(gulp.dest(paths.dest));
+});
+
+// Tâche STYLEGUIDE : création automatique d'un guide des styles
+gulp.task('styleguide', function () {
+  return gulp.src(paths.dest + paths.styles.css.mainFile)
+    .pipe($.plumber(onError))
+    .pipe($.styledown(project.configuration.styledown))
+    .pipe(gulp.dest(paths.dest));
+});
+
+
+/* ----------------------------------------------------------
+ * Tâches de Prod : (build +) minify, concat, uncss, critical
+ * ----------------------------------------------------------
+ */
+
+// Tâche MINIFY : minification CSS (destination -> destination)
+gulp.task('minify', function () {
+  project.zip.name = 'prod';
+  return gulp.src(paths.dest + paths.styles.css.mainFile)
+    .pipe($.rename({suffix: '.min'}))
+    .pipe($.csso())
+    .pipe(gulp.dest(paths.dest + paths.styles.root));
+});
+
+// Tâche CONCAT : minification + concaténation JS (destination -> destination)
+gulp.task('concat', function () {
+  return gulp.src(vendors)
+    .pipe($.plumber(onError))
+    .pipe($.uglify())
+    .pipe($.concat(project.globalJSFile))
+    .pipe(gulp.dest(paths.dest + paths.scripts.root));
+});
+
+// Tâche CLEAN-JS : supprime les scripts JavaScript inutiles en production (destination -> destination)
+gulp.task('clean-js', function () {
+  return del([
+    paths.dest + paths.scripts.files, // on supprime tous les fichiers JS du répertoire de production
+    '!' + paths.dest + paths.scripts.root + project.globalJSFile, // sauf le fichier concaténé final
+  ]);
+});
+
+// Tâche UNCSS : supprime les styles non utilisés (destination -> destination)
+gulp.task('clean-css', function () {
+  if (project.plugins.uncss) {
+    return gulp.src(paths.dest + paths.styles.css.files)
+      .pipe($.plumber(onError))
+      .pipe($.uncss({
+        html: [paths.dest + paths.html.allFiles],
+      }))
+      .pipe(gulp.dest(paths.dest + paths.styles.root));
+  }
+});
+
+// Tâche CRITICAL : critical inline CSS (destination -> destination)
+gulp.task('critical', function () {
+  if (project.plugins.critical) {
+    return gulp.src(paths.dest + paths.html.racine)
+      .pipe($.plumber(onError))
+      .pipe($.critical(project.configuration.critical))
+      .pipe(gulp.dest(paths.dest));
+  }
+});
+
+// Tâche ZIP : création de fichier .zip du projet
 gulp.task('zip', function () {
-  var d = new Date();
-  var mois = d.getMonth() + 1;
-  var date = d.getFullYear() + '-' + mois + '-' + d.getDate() + '-' + d.getHours() + 'h' + d.getMinutes();
-  return gulp.src(destination + '/**/')
-      .pipe(plugins.zip('Alsacreations-' + project + '-' + zipName + '-' + date + '.zip'))
-      .pipe(gulp.dest('./'));
- });
+  var now = new Date(),
+      date = now.getFullYear() + '-' + ( now.getMonth() + 1 ) + '-' + now.getDate() + '-' + now.getHours() + 'h' + now.getMinutes(),
+      zipName = project.zip.namespace + '-' + project.name + '-' + project.zip.name + '-' + date + '.zip';
+  return gulp.src(paths.dest + '/**/')
+    .pipe($.zip(zipName))
+    .pipe(gulp.dest(paths.root));
+});
 
 
-// ------------------------------------------------------------------
-// Tâches principales : récapitulatif
-// ------------------------------------------------------------------
+/* ----------------------------------
+ * Tâches principales : récapitulatif
+ * ----------------------------------
+ */
 
-// Tâche "build"
+// Tâche BUILD
 gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
 
-// Tâche "prod" = Build + (uncss), minify, concat, (critical) (dans l'ordre)
-gulp.task('prod', gulpsync.sync(['build', /*'uncss',*/ 'minify', 'concat', 'clean-js', /*'critical'*/]));
+// Tâche PROD : build + (uncss) + minify + concat + (critical) (dans l'ordre)
+gulp.task('prod', gulpSync.sync(['build', 'clean-css', 'minify', 'concat', 'clean-js', 'critical']));
 
+// Tâche BUILD-ZIP : build + création d'un fichier .zip
+gulp.task('build-zip', gulpSync.sync(['build', 'zip']));
 
-// Tâche "build-zip" = Build + création de fichier .zip
-gulp.task('build-zip', gulpsync.sync(['build', 'zip']));
+// Tâche PROD-ZIP : prod + création d'un fichier .zip
+gulp.task('prod-zip', gulpSync.sync(['prod', 'zip']));
 
-// Tâche "prod-zip" = Prod + création de fichier .zip
-gulp.task('prod-zip', gulpsync.sync(['prod', 'zip']));
-
-
-// Tâche "watch" = je surveille LESS et HTML et PHP
+// Tâche WATCH : surveillance Less, HTML et PHP
 gulp.task('watch', function () {
-  
-  // l'adresse par défaut de BrowserSync est http://localhost:3000/
-  browserSync.init({
-    //proxy: 'http://localhost:5000',
-    server: {
-      baseDir: destination
+  // si demandé, on créé la configuration du plugin browserSync et on l'initialise
+  if (project.plugins.browserSync.status === true) {
+    var browserSyncConf; // variable contenant la configuration de browserSync
+    if (project.plugins.browserSync.proxyMode === true) {
+      // initialisation du mode proxy si demandé
+      browserSyncConf = {
+        proxy: project.url,
+      };
+    } else {
+      // sinon on initialise le mode standalone
+      browserSyncConf = {
+        server: {
+          baseDir: paths.dest,
+        }
+      };
     }
-  });
-  gulp.watch([source + lessFiles], ['css', browserSync.reload]);
-  gulp.watch([source + htmlFiles, source + phpFiles], ['html', 'php', browserSync.reload]);
-  gulp.watch([source + jsFiles], ['js', browserSync.reload]);
+    // on initialise le plugin browserSync
+    browserSync.init(browserSyncConf);
+  }
+
+  gulp.watch([paths.src + paths.styles.less.files], ['css', browserSync.reload]);
+  gulp.watch([paths.src + paths.html.allFiles, paths.src + paths.php], ['html', 'php', browserSync.reload]);
+  gulp.watch([paths.src + paths.scripts.files], ['js', browserSync.reload]);
 });
 
 // Tâche par défaut
