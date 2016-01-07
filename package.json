@@ -27,6 +27,9 @@
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.0.2"
   },
+  "scripts": {
+    "setup": "npm install && bower install && gulp"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/alsacreations/bretzel"
