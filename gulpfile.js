@@ -35,8 +35,8 @@ var project = {
   globalJSFile: 'global.min.js', // nom du fichier JS après concaténation
   plugins: { // activation ou désactivation de certains plugins à la carte
     browserSync: {
-      status: true, // utilisation du plugin browserSync lors du Watch ?
-      proxyMode: true, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
+      status: false, // utilisation du plugin browserSync lors du Watch ?
+      proxyMode: false, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
     },
     critical: false, // utilisation du plugin critical pour insérer le CSS critique en INLINE dans le HTML
     uncss: false, // utilisation du plugin uncss pour supprimer le CSS non utilisé (avec fichiers HTML seulement)
