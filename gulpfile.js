@@ -18,7 +18,7 @@
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     gulpSync = require('gulp-sync')(gulp),
-    browserSync = require('browser-sync').create(),
+    uncss = require('gulp-uncss'),
     del = require('del');
 
 
@@ -38,17 +38,9 @@ var project = {
       status: false, // utilisation du plugin browserSync lors du Watch ?
       proxyMode: false, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
     },
-    critical: false, // utilisation du plugin critical pour insérer le CSS critique en INLINE dans le HTML
-    uncss: false, // utilisation du plugin uncss pour supprimer le CSS non utilisé (avec fichiers HTML seulement)
+    uncss: true, // utilisation du plugin uncss pour supprimer le CSS non utilisé (fichiers HTML et PHP)
   },
   configuration: { // configuration des différents composants de ce projet
-    critical: {
-      base: './',
-      inline: true,
-      width: 320,
-      height: 480,
-      minify: true,
-    },
     cssbeautify: {
       indent: '  ',
     },
@@ -204,9 +196,9 @@ gulp.task('styleguide', function () {
 });
 
 
-/* ----------------------------------------------------------
- * Tâches de Prod : (build +) minify, concat, uncss, critical
- * ----------------------------------------------------------
+/* ---------------------------------------------------
+ * Tâches de Prod : (build +) minify, concat, clean-js
+ * ---------------------------------------------------
  */
 
 // Tâche MINIFY : minification CSS (destination -> destination)
@@ -235,25 +227,21 @@ gulp.task('clean-js', function () {
   ]);
 });
 
+
+/* ---------------------------
+ * Tâches annexes : uncss, zip
+ * ---------------------------
+ */
+
 // Tâche UNCSS : supprime les styles non utilisés (destination -> destination)
-gulp.task('clean-css', function () {
+gulp.task('uncss', function () {
   if (project.plugins.uncss) {
     return gulp.src(paths.dest + paths.styles.css.files)
       .pipe($.plumber(onError))
-      .pipe($.uncss({
-        html: [paths.dest + paths.html.allFiles],
+      .pipe(uncss({
+        html: [paths.dest + paths.html.allFiles, paths.dest + paths.php],
       }))
       .pipe(gulp.dest(paths.dest + paths.styles.root));
-  }
-});
-
-// Tâche CRITICAL : critical inline CSS (destination -> destination)
-gulp.task('critical', function () {
-  if (project.plugins.critical) {
-    return gulp.src(paths.dest + paths.html.racine)
-      .pipe($.plumber(onError))
-      .pipe($.critical(project.configuration.critical))
-      .pipe(gulp.dest(paths.dest));
   }
 });
 
@@ -276,8 +264,8 @@ gulp.task('zip', function () {
 // Tâche BUILD
 gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
 
-// Tâche PROD : build + (uncss) + minify + concat + (critical) (dans l'ordre)
-gulp.task('prod', gulpSync.sync(['build', 'clean-css', 'minify', 'concat', 'clean-js', 'critical']));
+// Tâche PROD : build + minify + concat + clean-js (dans l'ordre)
+gulp.task('prod', gulpSync.sync(['build', 'minify', 'concat', 'clean-js']));
 
 // Tâche BUILD-ZIP : build + création d'un fichier .zip
 gulp.task('build-zip', gulpSync.sync(['build', 'zip']));

@@ -14,7 +14,6 @@
   - réindentation du code (beautify)
   - minification (csso), avec sourcemaps
   - possibilité de supprimer les règles CSS inutilisées sur demande (unCSS)
-  - possibilité d'*inliner* les CSS critiques sur demande (Critical)
 - HTML :
   - possibilité de réaliser des *include* de fichiers (html-extend)
 - images :
@@ -96,6 +95,12 @@ Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
 
 ## Changelog :
+
+### v2.1.0 (12 janvier 2016)
+
+- version "publique" avec code plus présentable, configuration plus cohérente et maintenable
+- suppression de Critical 
+- lanceur de projet via `npm run setup`
 
 ### v2.0.1 (13 décembre 2015)
 
