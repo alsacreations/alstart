@@ -54,14 +54,16 @@ Compilez vos fichiers avec `gulp` pour les tâches de base, ou `gulp watch` pour
 
 ### Tâches principales
 
-- **`gulp build`** : tous les fichiers de `/src` sont compilés dans `/dist` et ne sont ni minifiés ni concaténés. Le client peut modifier, améliorer et mettre en prod lui-même. (`gulp` est alias de `gulp build`)
-- **`gulp prod`** : tous les fichiers de `/src` sont compilés dans `/dist` et sont - en plus - concaténés, minifiés, optimisés. Le client utilise tel quel ou doit recompiler lui-même.
+- **`gulp`** : tous les fichiers de `/src` sont compilés dans `/dist` et ne sont ni minifiés ni concaténés. Le client peut modifier, améliorer et mettre en prod lui-même. (`gulp` est alias de `gulp build`)
+- **`gulp --prod`** : tous les fichiers de `/src` sont compilés dans `/dist` et sont - en plus - concaténés, minifiés, optimisés. Le client utilise tel quel ou doit recompiler lui-même.
 - `gulp watch` : surveille styles, html, php et scripts
 
 ### Tâches individuelles
 - `gulp css` : compile uniquement les fichiers LESS
 - `gulp js`, `gulp html`, `gulp php`, `gulp img`, `gulp fonts` : toi même tu sais
-- `guilp build-zip` et `guilp prod-zip` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2015-11-22-13h37.zip` ou `projectName-prod-2015-11-22-13h37.zip`
+- `gulp styleguide` : création d'un guide de styles
+- `gulp clean` : suppression des fichiers inutiles en production
+- `guilp zip` et `guilp zip --prod` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2015-11-22-13h37.zip` ou `projectName-prod-2015-11-22-13h37.zip`
 
 ### Comparatif des tâches
 
@@ -96,9 +98,10 @@ GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/
 
 ## Changelog :
 
-### v2.1.0 (12 janvier 2016)
+### v2.1.1 (12 janvier 2016)
 
 - version "publique" avec code plus présentable, configuration plus cohérente et maintenable
+- tâches principales rassemblées en une seule (`build`) avec un argument optionnel (`--prod`) pour la production
 - suppression de Critical 
 - lanceur de projet via `npm run setup`
 

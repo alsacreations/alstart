@@ -1,13 +1,13 @@
-/*jshint node: true */
+/* jshint node: true */
 'use strict';
 
 /**
  * Usage général :
  *
- *  - tâche "build" : fichiers compilés dans "/dist" (ni minifiés ni concaténés).
+ *  - tâche "gulp" : fichiers compilés dans "/dist" (ni minifiés ni concaténés).
  *    Le client peut modifier, améliorer et mettre en prod lui-même.
  *
- *  - tâche "prod" : fichiers compilés dans "/dist" (minifiés, concaténés,
+ *  - tâche "gulp --prod" : fichiers compilés dans "/dist" (minifiés, concaténés,
  *    optimisés, etc.). Le client utilise tel quel.
  */
 
@@ -17,9 +17,10 @@
  */
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
-    browserSync = require('browser-sync').create(), 
+    browserSync = require('browser-sync').create(),
     gulpSync = require('gulp-sync')(gulp),
     uncss = require('gulp-uncss'),
+    argv = require('yargs').argv,
     del = require('del');
 
 
@@ -30,13 +31,12 @@ var project = {
   name: 'projectName', // nom du projet, utilisé notamment pour le fichier ZIP
   url: 'http://localhost/', // url du projet, utilisée par browserSync en mode proxy
   zip: {
-    name: '', // "build" ou "prod" selon la tâche, généré automatiquement par ce script
     namespace: 'alsacreations', // préfixe du fichier ZIP
   },
   globalJSFile: 'global.min.js', // nom du fichier JS après concaténation
   plugins: { // activation ou désactivation de certains plugins à la carte
     browserSync: {
-      status: false, // utilisation du plugin browserSync lors du Watch ?
+      status: true, // utilisation du plugin browserSync lors du Watch ?
       proxyMode: false, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
     },
     uncss: true, // utilisation du plugin uncss pour supprimer le CSS non utilisé (fichiers HTML et PHP)
@@ -124,16 +124,19 @@ var onError = {
   }
 };
 
+/**
+ * Tâche de production si ajout de l'argument "--prod"
+ */
+var isProduction = argv.prod;
+
 
 /* ------------------------------------------------
  * Tâches de Build : css, html, php, js, img, fonts
  * ------------------------------------------------
- * Les fichiers ne sont ni minifiés, ni concaténés
  */
 
-// Tâche CSS : Less + autoprefixer + CSScomb + beautify (source -> destination)
+// Tâche CSS : Less + autoprefixer + CSScomb + beautify + minify (si prod)
 gulp.task('css', function () {
-  project.zip.name = 'build';
   return gulp.src(paths.src + paths.styles.less.mainFile)
     .pipe($.plumber(onError))
     .pipe($.sourcemaps.init())
@@ -141,11 +144,14 @@ gulp.task('css', function () {
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
     .pipe($.autoprefixer())
+    .pipe(gulp.dest(paths.dest + paths.styles.root))
+    .pipe($.if(isProduction, $.rename({suffix: '.min'})))
+    .pipe($.if(isProduction, $.csso()))
     .pipe($.sourcemaps.write(paths.maps))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
 
-// Tâche HTML : includes HTML (source -> destination)
+// Tâche HTML : includes HTML
 gulp.task('html', function () {
   return gulp.src(paths.src + paths.html.allFiles)
     .pipe($.plumber(onError))
@@ -153,19 +159,23 @@ gulp.task('html', function () {
     .pipe(gulp.dest(paths.dest));
 });
 
-// Tâche PHP : simple copie des fichiers PHP (source -> destination)
+// Tâche PHP : simple copie des fichiers PHP
 gulp.task('php', function () {
   return gulp.src(paths.src + paths.php)
     .pipe(gulp.dest(paths.dest));
 });
 
-// Tâche JS : simple copie des fichiers JS (source -> destination)
+// Tâche JS : copie des fichiers JS et vendor + concat + uglify (si prod)
 gulp.task('js', function () {
   return gulp.src(vendors)
+    .pipe($.plumber(onError))
+    .pipe(gulp.dest(paths.dest + paths.scripts.root))
+    .pipe($.if(isProduction, $.concat(project.globalJSFile)))
+    .pipe($.if(isProduction, $.uglify()))
     .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
 
-// Tâche IMG : images optimisées (source -> destination)
+// Tâche IMG : optimisation des images
 gulp.task('img', function () {
   return gulp.src(paths.src + paths.images)
     .pipe($.changed(paths.dest + paths.assets))
@@ -173,20 +183,27 @@ gulp.task('img', function () {
     .pipe(gulp.dest(paths.dest + paths.assets));
 });
 
-// Tâche FONTS : simple copie des fichiers typographiques (source -> destination)
+// Tâche FONTS : copie des fichiers typographiques
 gulp.task('fonts', function () {
   return gulp.src(paths.src + paths.fonts + '*')
     .pipe($.changed(paths.dest + paths.fonts))
     .pipe(gulp.dest(paths.dest + paths.fonts));
 });
 
-// Tâche MISC : simple copie des fichiers divers (source -> destination)
+// Tâche MISC : copie des fichiers divers
 gulp.task('misc', function () {
   var dottedFiles = { dot: true };
   return gulp.src(paths.src + paths.misc, dottedFiles)
     .pipe($.changed(paths.dest))
     .pipe(gulp.dest(paths.dest));
 });
+
+
+
+/* ------------------------------------------------
+ * Tâches autonomes : styleguide, uncss, zip, clean
+ * ------------------------------------------------
+ */
 
 // Tâche STYLEGUIDE : création automatique d'un guide des styles
 gulp.task('styleguide', function () {
@@ -195,44 +212,6 @@ gulp.task('styleguide', function () {
     .pipe($.styledown(project.configuration.styledown))
     .pipe(gulp.dest(paths.dest));
 });
-
-
-/* ---------------------------------------------------
- * Tâches de Prod : (build +) minify, concat, clean-js
- * ---------------------------------------------------
- */
-
-// Tâche MINIFY : minification CSS (destination -> destination)
-gulp.task('minify', function () {
-  project.zip.name = 'prod';
-  return gulp.src(paths.dest + paths.styles.css.mainFile)
-    .pipe($.rename({suffix: '.min'}))
-    .pipe($.csso())
-    .pipe(gulp.dest(paths.dest + paths.styles.root));
-});
-
-// Tâche CONCAT : minification + concaténation JS (destination -> destination)
-gulp.task('concat', function () {
-  return gulp.src(vendors)
-    .pipe($.plumber(onError))
-    .pipe($.uglify())
-    .pipe($.concat(project.globalJSFile))
-    .pipe(gulp.dest(paths.dest + paths.scripts.root));
-});
-
-// Tâche CLEAN-JS : supprime les scripts JavaScript inutiles en production (destination -> destination)
-gulp.task('clean-js', function () {
-  return del([
-    paths.dest + paths.scripts.files, // on supprime tous les fichiers JS du répertoire de production
-    '!' + paths.dest + paths.scripts.root + project.globalJSFile, // sauf le fichier concaténé final
-  ]);
-});
-
-
-/* ---------------------------
- * Tâches annexes : uncss, zip
- * ---------------------------
- */
 
 // Tâche UNCSS : supprime les styles non utilisés (destination -> destination)
 gulp.task('uncss', function () {
@@ -247,7 +226,8 @@ gulp.task('uncss', function () {
 });
 
 // Tâche ZIP : création de fichier .zip du projet
-gulp.task('zip', function () {
+gulp.task('archive', function () {
+  argv.prod ? project.zip.name = 'prod' : project.zip.name = 'build';
   var now = new Date(),
       date = now.getFullYear() + '-' + ( now.getMonth() + 1 ) + '-' + now.getDate() + '-' + now.getHours() + 'h' + now.getMinutes(),
       zipName = project.zip.namespace + '-' + project.name + '-' + project.zip.name + '-' + date + '.zip';
@@ -256,23 +236,28 @@ gulp.task('zip', function () {
     .pipe(gulp.dest(paths.root));
 });
 
+// Tâche CLEAN : supprime les fichiers CSS et JavaScript inutiles en production
+gulp.task('clean', function () {
+  return del([
+    paths.dest + paths.scripts.files, // on supprime tous les fichiers JS de production
+    paths.dest + paths.styles.css.files, // on supprime tous les fichiers CSS de production
+    '!' + paths.dest + paths.scripts.root + project.globalJSFile, // sauf les JS concaténés finaux
+    '!' + paths.dest + paths.styles.root + 'styles.min.css', // sauf les CSS concaténés finaux
+  ]);
+});
 
 /* ----------------------------------
  * Tâches principales : récapitulatif
  * ----------------------------------
  */
 
-// Tâche BUILD
+// Tâche BUILD : tapez "gulp" ou "gulp build"
 gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
 
-// Tâche PROD : build + minify + concat + clean-js (dans l'ordre)
-gulp.task('prod', gulpSync.sync(['build', 'minify', 'concat', 'clean-js']));
+// Tâche PROD : tapez "gulp build --prod"
 
-// Tâche BUILD-ZIP : build + création d'un fichier .zip
-gulp.task('build-zip', gulpSync.sync(['build', 'zip']));
-
-// Tâche PROD-ZIP : prod + création d'un fichier .zip
-gulp.task('prod-zip', gulpSync.sync(['prod', 'zip']));
+// Tâche ZIP : (tapez "gulp zip" ou "gulp zip --prod")
+gulp.task('zip', gulpSync.sync(['build', 'archive']));
 
 // Tâche WATCH : surveillance Less, HTML et PHP
 gulp.task('watch', function () {
