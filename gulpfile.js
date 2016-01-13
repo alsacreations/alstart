@@ -17,6 +17,7 @@
  */
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
+    browserSync = require('browser-sync').create(), 
     gulpSync = require('gulp-sync')(gulp),
     uncss = require('gulp-uncss'),
     del = require('del');
