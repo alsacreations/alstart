@@ -5,10 +5,8 @@
 Bloc de citation avec l'élément `<blockquote>`
 
     @example
-    <blockquote>One small step for man, one giant leap for mankind.</blockquote>
-
     <blockquote>
-    Le petit prince traversa le désert et ne rencontra qu' une fleur. Une fleur à trois pétales, une fleur de rien du tout…<br>
+    Le petit prince traversa le désert et ne rencontra qu'une fleur. Une fleur à trois pétales, une fleur de rien du tout…<br>
       -Bonjour, dit le prince.<br>
       -Bonjour, dit la fleur.<br>
       -Où sont les hommes ? demanda poliment le petit prince;
@@ -17,20 +15,26 @@ Bloc de citation avec l'élément `<blockquote>`
 
 ### Adresse
 
-L'élément `<address>` permet de fournir une information de contact
+L'élément `<address>`&nbsp;permet de fournir une information de contact
 
     @example
     <address>
-      <a href="http://www.undomaine.com/contact">www.undomaine.com</a>.<br>
-      Si vous relevez quelques bogues que ce soient, merci de contacter <a href="mailto:webmaster@somedomain.com">le webmaster</a>.<br>
-      Vous pouvez aussi venir nous voir :<br>
-      Mozilla Foundation<br>
-      1981 Landings Drive<br>
-      Building K<br>
-      Mountain View, CA 94043-0801<br>
-      USA
+      Han Solo<br>
+      1337 avenue des étoiles<br>
+      Planète Corellia<br>
+      <a href="#">www.chewbaccaisthebest.com</a>
     </address>
 
+### Figure
+
+L'élément `<figure>`&nbsp;représente un contenu indépendant, habituellement accompagné d'une légende grâce à l'élément `<figcaption>`.
+
+    @example
+    <figure>
+      <img src="./assets/img/hello.jpg" height="200" width="200" alt="">
+        
+      <figcaption>Une légende pour cette magnifique photo</figcaption>
+    </figure>
 
 ## Listes
 

@@ -1,7 +1,7 @@
 ## Formulaires
 
-### Inputs
-La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type : `text`, `password`, `datetime`, `datetime-local`, `date`, `month`, `time`, `week`, `number`, `email`, `url`, `search`, `tel`, and `color.
+### Champs
+La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type : `text`, `password`, `datetime-local`, `date`, `month`, `time`, `week`, `number`, `email`, `url`, `search`, `tel`, and `color`.
 
     @example
     <p class="form-item">
@@ -29,8 +29,25 @@ La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type : `
       <input type="date" class="form-txt" id="a2-3">
     </p>
 
+    <p class="form-item">
+      <label for="a2-4">Champ texte (time)</label>
+      <input type="time" class="form-txt" id="a2-4">
+    </p>
 
-### Inputs files
+    <p class="form-item">
+      <label for="a2-5">Champ texte (password)</label>
+      <input type="password" class="form-txt" id="a2-5">
+    </p>
+
+
+### Boutons
+Boutons de validation d'un formulaire : `<button type="submit">`, `<input type="submit">`.
+
+    @example
+    <button type="submit" class="btn-primary">Valider</button>
+    <input type="submit" class="btn-primary" value="Valider">
+
+### Champs "Télécharger"
 
     @example
     <p class="form-item">
@@ -69,7 +86,6 @@ Styles pour les 3 états suivants : succès, erreur ou avertissement.
       <input type="text" class="form-txt" id="a0-2">
       <span class="form-help">Ici mon message pour valider</span>
     </p>
-
 
 ### Liste déroulante
 
