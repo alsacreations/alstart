@@ -107,6 +107,7 @@ var paths = {
  */
 var vendors = [
   paths.vendors + 'jquery/dist/jquery.min.js',
+  paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
   paths.vendors + 'swiper/dist/js/swiper.min.js',
   paths.src + paths.scripts.files,
 ];
