@@ -27,7 +27,7 @@ Les blocs (dont une largeur a été fixée) sont alignés avec les classes <code
       <p>Bloc aligné à gauche.<br><code>.left</code></p>
     </div>
     <div class="center w50 sg-align-block">
-      <p>Bloc centré.<br><code>.txtcenter</code></p>
+      <p>Bloc centré.<br><code>.center</code></p>
     </div>
     <div class="right w50 sg-align-block">
       <p>Bloc aligné à droite.<br><code>.right</code></p>
