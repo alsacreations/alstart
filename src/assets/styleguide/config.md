@@ -16,6 +16,6 @@
         div(sg-content)
         .sg-copyright &copy; Alsacréations
 
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/styleguide-scroll.js"></script>
     <script src="assets/js/styleguide.min.js"></script>
