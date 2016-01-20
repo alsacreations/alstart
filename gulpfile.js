@@ -58,10 +58,6 @@ var project = {
         },
       ],
     },
-    styledown: {
-      config: './dist/assets/css/config.md',
-      filename: 'styleguide.html',
-    },
   },
 };
 
@@ -80,7 +76,6 @@ var paths = {
     css: {
       mainFile: 'assets/css/styles.css', // fichier CSS principal
       files: 'assets/css/*.css', // cible tous les fichiers CSS
-      styleguide: 'assets/css/config.md', // fichier MD de configuration du styleguide
     },
     less: {
       mainFile: 'assets/css/styles.less', // fichier Less principal
@@ -94,6 +89,10 @@ var paths = {
   html: {
     racine: '*.html', // fichiers & dossiers HTML à compiler / copier à la racine uniquement
     allFiles: '{,includes/}*.html', // fichiers & dossiers HTML à compiler / copier à la racine et dans le dossier includes/
+  },
+  styleguide: {
+    config: 'assets/styleguide/config.md', // fichier config du styleguide
+    files: 'assets/styleguide/patterns/*.md', // fichiers .MD du styleguide
   },
   php: '{,includes/}*.php', // fichiers & dossiers PHP à copier
   fonts: 'assets/css/fonts/', // fichiers typographiques à copier,
@@ -207,9 +206,12 @@ gulp.task('misc', function () {
 
 // Tâche STYLEGUIDE : création automatique d'un guide des styles
 gulp.task('styleguide', function () {
-  return gulp.src(paths.dest + paths.styles.css.mainFile)
+  return gulp.src(paths.src + paths.styleguide.files)
     .pipe($.plumber(onError))
-    .pipe($.styledown(project.configuration.styledown))
+    .pipe($.styledown({
+      config: paths.src + paths.styleguide.config,
+      filename: 'styleguide.html'
+    }))
     .pipe(gulp.dest(paths.dest));
 });
 
