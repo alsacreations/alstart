@@ -19,7 +19,7 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     browserSync = require('browser-sync').create(),
     gulpSync = require('gulp-sync')(gulp),
-    uncss = require('gulp-uncss'),
+    // uncss = require('gulp-uncss'),
     argv = require('yargs').argv,
     del = require('del');
 
@@ -107,6 +107,7 @@ var paths = {
  */
 var vendors = [
   paths.vendors + 'jquery/dist/jquery.min.js',
+  paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
   paths.vendors + 'swiper/dist/js/swiper.min.js',
   paths.src + paths.scripts.files,
 ];

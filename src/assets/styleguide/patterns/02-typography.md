@@ -21,12 +21,6 @@
           abcdefghijklmnopqrstuvwxyz<br>
           0123456789
       </div>
-      <div class="sg-font-universal">
-          <code>@font-stack-universal</code><br>
-          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-          abcdefghijklmnopqrstuvwxyz<br>
-          0123456789
-      </div>
   </div></div>
 
 ### Titres
