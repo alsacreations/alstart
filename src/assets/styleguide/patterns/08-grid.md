@@ -1,11 +1,3 @@
-### Button
-
-Create your buttons with a `.button` class.
-
-    @example
-    <a class="button">Button</a>
-    <a class="button primary">Button</a>
-
 ## Grilles
 
 Le système de grille provient de <a href="https://github.com/alsacreations/KNACSS/blob/master/doc/03-grilles.md">KNACSS</a>&nbsp;et utilise <em>CSS3 Flexbox</em>.
