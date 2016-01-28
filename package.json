@@ -29,7 +29,6 @@
     "gulp-zip": "^3.0.2"
   },
   "scripts": {
-    "preinstall": "gulp pull",
     "postinstall": "bower install && gulp"
   },
   "repository": {
