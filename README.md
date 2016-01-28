@@ -43,7 +43,7 @@ En clair, récupérez ce repo :
 ### Prenez une Bretzel
 
 Au sein de votre dossier de projet :
-- lancez `npm run setup` pour installer les plugins nécessaires, les dépendances et lancer une première fois Gulp
+- lancez `npm install` pour installer les plugins nécessaires, les dépendances et lancer une première fois Gulp
 
 ### Mangez votre Bretzel !
 
