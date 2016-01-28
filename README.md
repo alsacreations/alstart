@@ -97,6 +97,10 @@ GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/
 
 ## Changelog :
 
+### v2.1.2 (28 janvier 2016)
+
+- suppression de unCSS et remplacement de `npm run setup` par `npm install` dans la procédure d'installation.
+
 ### v2.1.1 (12 janvier 2016)
 
 - version "publique" avec code plus présentable, configuration plus cohérente et maintenable
