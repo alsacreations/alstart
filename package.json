@@ -29,7 +29,7 @@
     "gulp-zip": "^3.0.2"
   },
   "scripts": {
-    "setup": "npm install && bower install && gulp"
+    "postinstall": "bower install && gulp"
   },
   "repository": {
     "type": "git",
