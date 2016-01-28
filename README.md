@@ -7,13 +7,12 @@
 **Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, LESS et KNACSS. Des connaissances minimales de ces outils sont un pré-requis.
 
 ## Fonctionnalités
-- CSS / LESS : 
+- CSS / LESS :
   - compilation LESS vers CSS,
   - ajout automatiques de préfixes CSS3 (autoprefixer)
   - réordonnement des propriétés (csscomb)
   - réindentation du code (beautify)
   - minification (csso), avec sourcemaps
-  - possibilité de supprimer les règles CSS inutilisées sur demande (unCSS)
 - HTML :
   - possibilité de réaliser des *include* de fichiers (html-extend)
 - images :

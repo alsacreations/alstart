@@ -19,7 +19,6 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     browserSync = require('browser-sync').create(),
     gulpSync = require('gulp-sync')(gulp),
-    // uncss = require('gulp-uncss'),
     argv = require('yargs').argv,
     del = require('del');
 
@@ -38,8 +37,7 @@ var project = {
     browserSync: {
       status: true, // utilisation du plugin browserSync lors du Watch ?
       proxyMode: false, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
-    },
-    uncss: true, // utilisation du plugin uncss pour supprimer le CSS non utilisé (fichiers HTML et PHP)
+    }
   },
   configuration: { // configuration des différents composants de ce projet
     cssbeautify: {
@@ -201,7 +199,7 @@ gulp.task('misc', function () {
 
 
 /* ------------------------------------------------
- * Tâches autonomes : styleguide, uncss, zip, clean
+ * Tâches autonomes : styleguide, zip, clean
  * ------------------------------------------------
  */
 
@@ -214,18 +212,6 @@ gulp.task('styleguide', function () {
       filename: 'styleguide.html'
     }))
     .pipe(gulp.dest(paths.dest));
-});
-
-// Tâche UNCSS : supprime les styles non utilisés (destination -> destination)
-gulp.task('uncss', function () {
-  if (project.plugins.uncss) {
-    return gulp.src(paths.dest + paths.styles.css.files)
-      .pipe($.plumber(onError))
-      .pipe(uncss({
-        html: [paths.dest + paths.html.allFiles, paths.dest + paths.php],
-      }))
-      .pipe(gulp.dest(paths.dest + paths.styles.root));
-  }
 });
 
 // Tâche ZIP : création de fichier .zip du projet
