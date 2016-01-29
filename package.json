@@ -28,8 +28,13 @@
     "yargs": "^3.3.0",
     "gulp-zip": "^3.0.2"
   },
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "knacss": "^4.4.4",
+    "styledown-skins": "drakeh/styledown-skins"
+  },
   "scripts": {
-    "postinstall": "npm install --prefix ./src/vendor knacss &&  npm install --prefix ./src/vendor jquery && npm install --prefix ./src/vendor drakeh/styledown-skins && gulp"
+    "postinstall": "gulp"
   },
   "repository": {
     "type": "git",
