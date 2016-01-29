@@ -1,9 +1,0 @@
-{
-  "name": "bretzel",
-  "version": "2.1.2",
-  "dependencies": {
-    "knacss": "^4.4.2",
-    "jquery": "^2.1.0",
-    "styledown-skins": "~0.1.1"
-  }
-}

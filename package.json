@@ -29,7 +29,7 @@
     "gulp-zip": "^3.0.2"
   },
   "scripts": {
-    "postinstall": "bower install && gulp"
+    "postinstall": "npm install --prefix ./src/vendor knacss &&  npm install --prefix ./src/vendor jquery && npm install --prefix ./src/vendor drakeh/styledown-skins && gulp"
   },
   "repository": {
     "type": "git",
