@@ -28,8 +28,13 @@
     "yargs": "^3.3.0",
     "gulp-zip": "^3.0.2"
   },
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "knacss": "^4.4.4",
+    "styledown-skins": "drakeh/styledown-skins"
+  },
   "scripts": {
-    "postinstall": "bower install && gulp"
+    "postinstall": "gulp"
   },
   "repository": {
     "type": "git",

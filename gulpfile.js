@@ -67,7 +67,7 @@ var paths = {
   root: './', // dossier actuel
   src: './src/', // dossier de travail
   dest: './dist/', // dossier destiné à la livraison
-  vendors: './src/vendor/', // dossier des dépendances du projet
+  vendors: './node_modules/', // dossier des dépendances du projet
   assets: 'assets/',
   styles: {
     root: 'assets/css/', // fichier contenant les fichiers CSS & Less

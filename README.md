@@ -26,7 +26,6 @@
 - workflow intelligent : les tâches ne sont exécutées que pour les fichiers modifiés ou ajoutés (HTML, PHP, images, fontes)
 - intégration de KNACSS, la feuille de style de départ de tout bon projet
 - intégration Schnaps.it (template HTML basique)
-- intégration de Bower
 - actualisation automatique du navigateur (browsersync)
 - styleguide (guide de styles) généré sur demande
 
