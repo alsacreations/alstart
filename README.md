@@ -75,6 +75,29 @@ Compilez vos fichiers avec `gulp` pour les tâches de base, ou `gulp watch` pour
 | src/assets/css/fonts/\*  | dist/assets/css/fonts/\* <br>*(simple copie)*  | dist/assets/css/fonts/\* <br>*(simple copie)*   | pas de watch  |
 
 
+## Gérer les dépendances
+
+Bretzel gère les dépendances directement via npm (pas via Bower).
+
+Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` :
+```
+  "dependencies": {
+    "jquery": "^2.2.0", // dépendance npm
+    "knacss": "^4.4.4",
+    "styledown-skins": "drakeh/styledown-skins" // dépendance de type github
+  },
+```
+
+Vos dépendances JavaScript devront être listées dans le fichier `gulpfile.js` sous cette forme : 
+```
+var vendors = [
+  paths.vendors + 'jquery/dist/jquery.min.js',
+  paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
+  paths.vendors + 'swiper/dist/js/swiper.min.js',
+  paths.src + paths.scripts.files,
+];
+```
+
 ## Architecture Bretzel
 
 Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empêche de modifier cette structure en changeant les variables présentes dans `gulpfile.js` :
