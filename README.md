@@ -4,11 +4,11 @@
 
 **Bretzel** *(Bretzel Project Starter)* est une base de départ pour des projets HTML / CSS et JS créée par l'agence Alsacréations.
 
-**Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, LESS et KNACSS. Des connaissances minimales de ces outils sont un pré-requis.
+**Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, Sass et KNACSS. Des connaissances minimales de ces outils sont un pré-requis.
 
 ## Fonctionnalités
-- CSS / LESS :
-  - compilation LESS vers CSS,
+- CSS / Sass :
+  - compilation Sass vers CSS,
   - ajout automatiques de préfixes CSS3 (autoprefixer)
   - réordonnement des propriétés (csscomb)
   - réindentation du code (beautify)
@@ -57,7 +57,7 @@ Compilez vos fichiers avec `gulp` pour les tâches de base, ou `gulp watch` pour
 - `gulp watch` : surveille styles, html, php et scripts
 
 ### Tâches individuelles
-- `gulp css` : compile uniquement les fichiers LESS
+- `gulp css` : compile uniquement les fichiers Sass
 - `gulp js`, `gulp html`, `gulp php`, `gulp img`, `gulp fonts` : toi même tu sais
 - `gulp styleguide` : création d'un guide de styles
 - `gulp clean` : suppression des fichiers inutiles en production
@@ -67,7 +67,7 @@ Compilez vos fichiers avec `gulp` pour les tâches de base, ou `gulp watch` pour
 
 | fichiers source  | fichiers destination <br>(tâche build)  | fichiers destination <br>(tâche prod)  | tâche watch  |
 |---|---|---|---|
-| src/assets/css/\*.less<br>src/assets/css/includes/\*.less  | dist/assets/css/styles.css <br>*(autoprefixer, csscomb, beautify)*  | dist/assets/css/styles.min.css <br>dist/assets/css/styles.css <br>*("build" + csso-minify)*<br>*(option: unCSS si activé)*   | tâche "css" exécutée si modification \*.less<br>*(+ Browsersync)*  |
+| src/assets/css/\*.scss<br>src/assets/css/includes/\*.scss  | dist/assets/css/styles.css <br>*(autoprefixer, csscomb, beautify)*  | dist/assets/css/styles.min.css <br>dist/assets/css/styles.css <br>*("build" + csso-minify)*<br>*(option: unCSS si activé)*   | tâche "css" exécutée si modification \*.scss<br>*(+ Browsersync)*  |
 | src/assets/\*.html<br>src/assets/includes/\*.html  | dist/assets/\*.html<br>dist/assets/includes/\*.html<br>*(htmlExtend = include de partiels si présents)*  | dist/assets/\*.html<br>dist/assets/includes/\*.html<br>*(option : Critical si activé)*  | tâche "html+php" exécutée si modification \*.html<br>*(+ Browsersync)*  |
 | src/assets/\*.php<br>src/assets/includes/\*.php  | dist/assets/\*.php<br>dist/assets/includes/\*.php<br>*(simple copie)*  | dist/assets/\*.php<br>dist/assets/includes/\*.php<br>*(simple copie)*  | tâche "html+php" exécutée si modification \*.php<br>*(+ Browsersync)* |
 | src/assets/img/\*<br>src/assets/css/img/\*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imagemin)*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imagemin)*  | pas de watch |
@@ -105,10 +105,10 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 ![structure-type bretzel](https://raw.githubusercontent.com/alsacreations/bretzel/master/src/assets/img/architecture.png)
 
 ## Usage avec KNACSS :
-- Créez ou modifiez le fichier `_00-config.less` dans votre dossier `src/assets/css/`
-- N'utilisez **pas** `src/vendor/knacss/less/_00-config.less`, car il sera écrasé à chaque misé à jour de KNACSS
-- Choisissez les fichiers KNACSS à importer au sein du fichier `knacss.less`
-- Votre fichier de travail est `styles.less` et commencera par : `@import "knacss";`, puis suivront vos styles perso.
+- Créez ou modifiez le fichier `_00-config.scss` dans votre dossier `src/assets/css/`
+- N'utilisez **pas** `src/vendor/knacss/scss/_00-config.scss`, car il sera écrasé à chaque misé à jour de KNACSS
+- Choisissez les fichiers KNACSS à importer au sein du fichier `knacss.scss`
+- Votre fichier de travail est `styles.scss` et commencera par : `@import "knacss";`, puis suivront vos styles perso.
 
 
 ## Crédits :

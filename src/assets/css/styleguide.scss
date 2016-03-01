@@ -8,30 +8,31 @@
  * LESS Mixins
  */
 // mixin pour afficher la valeur de font-size
-.fontsize(@fontsize) {
+@mixin fontsize($fontsize) {
   &::after {
-    content: %('%a', @@fontsize);
-    .sg-code-inline();
-    margin-left: @small-value;
+    content: "#{$fontsize}";
+    @extend sg-code-inline;
+    margin-left: $small-value;
     font-weight: normal;
     vertical-align: middle;
   }
 }
 
 // mixin pour afficher le code hexadécimal d'une couleur
-.hexa(@lesscolor) {
+@mixin hexa($lesscolor) {
   &::before {
-    background: @@lesscolor;
+    background: #{$lesscolor};
   }
+  
   &::after {
-    content: %('%a', @@lesscolor);
+    content: "#{$lesscolor}";
   }
 }
 
 // mixin pour afficher la font-family
-.font(@font) {
+@mixin font($font) {
   &::before {
-    content: %('%a', @@font);
+    content: "#{$font}";
     font-weight: bold;
   }
 }
@@ -50,8 +51,8 @@
 
 /* Header */
 .sg-header {
-  padding: @large-value;
-  margin-bottom: @large-value;
+  padding: $large-value;
+  margin-bottom: $large-value;
   text-align: center;
   background: #F8F8F8;
 
@@ -70,7 +71,7 @@
     top: 27rem; left: 2rem;
   display: none;
   width: 250px;
-  padding: @medium-value;
+  padding: $medium-value;
   background: #F8F8F8;
 
   &.is-fixed {
@@ -90,15 +91,15 @@
   list-style-type: none;
 
   ul {
-    margin: 0 0 @small-value;
-    padding-left: @medium-value;
+    margin: 0 0 $small-value;
+    padding-left: $medium-value;
     list-style-type: none;
     font-size: 90%;
   }
 }
 .tocify-item {
   margin: 0;
-  padding: @tiny-value 0;
+  padding: $tiny-value 0;
 
   a {
     padding-bottom: .25rem;
@@ -128,8 +129,8 @@
  */
 /* main title */
 .sg-title {
-  margin-top: @small-value;
-  font-size: @h1-size;
+  margin-top: $small-value;
+  font-size: $h1-size;
 }
 /* copyright */
 .sg-copyright {
@@ -141,8 +142,8 @@
 .sg-section {
   & > h2.sg {
     padding-bottom: .15em;
-    font-size: @h1-size;
-    color: @headings-color;
+    font-size: $h1-size;
+    color: $headings-color;
     border-bottom: 2px solid #eee;
   }
   &:first-child > h2.sg {
@@ -150,7 +151,7 @@
   }
 }
 .sg-text h3.sg {
-  color: @headings-1-color;
+  color: $headings-1-color;
 
   &::after {
     content: '';
@@ -175,29 +176,29 @@
   max-width: 980px;
   margin: auto;
   position: relative;
-  padding: @medium-value;
+  padding: $medium-value;
 }
 @media (min-width: 768px) {
   .sg-content {
-    padding: @medium-value @large-value;
+    padding: $medium-value $large-value;
   }
 }
 
 /* section */
 .sg-section {
-  margin-bottom: @extra-large-value;
+  margin-bottom: $extra-large-value;
 }
 
 /* example & canvas */
 .sg-example {
-  margin-top: @small-value;
-  margin-bottom: @medium-value;
+  margin-top: $small-value;
+  margin-bottom: $medium-value;
   border: 1px solid #dddddd;
   border-radius: 3px;
 }
 .sg-canvas {
   position: relative;
-  padding: @large-value 3rem;
+  padding: $large-value 3rem;
   overflow-x: auto;
 }
 
@@ -211,7 +212,7 @@ code.sg,
 .sg-code-inline {
   display: inline-block;
   padding: .2rem .5rem;
-  font-family: @font-stack-monospace;
+  font-family: $font-stack-monospace;
   font-size: 1.4rem;
   white-space: nowrap;
   border: solid 1px #eaeaea;
@@ -221,9 +222,9 @@ code.sg,
 
 /* block: <pre> */
 .sg-code {
-  padding: @medium-value;
+  padding: $medium-value;
   margin-top: 0;
-  font-family: @font-stack-monospace;
+  font-family: $font-stack-monospace;
   font-size: 1.4rem;
   line-height: 1.6;
   border-top: solid 1px #eaeaea;
@@ -250,7 +251,7 @@ code.sg,
   position: absolute;
     right: 0; bottom: 0;
   width: 100px;
-  padding: @tiny-value;
+  padding: $tiny-value;
   text-align: center;
   font-size: 1.3rem;
   color: #777;
@@ -279,7 +280,7 @@ code.sg,
 
 .sg-color {
   & + & {
-    margin-top: @large-value;
+    margin-top: $large-value;
   }
 }
 
@@ -289,7 +290,7 @@ code.sg,
   width: 150px;
 
   & + & {
-    margin-left: @medium-value;
+    margin-left: $medium-value;
   }
 
   // color example
@@ -302,32 +303,32 @@ code.sg,
   // code hexadécimal
   &::after {
     display: block;
-    .sg-code-inline();
+    @extend sg-code-inline;
   }
 
   // nom de la variable LESS
   span {
     display: block;
-    margin: @tiny-value 0;
+    margin: $tiny-value 0;
     font-size: 1.2rem;
   }
 
   // Couleurs
-  &.base-color { .hexa(base-color); }
-  &.primary-color { .hexa(primary-color); }
-  &.secondary-color { .hexa(secondary-color); }
+  &.base-color { @include hexa($base-color); }
+  &.primary-color { @include hexa($primary-color); }
+  &.secondary-color { @include hexa($secondary-color); }
 
-  &.headings-color { .hexa(headings-color); }
-  &.headings-1-color { .hexa(headings-1-color); }
-  &.headings-2-color { .hexa(headings-2-color); }
-  &.headings-3-color { .hexa(headings-3-color); }
+  &.headings-color { @include hexa($headings-color); }
+  &.headings-1-color { @include hexa($headings-1-color); }
+  &.headings-2-color { @include hexa($headings-2-color); }
+  &.headings-3-color { @include hexa($headings-3-color); }
 
-  &.base-color-link { .hexa(base-color-link); }
-  &.base-color-link-hover { .hexa(base-color-link-hover); }
+  &.base-color-link { @include hexa($base-color-link); }
+  &.base-color-link-hover { @include hexa($base-color-link-hover); }
 
-  &.base-background { .hexa(base-background); }
-  &.primary-background { .hexa(primary-background); }
-  &.secondary-background { .hexa(secondary-background); }
+  &.base-background { @include hexa($base-background); }
+  &.primary-background { @include hexa($primary-background); }
+  &.secondary-background { @include hexa($secondary-background); }
 }
 
 
@@ -337,7 +338,7 @@ code.sg,
  */
 [class*="sg-font-"] {
   & + & {
-    margin-top: @medium-value;
+    margin-top: $medium-value;
   }
 }
 // pour cacher le bouton "show markup"
@@ -347,28 +348,28 @@ code.sg,
   }
 }
 .sg-font-common {
-  font-family: @font-stack-common;
-  .font(font-stack-common);
+  font-family: $font-stack-common;
+  @include font($font-stack-common);
 }
 .sg-font-headings {
-  font-family: @font-stack-headings;
-  .font(font-stack-headings);
+  font-family: $font-stack-headings;
+  @include font($font-stack-headings);
 }
 .sg-font-monospace {
-  font-family: @font-stack-monospace;
-  .font(font-stack-monospace);
+  font-family: $font-stack-monospace;
+  @include font($font-stack-monospace);
 }
 
 /*
  * Title section
  */
 .sg-section-titres {
-  h1 { .fontsize(h1-size); }
-  h2 { .fontsize(h2-size); }
-  h3 { .fontsize(h3-size); }
-  h4 { .fontsize(h4-size); }
-  h5 { .fontsize(h5-size); }
-  h6 { .fontsize(h6-size); }
+  h1 { @include fontsize(h1-size); }
+  h2 { @include fontsize(h2-size); }
+  h3 { @include fontsize(h3-size); }
+  h4 { @include fontsize(h4-size); }
+  h5 { @include fontsize(h5-size); }
+  h6 { @include fontsize(h6-size); }
 }
 
 /*
@@ -376,11 +377,11 @@ code.sg,
  */
 .sg-grid {
   & + & {
-    margin-top: @medium-value;
+    margin-top: $medium-value;
   }
 
   & > * {
-    padding: @medium-value;
+    padding: $medium-value;
     background: #f8f8f8;
   }
 }
@@ -390,24 +391,24 @@ code.sg,
  * Bloc alignment section
  */
 .sg-align-block {
-  padding: @medium-value;
+  padding: $medium-value;
   background: #f8f8f8;
 
   & + & {
-    margin-top: @medium-value;
+    margin-top: $medium-value;
   }
 }
 .sg-align-float {
-  padding: @medium-value;
+  padding: $medium-value;
   background: #f8f8f8;
-  .clearfix();
+  @extend clearfix;
 
   & + & {
-    margin-top: @medium-value;
+    margin-top: $medium-value;
   }
 
   & > div[class*="f"] {
-    padding: @small-value;
+    padding: $small-value;
     background: #ddd;
   }
 }
