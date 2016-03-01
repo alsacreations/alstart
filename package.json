@@ -1,6 +1,6 @@
 {
   "name": "bretzel",
-  "version": "4.0.0",
+  "version": "3.0.0",
   "description": "base de départ pour des projets HTML / CSS / JS dans un environnement nodeJS, Gulp et KNACSS",
   "devDependencies": {
     "bower": "^1.7.2",
