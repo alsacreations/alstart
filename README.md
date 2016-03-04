@@ -27,7 +27,8 @@
 - intégration de KNACSS, la feuille de style de départ de tout bon projet
 - intégration Schnaps.it (template HTML basique)
 - actualisation automatique du navigateur (browsersync)
-- styleguide (guide de styles) généré sur demande
+- fichier de styleguide (guide de styles) généré sur demande
+- fichier `.editorconfig` permettant d'assurer une cohérence dans les conventions d'indentations
 
 ## Par où commencer ?
 
@@ -118,6 +119,10 @@ Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
 
 ## Changelog :
+
+### v3.0.0 (1er mars 2016)
+
+- passage de LESS vers Sass
 
 ### v2.1.2 (28 janvier 2016)
 
