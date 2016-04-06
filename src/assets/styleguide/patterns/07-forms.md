@@ -122,7 +122,7 @@ Styles pour les 3 états suivants : succès, erreur ou avertissement.
 
 
 ### Choix multiple
-L'élément `<fieldset>`&nbsp;est utilisé pour regroupé plusieurs case à cocher.
+L'élément `<fieldset>`&nbsp;est utilisé pour regrouper plusieurs cases à cocher.
 
     @example
     <fieldset>
