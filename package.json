@@ -3,7 +3,6 @@
   "version": "3.0.0",
   "description": "base de départ pour des projets HTML / CSS / JS dans un environnement nodeJS, Gulp et KNACSS",
   "devDependencies": {
-    "bower": "^1.7.2",
     "browser-sync": "^2.10.0",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
