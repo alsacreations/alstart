@@ -4,7 +4,8 @@ Le système de grille provient de <a href="https://github.com/alsacreations/KNAC
 
 ### Grilles à colonnes égales (non responsive)
 
-Les grilles de largeurs égales vont de <code>.grid-2</code>&nbsp;à <code>.grid-12</code>. Les classes de grille s'appliquent **sur le parent**  et non sur les enfants.
+Les grilles de largeurs égales vont de <code>.grid-2</code>&nbsp;à <code>.grid-12</code>. Les classes de grille s'appliquent **sur le parent**
+et non sur les enfants.
 
     @example
     <div class="sg-grid grid-2">
@@ -32,7 +33,9 @@ Les grilles de largeurs égales vont de <code>.grid-2</code>&nbsp;à <code>.grid
     
 ### Grilles à colonnes égales responsive
 
-Les grilles de largeurs égales deviennent responsives lorsqu'elles contiennent les mots-clés  <code>-small</code> et/ou <code>-tiny</code>. Les classes de grille s'appliquent **sur le parent**  et non sur les enfants.
+Les grilles de largeurs égales deviennent responsives lorsqu'elles contiennent les mots-clés  <code>-small</code>
+et/ou <code>-tiny</code>. Les classes de grille s'appliquent **sur le parent**
+et non sur les enfants.
 
 Par exemple:
 - `div class="grid-3-tiny-1"` : grille de 3 colonnes égales, puis 1 colonne sur très petit écran
