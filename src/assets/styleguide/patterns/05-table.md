@@ -6,8 +6,8 @@
     <table>
         <thead>
             <tr>
-                <th>Ville</th>
-                <th>Pays</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Pays</th>
             </tr>
         </thead>
         <tfoot>
@@ -35,18 +35,18 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Ville</th>
-                <th>Pays</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Pays</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th>Jour 1</th>
+                <th scope="row">Jour 1</th>
                 <td>Strasbourg</td>
                 <td>France</td>
             </tr>
             <tr>
-                <th>Jour 2</th>
+                <th scope="row">Jour 2</th>
                 <td>Berlin</td>
                 <td>Allemagne</td>
             </tr>
