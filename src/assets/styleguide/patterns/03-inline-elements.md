@@ -47,7 +47,9 @@ L'élément `<mark>`&nbsp;représente du texte surligné, c'est-à-dire du texte
 
 ### Abbr
 
-L'élément `<abbr>`&nbsp;représente une abréviation et permet de façon optionnelle d'en fournir une description complète. S'il est présent, l'attribut title doit contenir cette même description complète et rien d'autre.
+L'élément `<abbr>`&nbsp;représente une abréviation et permet de façon optionnelle d'en fournir une description complète. S'il est présent, l'attribut title doit contenir cette même description complète et rien d'autre. S'il y a plusieurs occurences de la même abréviation dans une page, l'attribut title ne doit être présent que sur la 1ère occurence.
 
     @example
-    <p>Ce document a été conçu avec du code <abbr title="HyperText Markup Language">HTML</abbr>.</p>
+    <p>Ce document a été conçu avec du code <abbr title="HyperText Markup Language">HTML</abbr>. Voir la définition de
+    <abbr>HTML</abbr>
+    sur <a href="https://fr.wikipedia.org/wiki/Hypertext_Markup_Language">Wikipedia</a>.</p>
