@@ -70,14 +70,14 @@ var paths = {
   vendors: './node_modules/', // dossier des dépendances du projet
   assets: 'assets/',
   styles: {
-    root: 'assets/css/', // fichier contenant les fichiers CSS & Less
+    root: 'assets/css/', // fichier contenant les fichiers CSS & Sass
     css: {
       mainFile: 'assets/css/styles.css', // fichier CSS principal
       files: 'assets/css/*.css', // cible tous les fichiers CSS
     },
-    less: {
-      mainFile: 'assets/css/styles.less', // fichier Less principal
-      files: 'assets/css/{,includes/}*.less', // fichiers Less à surveiller
+    sass: {
+      mainFile: 'assets/css/styles.scss', // fichier Sass principal
+      files: 'assets/css/{,includes/}*.scss', // fichiers Sass à surveiller
     },
   },
   scripts: {
@@ -133,12 +133,12 @@ var isProduction = argv.prod;
  * ------------------------------------------------
  */
 
-// Tâche CSS : Less + autoprefixer + CSScomb + beautify + minify (si prod)
+// Tâche CSS : Sass + Autoprefixer + CSScomb + beautify + minify (si prod)
 gulp.task('css', function () {
-  return gulp.src(paths.src + paths.styles.less.mainFile)
+  return gulp.src(paths.src + paths.styles.sass.mainFile)
     .pipe($.plumber(onError))
     .pipe($.sourcemaps.init())
-    .pipe($.less())
+    .pipe($.sass())
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
     .pipe($.autoprefixer())
@@ -248,7 +248,7 @@ gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
 // Tâche ZIP : (tapez "gulp zip" ou "gulp zip --prod")
 gulp.task('zip', gulpSync.sync(['build', 'archive']));
 
-// Tâche WATCH : surveillance Less, HTML et PHP
+// Tâche WATCH : surveillance Sas, HTML et PHP
 gulp.task('watch', function () {
   // si demandé, on créé la configuration du plugin browserSync et on l'initialise
   if (project.plugins.browserSync.status === true) {
@@ -270,7 +270,7 @@ gulp.task('watch', function () {
     browserSync.init(browserSyncConf);
   }
 
-  gulp.watch([paths.src + paths.styles.less.files], ['css', browserSync.reload]);
+  gulp.watch([paths.src + paths.styles.sass.files], ['css', browserSync.reload]);
   gulp.watch([paths.src + paths.html.allFiles, paths.src + paths.php], ['html', 'php', browserSync.reload]);
   gulp.watch([paths.src + paths.scripts.files], ['js', browserSync.reload]);
 });
