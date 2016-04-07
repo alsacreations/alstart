@@ -41,11 +41,26 @@ La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type : `
 
 
 ### Boutons
-Boutons de validation d'un formulaire : `<button type="submit">`, `<input type="submit">`.
+Boutons de validation d'un formulaire : `<button type="submit">`, `<input type="submit">`.  
+Les classes CSS `.btn-primary`, `.btn-secondary` ou `.btn-tertiary` peuvent être appliquées pour styler ces boutons de formulaire
 
     @example
-    <button type="submit" class="btn-primary">Valider</button>
-    <input type="submit" class="btn-primary" value="Valider">
+    p
+      span.inbl.w10 Default:
+      <button type="submit">Valider</button>
+      <input type="submit" value="Valider">
+    p
+      span.inbl.w10 Primary:
+      <button type="submit" class="btn-primary">Valider</button>
+      <input type="submit" class="btn-primary" value="Valider">
+    p
+      span.inbl.w10 Secondary:
+      <button type="submit" class="btn-secondary">Valider</button>
+      <input type="submit" class="btn-secondary" value="Valider">
+    p
+      span.inbl.w10 Tertiary:
+      <button type="submit" class="btn-tertiary">Valider</button>
+      <input type="submit" class="btn-tertiary" value="Valider">
 
 ### Champs "Télécharger"
 
