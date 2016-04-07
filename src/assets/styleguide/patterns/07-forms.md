@@ -76,7 +76,7 @@ Les classes CSS `.btn-primary`, `.btn-secondary` ou `.btn-tertiary` peuvent êtr
     @example
     <p class="form-item">
       <label for="a5">Votre message</label>
-      <textarea id="a5" class="form-txt" row="6"></textarea>
+      <textarea id="a5" class="form-txt" rows="6"></textarea>
     </p>
 
 
