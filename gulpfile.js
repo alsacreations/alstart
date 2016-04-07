@@ -133,7 +133,7 @@ var isProduction = argv.prod;
  * ------------------------------------------------
  */
 
-// Tâche CSS : Sass + autoprefixer + CSScomb + beautify + minify (si prod)
+// Tâche CSS : Sass + Autoprefixer + CSScomb + beautify + minify (si prod)
 gulp.task('css', function () {
   return gulp.src(paths.src + paths.styles.sass.mainFile)
     .pipe($.plumber(onError))

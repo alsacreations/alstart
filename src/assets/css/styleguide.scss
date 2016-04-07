@@ -5,7 +5,7 @@
  */
 
 /*
- * LESS Mixins
+ * Sass Mixins
  */
 // mixin pour afficher la valeur de font-size
 @mixin fontsize($fontsize) {
@@ -19,13 +19,13 @@
 }
 
 // mixin pour afficher le code hexadécimal d'une couleur
-@mixin hexa($lesscolor) {
+@mixin hexa($sasscolor) {
   &::before {
-    background: #{$lesscolor};
+    background: #{$sasscolor};
   }
   
   &::after {
-    content: "#{$lesscolor}";
+    content: "#{$sasscolor}";
   }
 }
 
@@ -306,7 +306,7 @@ code.sg,
     @extend sg-code-inline;
   }
 
-  // nom de la variable LESS
+  // nom de la variable Sass
   span {
     display: block;
     margin: $tiny-value 0;

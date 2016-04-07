@@ -6,7 +6,7 @@ src/vendor/
 # gulp destination file ignore
 dist/
 
-#Map Crap
+#Mac Crap
 
 .DS_Store
 .AppleDouble
