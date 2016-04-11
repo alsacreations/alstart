@@ -1,7 +1,7 @@
 ## Formulaires
 
 ### Champs
-La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type : `text`, `password`, `datetime-local`, `date`, `month`, `time`, `week`, `number`, `email`, `url`, `search`, `tel`, and `color`.
+La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type&nbsp;: `text`, `password`, `datetime-local`, `date`, `month`, `time`, `week`, `number`, `email`, `url`, `search`, `tel`, and `color`.
 
     @example
     <p>Les champs marqués d'un * sont obligatoires</p>
@@ -47,7 +47,7 @@ La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type : `
 
 
 ### Boutons
-Boutons de validation d'un formulaire : `<button type="submit">`, `<input type="submit">`.  
+Boutons de validation d'un formulaire&nbsp;: `<button type="submit">`, `<input type="submit">`.  
 Les classes CSS `.btn-primary`, `.btn-secondary` ou `.btn-tertiary` peuvent être appliquées pour styler ces boutons de formulaire
 
     @example
@@ -87,7 +87,7 @@ Les classes CSS `.btn-primary`, `.btn-secondary` ou `.btn-tertiary` peuvent êtr
 
 
 ### Messages
-Styles pour les 3 états suivants : succès, erreur ou avertissement.
+Styles pour les 3 états suivants&nbsp;: succès, erreur ou avertissement.
 
     @example
     <p class="form-item has-error">
