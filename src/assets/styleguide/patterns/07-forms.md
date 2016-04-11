@@ -146,7 +146,7 @@ Styles pour les 3 états suivants : succès, erreur ou avertissement.
 
 
 ### Choix multiple
-L'élément `<fieldset>`&nbsp;est utilisé pour regroupé plusieurs éléments de formulaire, par exemple plusieurs cases à cocher.  
+L'élément `<fieldset>`&nbsp;est utilisé pour regrouper plusieurs éléments de formulaire, par exemple plusieurs cases à cocher.  
 Un élément `<legend>`&nbsp; unique doit être son 1er enfant.
 
     @example
