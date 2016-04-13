@@ -133,13 +133,13 @@ Styles pour les 3 états suivants&nbsp;: succès, erreur ou avertissement.
     @example
     <p class="form-item">
       <label for="cb5">
-        <input class="form-checkbox" type="checkbox" id="cb5" name="cb" value="1"> 
+        <input class="form-checkbox" type="checkbox" id="cb5" name="cb" value="1">
         &nbsp;Oui je souhaite m'inscrire à la newsletter
       </label>
     </p>
     <p class="form-item">
       <label for="rd6">
-        <input class="form-radio" type="radio" id="rd6" name="rd" value="1"> 
+        <input class="form-radio" type="radio" id="rd6" name="rd" value="1">
         &nbsp;Oui je souhaite m'inscrire à la newsletter
       </label>
     </p>
