@@ -4,19 +4,19 @@
 
   <div class="sg-example"><div class="sg-canvas">
       <div class="sg-font-common">
-          <code>@font-stack-common</code><br>
+          <code>$font-stack-common</code><br>
           ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
           abcdefghijklmnopqrstuvwxyz<br>
           0123456789
       </div>
       <div class="sg-font-headings">
-          <code>@font-stack-headings</code><br>
+          <code>$font-stack-headings</code><br>
           ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
           abcdefghijklmnopqrstuvwxyz<br>
           0123456789
       </div>
       <div class="sg-font-monospace">
-          <code>@font-stack-monospace</code><br>
+          <code>$font-stack-monospace</code><br>
           ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
           abcdefghijklmnopqrstuvwxyz<br>
           0123456789
