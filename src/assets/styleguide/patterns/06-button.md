@@ -9,11 +9,24 @@ peuvent être ajoutées pour le styler comme le serait un bouton de formulaire a
 <em>Note</em>&nbsp;: ne pas utiliser un lien là où il faudrait utiliser un bouton de formulaire&nbsp;!
 
     @example
-    p Link that looks like a button with style:
+    p
+      span.inbl.w30 Liens ressemblant à un bouton :
       | <a class="btn" href="#">Default</a>
       | <a class="btn btn-primary" href="#">Primary</a>
       | <a class="btn btn-secondary" href="#">Secondary</a>
       | <a class="btn btn-tertiary" href="#">Tertiary</a>
+    p
+      span.inbl.w30 Les mêmes dans l'état survolé :
+      | <a class="btn :hover" href="#">Default</a>
+      | <a class="btn btn-primary :hover" href="#">Primary</a>
+      | <a class="btn btn-secondary :hover" href="#">Secondary</a>
+      | <a class="btn btn-tertiary :hover" href="#">Tertiary</a>
+    p
+      span.inbl.w30 Les mêmes ayant reçu le focus:
+      | <a class="btn :focus" href="#">Default</a>
+      | <a class="btn btn-primary :focus" href="#">Primary</a>
+      | <a class="btn btn-secondary :focus" href="#">Secondary</a>
+      | <a class="btn btn-tertiary :focus" href="#">Tertiary</a>
 
 ### Boutons avec une icône
 
@@ -22,3 +35,5 @@ peut être appliquée sur les éléments suivants : `<i>`.
 
     @example
     <a class="btn btn-primary" href="#"><i class="icon-arrow" aria-hidden="true"></i>Primary</a>
+    <a class="btn btn-primary :hover mll" href="#"><i class="icon-arrow" aria-hidden="true"></i>Survolé</a>
+    <a class="btn btn-primary :focus mll" href="#"><i class="icon-arrow" aria-hidden="true"></i>Prise de focus</a>

@@ -6,6 +6,10 @@ L'élément `<a>`&nbsp;définit un hyperlien, une cible de destination nommée p
 
     @example
     <p>C'est que sa planète d'origine était à peine <a href="#">plus grande qu'une maison</a>.</p>
+    <p>Antoine de Saint-Exupéry a <a class=":hover" href="#">survolé</a>
+    de nombreux territoires.</p>
+    <p>Il ne navigait pas au clavier sur le Web et n'a pu voir l'état <a class=":focus" href="#">:focus</a>
+    d'un lien.</p>
 
 ### Strong
 

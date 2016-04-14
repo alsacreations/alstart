@@ -18,11 +18,17 @@ La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type&nbs
     <p class="form-item">
       <label for="a2">Champ texte (value) <span class="form-required" title="Champs obligatoire">*</span></label>
       <input type="text" class="form-txt" id="a2" value="je t'ai donné un tout petit mouton" required>
+      <label for="a2h" class="visually-hidden">Champ texte avec value survolé</label>
+      <input type="text" class="form-txt :hover mll" id="a2h" value="J'ai survolé un tout petit mouton">
+      <label for="a2f" class="visually-hidden">Champ texte avec value ayant le focus</label>
+      <input type="text" class="form-txt :focus mll" id="a2f" value="Un tout petit mouton a pris le focus">
     </p>
 
     <p class="form-item">
       <label for="a2-2">Champ texte (disabled)</label>
-      <input type="text" class="form-txt" id="a2-2" disabled>
+      <input type="text" class="form-txt" id="a2-2" value="disabled" disabled>
+      <label for="a2-2h" class="visually-hidden">Champ texte (disabled) survolé</label>
+      <input type="text" class="form-txt :hover mll" id="a2-2h" value="état survolé et disabled" disabled>
     </p>
 
     <p class="form-item">
@@ -42,7 +48,11 @@ La classe CSS `.form-txt`&nbsp;peut s'appliquer sur les champs texte de type&nbs
 
     <p class="form-item">
       <label for="a2-6">Champ recherche</label>
-      <input type="search" class="form-txt" id="a2-6">
+      <input type="search" class="form-txt" id="a2-6" value="mot-clé">
+      <label for="a2-6h" class="visually-hidden">Champ recherche survolé</label>
+      <input type="search" class="form-txt :hover mll" id="a2-6h" value="état survolé">
+      <label for="a2-6f" class="visually-hidden">Champ recherche ayant le focus</label>
+      <input type="search" class="form-txt :focus mll" id="a2-6f" value="a le focus">
     </p>
 
 
@@ -55,18 +65,34 @@ Les classes CSS `.btn-primary`, `.btn-secondary` ou `.btn-tertiary` peuvent êtr
       span.inbl.w10 Default:
       <button type="submit">Valider</button>
       <input type="submit" value="Valider">
+      <button type="submit" class=":hover mll">Survolé</button>
+      <input type="submit" class=":hover" value="Survolé">
+      <button type="submit" class=":focus mll">A le focus</button>
+      <input type="submit" class=":focus" value="A le focus">
     p
       span.inbl.w10 Primary:
       <button type="submit" class="btn-primary">Valider</button>
       <input type="submit" class="btn-primary" value="Valider">
+      <button type="submit" class="btn-primary :hover mll">Survolé</button>
+      <input type="submit" class="btn-primary :hover" value="Survolé">
+      <button type="submit" class="btn-primary :focus mll">A le focus</button>
+      <input type="submit" class="btn-primary :focus" value="A le focus">
     p
       span.inbl.w10 Secondary:
       <button type="submit" class="btn-secondary">Valider</button>
       <input type="submit" class="btn-secondary" value="Valider">
+      <button type="submit" class="btn-secondary :hover mll">Survolé</button>
+      <input type="submit" class="btn-secondary :hover" value="Survolé">
+      <button type="submit" class="btn-secondary :focus mll">A le focus</button>
+      <input type="submit" class="btn-secondary :focus" value="A le focus">
     p
       span.inbl.w10 Tertiary:
       <button type="submit" class="btn-tertiary">Valider</button>
       <input type="submit" class="btn-tertiary" value="Valider">
+      <button type="submit" class="btn-tertiary :hover mll">Survolé</button>
+      <input type="submit" class="btn-tertiary :hover" value="Survolé">
+      <button type="submit" class="btn-tertiary :focus mll">A le focus</button>
+      <input type="submit" class="btn-tertiary :focus" value="A le focus">
 
 ### Champs "Télécharger"
 

@@ -22,6 +22,10 @@ var gulp = require('gulp'),
     argv = require('yargs').argv,
     del = require('del');
 
+/* Pour le styleguide */
+    var postcss = require('gulp-postcss'),
+        postcssPseudoClasses = require('postcss-pseudo-classes');
+
 
 /**
  * Configuration générale du projet et des composants utilisés
@@ -74,6 +78,7 @@ var paths = {
     css: {
       mainFile: 'assets/css/styles.css', // fichier CSS principal
       files: 'assets/css/*.css', // cible tous les fichiers CSS
+      styleguideSuffix: '-styleguide', // suffixe du fichier CSS pour styleguide (avec sélecteurs .\:hover)
     },
     sass: {
       mainFile: 'assets/css/styles.scss', // fichier Sass principal
@@ -204,7 +209,7 @@ gulp.task('misc', function () {
  */
 
 // Tâche STYLEGUIDE : création automatique d'un guide des styles
-gulp.task('styleguide', function () {
+gulp.task('styleguide-html', function () {
   return gulp.src(paths.src + paths.styleguide.files)
     .pipe($.plumber(onError))
     .pipe($.styledown({
@@ -213,6 +218,22 @@ gulp.task('styleguide', function () {
     }))
     .pipe(gulp.dest(paths.dest));
 });
+// Besoin d'une CSS "styleguide" avec des sélecteurs comportant .\:hover et cie
+gulp.task('styleguide-css', function () {
+  // C'est à peu près la tâche css, à 2 différences près (voir ci-dessous)
+  return gulp.src(paths.src + paths.styles.sass.mainFile)
+    .pipe($.plumber(onError))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass())
+    .pipe($.csscomb())
+    .pipe($.cssbeautify(project.configuration.cssbeautify))
+    .pipe($.autoprefixer())
+    .pipe(postcss([postcssPseudoClasses])) // ici on ajoute les sélecteurs avec .\:hover
+    .pipe($.rename({suffix: paths.styles.css.styleguideSuffix})) // et on crée un styles-styleguide.css, pas styles.css
+    .pipe(gulp.dest(paths.dest + paths.styles.root))
+    .pipe($.sourcemaps.write(paths.maps));
+});
+
 
 // Tâche ZIP : création de fichier .zip du projet
 gulp.task('archive', function () {
@@ -274,6 +295,9 @@ gulp.task('watch', function () {
   gulp.watch([paths.src + paths.html.allFiles, paths.src + paths.php], ['html', 'php', browserSync.reload]);
   gulp.watch([paths.src + paths.scripts.files], ['js', browserSync.reload]);
 });
+
+// Tâche STYLEGUIDE (réunit : 1. markdown vers html 2. CSS avec classes .\:hover et cie )
+gulp.task('styleguide', ['styleguide-html', 'styleguide-css']);
 
 // Tâche par défaut
 gulp.task('default', ['build']);

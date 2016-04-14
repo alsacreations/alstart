@@ -2,7 +2,7 @@
 
 ### Head
 
-    link(rel="stylesheet" href="assets/css/styles.css")
+    link(rel="stylesheet" href="assets/css/styles-styleguide.css")
 
 ### Body
 
