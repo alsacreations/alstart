@@ -11,7 +11,7 @@
 @mixin fontsize($fontsize) {
   &::after {
     content: "#{$fontsize}";
-    @extend sg-code-inline;
+    @extend .sg-code-inline;
     margin-left: $small-value;
     font-weight: normal;
     vertical-align: middle;
@@ -23,7 +23,7 @@
   &::before {
     background: #{$sasscolor};
   }
-  
+
   &::after {
     content: "#{$sasscolor}";
   }
@@ -125,7 +125,7 @@
 
 
 /*
- * Typography 
+ * Typography
  */
 /* main title */
 .sg-title {
@@ -303,7 +303,7 @@ code.sg,
   // code hexadécimal
   &::after {
     display: block;
-    @extend sg-code-inline;
+    @extend .sg-code-inline;
   }
 
   // nom de la variable Sass
@@ -401,7 +401,7 @@ code.sg,
 .sg-align-float {
   padding: $medium-value;
   background: #f8f8f8;
-  @extend clearfix;
+  @extend .clearfix;
 
   & + & {
     margin-top: $medium-value;
