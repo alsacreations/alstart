@@ -315,8 +315,8 @@ code.sg,
 
   // Couleurs
   &.base-color { @include hexa($base-color); }
-  &.primary-color { @include hexa($primary-color); }
-  &.secondary-color { @include hexa($secondary-color); }
+  &.alpha-color { @include hexa($alpha-color); }
+  &.beta-color { @include hexa($beta-color); }
 
   &.headings-color { @include hexa($headings-color); }
   &.headings-1-color { @include hexa($headings-1-color); }
@@ -327,8 +327,8 @@ code.sg,
   &.base-color-link-hover { @include hexa($base-color-link-hover); }
 
   &.base-background { @include hexa($base-background); }
-  &.primary-background { @include hexa($primary-background); }
-  &.secondary-background { @include hexa($secondary-background); }
+  &.alpha-background { @include hexa($alpha-background); }
+  &.beta-background { @include hexa($beta-background); }
 }
 
 

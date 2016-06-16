@@ -24,31 +24,31 @@
 /* ==Normalize (basic reset)          */
 /* ---------------------------------- */
 
-@import "_normalize/_normalize.scss"; // normalize (basic reset)
-@import "_include-media/_include-media.scss"; // include-media
+@import "./node_modules/knacss/sass/_normalize/_normalize.scss"; // normalize (basic reset)
+@import "./node_modules/knacss/sass/_include-media/_include-media.scss"; // include-media
 
 // WARNING : you should comment the following @import (config)
 // and move config file from knacss folder to your own project folder!
 @import "_config-variables.scss";
 
 // Libraries
-@import "_library-base.scss"; // basic styles
-@import "_library-print.scss"; // print quick reset
-@import "_library-styling.scss"; // minor stylings
-@import "_library-misc.scss"; // skip links, hyphens
+@import "./node_modules/knacss/sass/_library-base.scss"; // basic styles
+@import "./node_modules/knacss/sass/_library-print.scss"; // print quick reset
+@import "./node_modules/knacss/sass/_library-styling.scss"; // minor stylings
+@import "./node_modules/knacss/sass/_library-misc.scss"; // skip links, hyphens
 // @import "_library-wordpress.scss"; // WordPress reset and basic styles
 
 // Layout
-@import "_layout-general.scss"; // alignment, modules, positionning
-@import "_layout-grids.scss"; // grids
+@import "./node_modules/knacss/sass/_layout-general.scss"; // alignment, modules, positionning
+@import "./node_modules/knacss/sass/_layout-grids.scss"; // grids
 
 // Objects
-@import "_object-tables.scss"; // data tables consistency
-@import "_object-forms.scss"; // forms consistency
+@import "./node_modules/knacss/sass/_object-tables.scss"; // data tables consistency
+@import "./node_modules/knacss/sass/_object-forms.scss"; // forms consistency
 
 // Overrides
-@import "_override-helpers.scss"; // width and spacers helpers
-@import "_override-responsive.scss"; // Responsive Web Design helpers
+@import "./node_modules/knacss/sass/_override-helpers.scss"; // width and spacers helpers
+@import "./node_modules/knacss/sass/_override-responsive.scss"; // Responsive Web Design helpers
 
 
 /* ----------------------------- */
