@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "jquery": "^2.2.0",
-    "knacss": "^4.4.4",
+    "knacss": "^5.0.0",
     "styledown-skins": "drakeh/styledown-skins"
   },
   "scripts": {

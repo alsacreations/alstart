@@ -1,5 +1,5 @@
 /*!
-* www.KNACSS.com V5.0.0 (23 mai 2016) @author: Raphael Goetter, Alsacreations
+* www.KNACSS.com V5.0.1 (24 mai 2016) @author: Alsacreations, Raphael Goetter
 * Licence WTFPL http://www.wtfpl.net/
 */
 
@@ -24,28 +24,37 @@
 /* ==Normalize (basic reset)          */
 /* ---------------------------------- */
 
-@import "./node_modules/knacss/_normalize/_normalize.scss"; // normalize (basic reset)
-@import "./node_modules/knacss/_include-media/_include-media.scss"; // include-media
+@import "_normalize/_normalize.scss"; // normalize (basic reset)
+@import "_include-media/_include-media.scss"; // include-media
 
 // WARNING : you should comment the following @import (config)
 // and move config file from knacss folder to your own project folder!
 @import "_config-variables.scss";
 
 // Libraries
-@import "./node_modules/knacss/_library-base.scss"; // basic styles
-@import "./node_modules/knacss/_library-print.scss"; // print quick reset
-@import "./node_modules/knacss/_library-styling.scss"; // minor stylings
-@import "./node_modules/knacss/_library-misc.scss"; // skip links, hyphens
+@import "_library-base.scss"; // basic styles
+@import "_library-print.scss"; // print quick reset
+@import "_library-styling.scss"; // minor stylings
+@import "_library-misc.scss"; // skip links, hyphens
 // @import "_library-wordpress.scss"; // WordPress reset and basic styles
 
 // Layout
-@import "./node_modules/knacss/_layout-general.scss"; // alignment, modules, positionning
-@import "./node_modules/knacss/_layout-grids.scss"; // grids
+@import "_layout-general.scss"; // alignment, modules, positionning
+@import "_layout-grids.scss"; // grids
 
 // Objects
-@import "./node_modules/knacss/_object-tables.scss"; // data tables consistency
-@import "./node_modules/knacss/_object-forms.scss"; // forms consistency
+@import "_object-tables.scss"; // data tables consistency
+@import "_object-forms.scss"; // forms consistency
 
 // Overrides
-@import "./node_modules/knacss/_override-helpers.scss"; // width and spacers helpers
-@import "./node_modules/knacss/_override-responsive.scss"; // Responsive Web Design helpers
+@import "_override-helpers.scss"; // width and spacers helpers
+@import "_override-responsive.scss"; // Responsive Web Design helpers
+
+
+/* ----------------------------- */
+/* ==Own stylesheet              */
+/* ----------------------------- */
+
+/* Here should go your own CSS styles */
+// You can also link them with a Sass @import
+// @import "my-styles";
