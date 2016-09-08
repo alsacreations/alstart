@@ -1,13 +1,20 @@
 jQuery(document).ready(function($) {
 
-  // Menu: fixed position when scrolling
-  $(window).scroll(function() {
+  var $window = $(window);
+  var $styleguideMenu = $('.sg-menu');
+  var to = false;
 
-    if($(this).scrollTop()>165) {
-      $('.sg-menu').addClass('is-fixed');
-    } else {
-      $('.sg-menu').removeClass('is-fixed');
-    }
+  // Menu: fixed position when scrolling
+  if($styleguideMenu.length>0) $window.on('scroll',function() {
+
+    clearTimeout(to);
+    to = setTimeout(function() {
+      if($window.scrollTop()>165) {
+        $styleguideMenu.addClass('is-fixed');
+      } else {
+        $styleguideMenu.removeClass('is-fixed');
+      }
+    },30);
 
   });
 

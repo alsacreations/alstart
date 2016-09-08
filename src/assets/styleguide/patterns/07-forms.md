@@ -68,7 +68,7 @@ Les classes CSS `.btn-primary`, `.btn-secondary` ou `.btn-tertiary` peuvent êtr
       <button type="submit" class="btn-tertiary">Valider</button>
       <input type="submit" class="btn-tertiary" value="Valider">
 
-### Champs "Télécharger"
+### Champs Télécharger
 
     @example
     <p class="form-item">

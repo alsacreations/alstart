@@ -216,7 +216,11 @@ gulp.task('styleguide', function () {
 
 // Tâche ZIP : création de fichier .zip du projet
 gulp.task('archive', function () {
-  argv.prod ? project.zip.name = 'prod' : project.zip.name = 'build';
+  if(argv.prod) {
+    project.zip.name = 'prod';
+  } else {
+    project.zip.name = 'build';
+  }
   var now = new Date(),
       date = now.getFullYear() + '-' + ( now.getMonth() + 1 ) + '-' + now.getDate() + '-' + now.getHours() + 'h' + now.getMinutes(),
       zipName = project.zip.namespace + '-' + project.name + '-' + project.zip.name + '-' + date + '.zip';
