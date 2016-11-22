@@ -26,7 +26,7 @@
 /* ==Normalize (basic reset)          */
 /* ---------------------------------- */
 
-@import "_vendor/_normalize.scss"; // normalize (basic reset)
+@import "./node_modules/knacss/sass/_vendor/_normalize.scss"; // normalize (basic reset)
 
 // WARNING : you should comment the following @import (variables)
 // and move variables file from knacss folder to your own project folder!
@@ -36,31 +36,23 @@
 @import "_config/_mixins.scss";
 
 // Libraries
-@import "library/_base.scss"; // basic styles
-@import "library/_print.scss"; // print quick reset
-@import "library/_styling.scss"; // minor stylings
-@import "library/_misc.scss"; // skip links, hyphens
-@import "library/_tables.scss"; // data tables consistency
-@import "library/_forms.scss"; // forms consistency
+@import "./node_modules/knacss/sass/library/_base.scss"; // basic styles
+@import "./node_modules/knacss/sass/library/_print.scss"; // print quick reset
+@import "./node_modules/knacss/sass/library/_styling.scss"; // minor stylings
+@import "./node_modules/knacss/sass/library/_misc.scss"; // skip links, hyphens
+@import "./node_modules/knacss/sass/library/_tables.scss"; // data tables consistency
+@import "./node_modules/knacss/sass/library/_forms.scss"; // forms consistency
 
 // Objects
-@import "objects/_media.scss"; // media object
-@import "objects/_autogrid.scss"; // media autogrid
+@import "./node_modules/knacss/sass/objects/_media.scss"; // media object
+@import "./node_modules/knacss/sass/objects/_autogrid.scss"; // media autogrid
 
 // Utilities
-@import "utilities/_layout.scss"; // alignment, modules, positionning
-@import "utilities/_helpers.scss"; // width and spacers helpers
-// @import "utilities/_wordpress.scss"; // WordPress reset and basic styles
-@import "utilities/_responsive.scss"; // Responsive Web Design helpers
+@import "./node_modules/knacss/sass/utilities/_layout.scss"; // alignment, modules, positionning
+@import "./node_modules/knacss/sass/utilities/_helpers.scss"; // width and spacers helpers
+// @import "./node_modules/knacss/sass/utilities/_wordpress.scss"; // WordPress reset and basic styles
+@import "./node_modules/knacss/sass/utilities/_responsive.scss"; // Responsive Web Design helpers
 
 // Grids
-@import "grids/_grillade.scss"; // grids
+@import "./node_modules/knacss/sass/grids/_grillade.scss"; // grids
 
-
-/* ----------------------------- */
-/* ==Own stylesheet              */
-/* ----------------------------- */
-
-/* Here should go your own CSS styles */
-// You can also link them with a Sass @import
-// @import "my-styles";
