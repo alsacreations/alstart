@@ -1,6 +1,6 @@
 {
   "name": "bretzel",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "base de départ pour des projets HTML / CSS / JS dans un environnement nodeJS, Gulp et KNACSS",
   "devDependencies": {
     "browser-sync": "^2.10.0",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "jquery": "^2.2.0",
-    "knacss": "^6.0.0",
+    "knacss": "^6.0.4",
     "styledown-skins": "drakeh/styledown-skins"
   },
   "repository": {
