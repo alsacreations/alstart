@@ -32,9 +32,6 @@
     "knacss": "^6.0.0",
     "styledown-skins": "drakeh/styledown-skins"
   },
-  "scripts": {
-    "postinstall": "gulp"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/alsacreations/bretzel"
