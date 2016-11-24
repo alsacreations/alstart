@@ -143,7 +143,7 @@
   & > h2.sg {
     padding-bottom: .15em;
     font-size: $h1-size;
-    color: $headings-color;
+    color: #333;
     border-bottom: 2px solid #eee;
   }
   &:first-child > h2.sg {
@@ -151,7 +151,7 @@
   }
 }
 .sg-text h3.sg {
-  color: $headings-1-color;
+  color: #333;
 
   &::after {
     content: '';
@@ -314,21 +314,29 @@ code.sg,
   }
 
   // Couleurs
-  &.base-color { @include hexa($base-color); }
-  &.alpha-color { @include hexa($alpha-color); }
-  &.beta-color { @include hexa($beta-color); }
+  
+  // color scheme
+$color1    : #333 !default;
+$color2    : #fff !default;
+$color3    : #333 !default;
+$color4    : #000 !default;
 
-  &.headings-color { @include hexa($headings-color); }
-  &.headings-1-color { @include hexa($headings-1-color); }
-  &.headings-2-color { @include hexa($headings-2-color); }
-  &.headings-3-color { @include hexa($headings-3-color); }
+// colors used
+$base-color: $color1;
+$link-color: $color3;
+$base-background : $color2;
+$link-hover-color: $color4;
+  
+&.color1 { @include hexa($color1); }
+&.color2 { @include hexa($color2); }
+&.color3 { @include hexa($color3); }
+&.color4 { @include hexa($color4); }
 
-  &.base-color-link { @include hexa($base-color-link); }
-  &.base-color-link-hover { @include hexa($base-color-link-hover); }
+&.base-color { @include hexa($color1); }
+&.link-color { @include hexa($color3); }
+&.base-background { @include hexa($color2); }
+&.link-hover-color { @include hexa($color4); }
 
-  &.base-background { @include hexa($base-background); }
-  &.alpha-background { @include hexa($alpha-background); }
-  &.beta-background { @include hexa($beta-background); }
 }
 
 
