@@ -204,7 +204,7 @@ gulp.task('misc', function () {
  */
 
 // Tâche STYLEGUIDE : création automatique d'un guide des styles
-gulp.task('styleguide', function () {
+gulp.task('guide', function () {
   return gulp.src(paths.src + paths.styleguide.files)
     .pipe($.plumber(onError))
     .pipe($.styledown({
@@ -248,6 +248,9 @@ gulp.task('clean', function () {
 gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
 
 // Tâche PROD : tapez "gulp build --prod"
+
+// Tâche STYLEGUIDE : (tapez "gulp styleguide")
+gulp.task('styleguide', gulpSync.sync(['css', 'guide']));
 
 // Tâche ZIP : (tapez "gulp zip" ou "gulp zip --prod")
 gulp.task('zip', gulpSync.sync(['build', 'archive']));

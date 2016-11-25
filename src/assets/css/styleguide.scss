@@ -70,7 +70,7 @@
   position: absolute;
     top: 27rem; left: 2rem;
   display: none;
-  width: 250px;
+  width: 22rem;
   padding: $medium-value;
   background: #F8F8F8;
 
@@ -173,13 +173,12 @@
  * Styleguide Content
  */
 .sg-content {
-  max-width: 980px;
-  margin: auto;
   position: relative;
   padding: $medium-value;
 }
 @media (min-width: 768px) {
   .sg-content {
+    margin-left: 24rem;
     padding: $medium-value $large-value;
   }
 }
