@@ -42,11 +42,14 @@ En clair, récupérez ce repo :
 ### Prenez une Bretzel
 
 Au sein de votre dossier de projet :
-- lancez `npm install` pour installer les plugins nécessaires, les dépendances et lancer une première fois Gulp
+- lancez `npm install`  ou `yarn` pour installer les plugins et dépendances nécessaires (notament KNACSS et jQuery),
+- lancez une première fois la tâche `gulp` pour générer le dossier distant `/dist`.
 
 ### Mangez votre Bretzel !
 
-Compilez vos fichiers avec `gulp` pour les tâches de base, ou `gulp watch` pour surveiller les modifications.
+- compilez vos fichiers avec `gulp` pour les tâches de base,
+- surveillez votre projet avec `gulp watch`,
+- créez le style guide avec  `gulp styleguide`.
 
 
 ## Tâches Gulp
@@ -89,7 +92,7 @@ Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` :
   },
 ```
 
-Vos dépendances JavaScript devront être listées dans le fichier `gulpfile.js` sous cette forme : 
+Vos dépendances JavaScript devront être listées dans le fichier `gulpfile.js` sous cette forme :
 ```
 var vendors = [
   paths.vendors + 'jquery/dist/jquery.min.js',
@@ -132,7 +135,7 @@ GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/
 
 - version "publique" avec code plus présentable, configuration plus cohérente et maintenable
 - tâches principales rassemblées en une seule (`build`) avec un argument optionnel (`--prod`) pour la production
-- suppression de Critical 
+- suppression de Critical
 - lanceur de projet via `npm run setup`
 
 ### v2.0.1 (13 décembre 2015)
