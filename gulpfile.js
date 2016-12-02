@@ -183,7 +183,7 @@ gulp.task('img', function () {
 
 // Tâche FONTS : copie des fichiers typographiques
 gulp.task('fonts', function () {
-  return gulp.src(paths.src + paths.fonts + '*')
+  return gulp.src(paths.src + paths.fonts + '**/*')
     .pipe($.changed(paths.dest + paths.fonts))
     .pipe(gulp.dest(paths.dest + paths.fonts));
 });
