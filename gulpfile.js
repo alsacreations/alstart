@@ -255,7 +255,7 @@ gulp.task('styleguide', gulpSync.sync(['css', 'guide']));
 // Tâche ZIP : (tapez "gulp zip" ou "gulp zip --prod")
 gulp.task('zip', gulpSync.sync(['build', 'archive']));
 
-// Tâche WATCH : surveillance Sas, HTML et PHP
+// Tâche WATCH : surveillance Sass, HTML et PHP
 gulp.task('watch', function () {
   // si demandé, on créé la configuration du plugin browserSync et on l'initialise
   if (project.plugins.browserSync.status === true) {
