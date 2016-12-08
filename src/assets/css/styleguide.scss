@@ -19,13 +19,12 @@
 }
 
 // mixin pour afficher le code hexadécimal d'une couleur
-@mixin hexa($sasscolor) {
+@mixin hexa($sassvar, $sasscolor) {
   &::before {
     background: #{$sasscolor};
   }
-
   &::after {
-    content: "#{$sasscolor}";
+    content: "$#{$sassvar}";
   }
 }
 
@@ -301,9 +300,10 @@ code.sg,
   display: inline-block;
   vertical-align: top;
   width: 150px;
+  border: solid 1px #eaeaea;
 
-  & + & {
-    margin-left: $medium-value;
+  & {
+    margin: $small-value;
   }
 
   // color example
@@ -319,26 +319,14 @@ code.sg,
     @extend .sg-code-inline;
   }
 
-  // nom de la variable Sass
-  span {
-    display: block;
-    margin: $tiny-value 0;
-    font-size: 1.2rem;
-  }
-
   // Couleurs
-
-&.color1 { @include hexa($color1); }
-&.color2 { @include hexa($color2); }
-&.color3 { @include hexa($color3); }
-&.color4 { @include hexa($color4); }
-&.color5 { @include hexa($color5); }
-
-&.base-color { @include hexa($color1); }
-&.link-color { @include hexa($color3); }
-&.base-background { @include hexa($color2); }
-&.link-hover-color { @include hexa($color4); }
-&.brand-primary { @include hexa($brand-primary); }
+  $i: 0;
+  @each $var, $col in $colors {
+    &:nth-child(#{$i}) {
+      $i : $i + 1;
+      @include hexa($var, $col);
+    }
+  }
 
 }
 
