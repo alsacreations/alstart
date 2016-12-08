@@ -328,27 +328,17 @@ code.sg,
 
   // Couleurs
 
-  // color scheme
-$color1    : #333 !default;
-$color2    : #fff !default;
-$color3    : #333 !default;
-$color4    : #000 !default;
-
-// colors used
-$base-color: $color1;
-$link-color: $color3;
-$base-background : $color2;
-$link-hover-color: $color4;
-
 &.color1 { @include hexa($color1); }
 &.color2 { @include hexa($color2); }
 &.color3 { @include hexa($color3); }
 &.color4 { @include hexa($color4); }
+&.color5 { @include hexa($color5); }
 
 &.base-color { @include hexa($color1); }
 &.link-color { @include hexa($color3); }
 &.base-background { @include hexa($color2); }
 &.link-hover-color { @include hexa($color4); }
+&.brand-primary { @include hexa($brand-primary); }
 
 }
 
