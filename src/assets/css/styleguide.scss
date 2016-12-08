@@ -62,7 +62,7 @@ h1 {margin-top: 0; margin-bottom: 0}
   background: #F8F8F8;
   h1 {
     font-size: 4.5rem;
-    color: #6FA939;
+    color: $brand-primary;
   }
   h2 {
     margin-top: 0;
@@ -133,7 +133,7 @@ h1 {margin-top: 0; margin-bottom: 0}
 .tocify-focus {
   a {
     font-weight: bold;
-    color: #6FA939;
+    color: $brand-primary;
   }
 }
 .tocify-subheader {
@@ -172,7 +172,7 @@ h1 {margin-top: 0; margin-bottom: 0}
 }
 .sg-text h3.sg {
   color: #333;
-  border-left: 4px solid #6FA939;
+  border-left: 4px solid $brand-primary;
   padding-left: 10px;
 }
 /* text */
