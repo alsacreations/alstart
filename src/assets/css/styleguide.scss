@@ -47,14 +47,28 @@
   position: relative;
   padding: 0;
   background-color: #fff;
+  font-family: Segoe UI, Frutiger, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 }
+h1, h2, h3 {font-weight: normal}
+h1 {margin-top: 0; margin-bottom: 0}
+
 
 /* Header */
 .sg-header {
-  padding: $large-value;
-  margin-bottom: $large-value;
+  position: relative;
+  padding: $medium-value;
+  margin-bottom: $small-value;
   text-align: center;
   background: #F8F8F8;
+  h1 {
+    font-size: 4.5rem;
+    color: #6FA939;
+  }
+  h2 {
+    margin-top: 0;
+    color: #777;
+    font-size: 2rem;
+  }
 
   .icon-kiwi-leaf {
     display: inline-block;
@@ -62,13 +76,18 @@
     height: 1em;
     fill: currentColor;
   }
+  .icon-pepins {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
 }
 
 
 /* Sidebar/Menu */
 .sg-menu {
   position: absolute;
-    top: 27rem; left: 2rem;
+    top: 19rem; left: 2rem;
   display: none;
   width: 22rem;
   padding: $medium-value;
@@ -114,6 +133,7 @@
 .tocify-focus {
   a {
     font-weight: bold;
+    color: #6FA939;
   }
 }
 .tocify-subheader {
@@ -152,14 +172,8 @@
 }
 .sg-text h3.sg {
   color: #333;
-
-  &::after {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 1px;
-    border-bottom: 2px solid;
-  }
+  border-left: 4px solid #6FA939;
+  padding-left: 10px;
 }
 /* text */
 .sg-text {
@@ -313,7 +327,7 @@ code.sg,
   }
 
   // Couleurs
-  
+
   // color scheme
 $color1    : #333 !default;
 $color2    : #fff !default;
@@ -325,7 +339,7 @@ $base-color: $color1;
 $link-color: $color3;
 $base-background : $color2;
 $link-hover-color: $color4;
-  
+
 &.color1 { @include hexa($color1); }
 &.color2 { @include hexa($color2); }
 &.color3 { @include hexa($color3); }
