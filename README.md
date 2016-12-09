@@ -29,6 +29,7 @@
 - actualisation automatique du navigateur (browsersync)
 - fichier de styleguide (guide de styles) généré sur demande
 - fichier `.editorconfig` permettant d'assurer une cohérence dans les conventions d'indentations
+- fichier `.sass-lint.yml` de configuration pour outils de Linter `.scss`
 
 ## Par où commencer ?
 
@@ -67,17 +68,6 @@ Au sein de votre dossier de projet :
 - `gulp clean` : suppression des fichiers inutiles en production
 - `gulp zip` et `gulp zip --prod` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2015-11-22-13h37.zip` ou `projectName-prod-2015-11-22-13h37.zip`
 
-### Comparatif des tâches
-
-| fichiers source  | fichiers destination <br>(tâche build)  | fichiers destination <br>(tâche prod)  | tâche watch  |
-|---|---|---|---|
-| src/assets/css/\*.scss<br>src/assets/css/includes/\*.scss  | dist/assets/css/styles.css <br>*(autoprefixer, csscomb, beautify)*  | dist/assets/css/styles.min.css <br>dist/assets/css/styles.css <br>*("build" + csso-minify)*<br>*(option: unCSS si activé)*   | tâche "css" exécutée si modification \*.scss<br>*(+ Browsersync)*  |
-| src/assets/\*.html<br>src/assets/includes/\*.html  | dist/assets/\*.html<br>dist/assets/includes/\*.html<br>*(htmlExtend = include de partiels si présents)*  | dist/assets/\*.html<br>dist/assets/includes/\*.html<br>*(option : Critical si activé)*  | tâche "html+php" exécutée si modification \*.html<br>*(+ Browsersync)*  |
-| src/assets/\*.php<br>src/assets/includes/\*.php  | dist/assets/\*.php<br>dist/assets/includes/\*.php<br>*(simple copie)*  | dist/assets/\*.php<br>dist/assets/includes/\*.php<br>*(simple copie)*  | tâche "html+php" exécutée si modification \*.php<br>*(+ Browsersync)* |
-| src/assets/img/\*<br>src/assets/css/img/\*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imagemin)*  | dist/assets/img/\*<br>dist/assets/css/img/\* <br>*(imagemin)*  | pas de watch |
-| src/assets/js/\*.js<br>src/vendor/.../\*.js  | dist/assets/js/\*.js<br>*(fichiers JS et JS vendor rassemblés, non concaténés)*  | dist/assets/js/global.min.js<br>*(concat, uglify)*  | tâche "js" exécutée si modification \*.js<br>*(+ Browsersync)* |
-| src/assets/css/fonts/\*  | dist/assets/css/fonts/\* <br>*(simple copie)*  | dist/assets/css/fonts/\* <br>*(simple copie)*   | pas de watch  |
-
 
 ## Gérer les dépendances
 
@@ -110,9 +100,11 @@ Pour qu'elles s'appliquent, il suffit généralement de télécharger le plugin 
 
 ## CSS / SCSS Lint
 
-Les fichiers Sass de Bretzel sont rendus corrigés à l'aide d'un "linter" (outil de correction  et bonnes pratiques) dont les règles sont configurées via le fichier `.sass-lint.yml` à la racine du projet.
+Les fichiers Sass (`.scss`) de Bretzel sont rendus corrigés à l'aide d'un "linter" (outil de correction  et bonnes pratiques) dont les règles sont configurées via le fichier `.sass-lint.yml` à la racine du projet.
 
 L'action de correction se fera à l'aide de plugins au sein de votre éditeur HTML, ou bien d'une tâche Gulp. Par exemple, sur l'éditeur Atom, les plugins nécessaires sont [Atom Linter](https://atom.io/packages/linter) et  [Atom Sass Lint](https://atom.io/packages/linter-sass-lint).
+
+Note : les  _warning_ subsistants dans le linter, sont connus et éventuellement à corriger selon les projets au cas par cas. 
 
 ## Architecture Bretzel
 
