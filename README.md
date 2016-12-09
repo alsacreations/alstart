@@ -81,7 +81,7 @@ Au sein de votre dossier de projet :
 
 ## Gérer les dépendances
 
-Bretzel gère les dépendances directement via npm (pas via Bower).
+Bretzel gère les dépendances directement via npm ou yarn (pas via Bower).
 
 Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` :
 ```
@@ -101,6 +101,18 @@ var vendors = [
   paths.src + paths.scripts.files,
 ];
 ```
+
+## editorconfig
+
+Les  règles d'indentation (espace / tabulation) sont configurées via le fichier `.editorconfig` à la racine du projet.
+
+Pour qu'elles s'appliquent, il suffit généralement de télécharger le plugin "editorconfig" dans votre éditeur.
+
+## CSS / SCSS Lint
+
+Les fichiers Sass de Bretzel sont rendus corrigés à l'aide d'un "linter" (outil de correction  et bonnes pratiques) dont les règles sont configurées via le fichier `.sass-lint.yml` à la racine du projet.
+
+L'action de correction se fera à l'aide de plugins au sein de votre éditeur HTML, ou bien d'une tâche Gulp. Par exemple, sur l'éditeur Atom, les plugins nécessaires sont [Atom Linter](https://atom.io/packages/linter) et  [Atom Sass Lint](https://atom.io/packages/linter-sass-lint).
 
 ## Architecture Bretzel
 
