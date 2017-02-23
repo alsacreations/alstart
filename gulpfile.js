@@ -163,10 +163,11 @@ gulp.task('php', function () {
     .pipe(gulp.dest(paths.dest));
 });
 
-// Tâche JS : copie des fichiers JS et vendor + concat + uglify (si prod)
+// Tâche JS : copie des fichiers JS et vendor + babel (+ concat et uglify si prod)
 gulp.task('js', function () {
   return gulp.src(vendors)
     .pipe($.plumber(onError))
+    .pipe($.babel({presets:['es2015','es2016']})) // ,'es2017'
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
     .pipe($.if(isProduction, $.concat(project.globalJSFile)))
     .pipe($.if(isProduction, $.uglify()))
