@@ -2,16 +2,15 @@
 
 ### Palette de Couleurs
 
-  <div class="sg-example"><div class="sg-canvas">
-      <div class="sg-color"> <!-- number of items = number of colors -->
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-        <div class="sg-color-item"></div>
-      </div>
-  </div></div>
+    @example
+    .sg-color
+        // number of items = number of colors
+        .sg-color-item
+        .sg-color-item
+        .sg-color-item
+        .sg-color-item
+        .sg-color-item
+        .sg-color-item
+        .sg-color-item
+        .sg-color-item
+        .sg-color-item
