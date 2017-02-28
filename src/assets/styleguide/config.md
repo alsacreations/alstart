@@ -4,6 +4,7 @@
 
     link(rel="stylesheet" href="assets/css/styles.css")
     title styleguide HTML CSS
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 ### Body
 
