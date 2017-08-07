@@ -37,7 +37,8 @@ var project = {
     browserSync: {
       status: true, // utilisation du plugin browserSync lors du Watch ?
       proxyMode: false, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
-    }
+    },
+    babel: false // utilisation de Babel pour JavaScript
   },
   configuration: { // configuration des différents composants de ce projet
     cssbeautify: {
@@ -167,7 +168,7 @@ gulp.task('php', function () {
 gulp.task('js', function () {
   return gulp.src(vendors)
     .pipe($.plumber(onError))
-    .pipe($.babel({presets:['es2015','es2016']})) // ,'es2017'
+    .pipe($.if(project.plugins.babel,$.babel({presets:['es2015','es2016']}))) // ,'es2017'
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
     .pipe($.if(isProduction, $.concat(project.globalJSFile)))
     .pipe($.if(isProduction, $.uglify()))
