@@ -7,6 +7,7 @@
 **Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, Sass et [KNACSS](http://knacss.com). Des connaissances minimales de ces outils sont un pré-requis.
 
 ## Fonctionnalités
+
 - CSS / Sass :
   - compilation Sass vers CSS
   - ajout automatiques de préfixes CSS3 ([Autoprefixer](https://github.com/postcss/autoprefixer))
@@ -51,7 +52,6 @@ Au sein de votre dossier de projet :
 - compilez vos fichiers avec `gulp` pour les tâches de base,
 - surveillez votre projet avec `gulp watch`,
 - créez le style guide avec  `gulp styleguide`.
-
 
 ## Tâches Gulp
 
@@ -112,41 +112,16 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 
 ![Structure-type de l'arborescence des fichiers de bretzel](https://raw.githubusercontent.com/alsacreations/bretzel/master/src/assets/img/architecture.png)
 
-## Usage avec KNACSS :
+## Usage avec KNACSS
+
 - Créez ou modifiez le fichier `_00-config.scss` dans votre dossier `src/assets/css/`
 - N'utilisez **pas** `src/vendor/knacss/scss/_00-config.scss`, car il sera écrasé à chaque mise à jour de KNACSS
 - Choisissez les fichiers KNACSS à importer au sein du fichier `knacss.scss`
 - Votre fichier de travail est `styles.scss` et commencera par : `@import "knacss";`, puis suivront vos styles perso.
 
-
-## Crédits :
+## Crédits
 
 Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu à jour par Alsacréations.
 
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
 
-## Changelog :
-
-### v3.0.0 (1er mars 2016)
-
-- passage de LESS vers Sass
-
-### v2.1.2 (28 janvier 2016)
-
-- suppression de unCSS et remplacement de `npm run setup` par `npm install` dans la procédure d'installation.
-
-### v2.1.1 (12 janvier 2016)
-
-- version "publique" avec code plus présentable, configuration plus cohérente et maintenable
-- tâches principales rassemblées en une seule (`build`) avec un argument optionnel (`--prod`) pour la production
-- suppression de Critical
-- lanceur de projet via `npm run setup`
-
-### v2.0.1 (13 décembre 2015)
-
-- ajout de gulp-changed pour ne traiter que les fichiers modifiés ou ajoutés
-
-### v2.0.0 (11 décembre 2015)
-
-- renommage de "alstart" en "bretzel"
-- refonte complète du workflow (basé à présent sur une tâche de "build" et une tâche de "prod" différentes)
