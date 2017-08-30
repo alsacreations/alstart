@@ -130,6 +130,8 @@ Bretzel utilise `gulp-documentation` basé sur http://documentation.js.org/ pour
 
 La syntaxe est décrite dans la documentation de documentation https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md
 
+Avec l'éditeur Atom, le package https://atom.io/packages/docblockr est conseillé.
+
 ## Crédits
 
 Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu à jour par Alsacréations.
