@@ -29,8 +29,10 @@
 - intégration [Schnaps.it](http://schnaps.it) (template HTML basique)
 - actualisation automatique du navigateur (browsersync)
 - fichier de styleguide (guide de styles) généré sur demande
+- fichiers de documentation des fonctions JavaScript
 - fichier `.editorconfig` permettant d'assurer une cohérence dans les conventions d'indentations
 - fichier `.sass-lint.yml` de configuration pour outils de Linter `.scss`
+
 
 ## Par où commencer ?
 
@@ -62,9 +64,12 @@ Au sein de votre dossier de projet :
 - `gulp watch` : surveille styles, html, php et scripts
 
 ### Tâches individuelles
+
 - `gulp css` : compile uniquement les fichiers Sass
 - `gulp js`, `gulp html`, `gulp php`, `gulp img`, `gulp fonts` : toi même tu sais
 - `gulp styleguide` : création d'un guide de styles
+- `gulp doc-md` : génère une documentation des sources JavaScript vers Markdown
+- `gulp doc-html` : génère une documentation des sources JavaScript vers HTML
 - `gulp clean` : suppression des fichiers inutiles en production
 - `gulp zip` et `gulp zip --prod` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2015-11-22-13h37.zip` ou `projectName-prod-2015-11-22-13h37.zip`
 
@@ -104,7 +109,7 @@ Les fichiers Sass (`.scss`) de Bretzel sont rendus corrigés à l'aide d'un "lin
 
 L'action de correction se fera à l'aide de plugins au sein de votre éditeur HTML, ou bien d'une tâche Gulp. Par exemple, sur l'éditeur Atom, les plugins nécessaires sont [Atom Linter](https://atom.io/packages/linter) et  [Atom Sass Lint](https://atom.io/packages/linter-sass-lint).
 
-Note : les  _warning_ subsistants dans le linter, sont connus et éventuellement à corriger selon les projets au cas par cas. 
+Note : les  _warning_ subsistants dans le linter, sont connus et éventuellement à corriger selon les projets au cas par cas.
 
 ## Architecture Bretzel
 
@@ -119,9 +124,14 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 - Choisissez les fichiers KNACSS à importer au sein du fichier `knacss.scss`
 - Votre fichier de travail est `styles.scss` et commencera par : `@import "knacss";`, puis suivront vos styles perso.
 
+## Documentation
+
+Bretzel utilise `gulp-documentation` basé sur http://documentation.js.org/ pour pouvoir générer une documentation au format HTML ou Markdown selon les blocs de commentaires JSDoc placés dans les fichiers JavaScript.
+
+La syntaxe est décrite dans la documentation de documentation https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md
+
 ## Crédits
 
 Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu à jour par Alsacréations.
 
 GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
-

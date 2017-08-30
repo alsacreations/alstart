@@ -20,7 +20,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     gulpSync = require('gulp-sync')(gulp),
     argv = require('yargs').argv,
-    del = require('del');
+    del = require('del'),
+    documentation = require('gulp-documentation');
 
 
 /**
@@ -199,9 +200,8 @@ gulp.task('misc', function () {
 });
 
 
-
 /* ------------------------------------------------
- * Tâches autonomes : styleguide, zip, clean
+ * Tâches autonomes : styleguide, zip, clean, doc
  * ------------------------------------------------
  */
 
@@ -214,6 +214,20 @@ gulp.task('guide', function () {
       filename: 'styleguide.html'
     }))
     .pipe(gulp.dest(paths.dest));
+});
+
+// Tâche DOC : documentation JavaScript du projet vers Markdown
+gulp.task('doc-md', function () {
+  return gulp.src('./src/**/*.js')
+    .pipe(documentation('md'))
+    .pipe(gulp.dest('doc'));
+});
+
+// Tâche DOC : documentation JavaScript du projet vers HTML
+gulp.task('doc-html', function () {
+  return gulp.src('./src/**/*.js')
+    .pipe(documentation('html'))
+    .pipe(gulp.dest('doc'));
 });
 
 // Tâche ZIP : création de fichier .zip du projet
