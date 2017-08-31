@@ -69,6 +69,7 @@ var paths = {
   root: './', // dossier actuel
   src: './src/', // dossier de travail
   dest: './dist/', // dossier destiné à la livraison
+  doc: './doc/', // dossier destiné à la documentation
   vendors: './node_modules/', // dossier des dépendances du projet
   assets: 'assets/',
   styles: {
@@ -218,16 +219,16 @@ gulp.task('guide', function () {
 
 // Tâche DOC : documentation JavaScript du projet vers Markdown
 gulp.task('doc-md', function () {
-  return gulp.src('./src/**/*.js')
+  return gulp.src(paths.src+'**/*.js')
     .pipe(documentation('md'))
-    .pipe(gulp.dest('doc'));
+    .pipe(gulp.dest(paths.doc));
 });
 
 // Tâche DOC : documentation JavaScript du projet vers HTML
 gulp.task('doc-html', function () {
-  return gulp.src('./src/**/*.js')
+  return gulp.src(paths.src+'**/*.js')
     .pipe(documentation('html'))
-    .pipe(gulp.dest('doc'));
+    .pipe(gulp.dest(paths.doc));
 });
 
 // Tâche ZIP : création de fichier .zip du projet
