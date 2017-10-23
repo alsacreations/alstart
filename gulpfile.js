@@ -97,7 +97,7 @@ var paths = {
   },
   php: '{,includes/}*.php', // fichiers & dossiers PHP à copier
   fonts: 'assets/css/fonts/', // fichiers typographiques à copier,
-  images: 'assets/{,css/}img/*.{png,jpg,jpeg,gif,svg}', // fichiers images à compresser
+  images: 'assets/{,css/}img/{,*/}*.{png,jpg,jpeg,gif,svg}', // fichiers images à compresser
   misc: '*.{ico,htaccess,txt}', // fichiers divers à copier
   maps: '/maps', // fichiers provenant de sourcemaps
 };
