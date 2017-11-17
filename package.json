@@ -7,6 +7,7 @@
     "babel-preset-env": "^1.x",
     "browser-sync": "^2.x",
     "del": "^3.x",
+    "documentation": "^5.2.x",
     "gulp": "^3.x",
     "gulp-autoprefixer": "^4.x",
     "gulp-babel": "^7.x",
@@ -15,6 +16,7 @@
     "gulp-cssbeautify": "^0.x",
     "gulp-csscomb": "^3.x",
     "gulp-csso": "^3.x",
+    "gulp-documentation": "^3.2.x",
     "gulp-html-extend": "^1.x",
     "gulp-if": "^2.x",
     "gulp-imagemin": "^3.x",
@@ -51,5 +53,11 @@
   "bugs": {
     "url": "https://github.com/alsacreations/bretzel/issues"
   },
-  "homepage": "https://github.com/alsacreations/bretzel"
+  "homepage": "https://github.com/alsacreations/bretzel",
+  "babel": {
+    "presets": [
+      "es2015",
+      "es2016"
+    ]
+  }
 }

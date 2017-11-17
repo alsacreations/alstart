@@ -8,6 +8,7 @@
 
 
 ## Fonctionnalités
+
 - CSS / Sass :
   - compilation Sass vers CSS
   - ajout automatiques de préfixes CSS3 ([Autoprefixer](https://github.com/postcss/autoprefixer))
@@ -30,8 +31,10 @@
 - intégration [Schnaps.it](http://schnaps.it) (template HTML basique)
 - actualisation automatique du navigateur (browsersync)
 - fichier de styleguide (guide de styles) généré sur demande
+- fichiers de documentation des fonctions JavaScript
 - fichier `.editorconfig` permettant d'assurer une cohérence dans les conventions d'indentations
 - fichier `.sass-lint.yml` de configuration pour outils de Linter `.scss`
+
 
 ## Par où commencer ?
 
@@ -58,7 +61,6 @@ Au choix :
 - surveillez les changements de fichiers dans votre projet avec `gulp watch`,
 - créez le guide de styles avec  `gulp styleguide`.
 
-
 ## Tâches Gulp
 
 ### Tâches principales
@@ -72,6 +74,8 @@ Au choix :
 - `gulp css` : compile uniquement les fichiers Sass
 - `gulp js`, `gulp html`, `gulp php`, `gulp img`, `gulp fonts` : toi même tu sais
 - `gulp styleguide` : création d'un guide de styles
+- `gulp doc-md` : génère une documentation des sources JavaScript vers Markdown
+- `gulp doc-html` : génère une documentation des sources JavaScript vers HTML
 - `gulp clean` : suppression des fichiers inutiles en production
 - `gulp zip` et `gulp zip --prod` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2017-11-22-13h37.zip` ou `projectName-prod-2017-11-22-13h37.zip`
 
@@ -121,7 +125,6 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 
 ![Structure-type de l'arborescence des fichiers de bretzel](https://raw.githubusercontent.com/alsacreations/bretzel/master/src/assets/img/architecture.png)
 
-
 ## Usage avec KNACSS
 
 - Créez ou modifiez le fichier `_00-config.scss` dans votre dossier `src/assets/css/`
@@ -129,6 +132,13 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 - Choisissez les fichiers KNACSS à importer au sein du fichier `knacss.scss`
 - Votre fichier de travail est `styles.scss` et commencera par : `@import "knacss";`, puis suivront vos styles perso.
 
+## Documentation
+
+Bretzel utilise `gulp-documentation` basé sur http://documentation.js.org/ pour pouvoir générer une documentation au format HTML ou Markdown selon les blocs de commentaires JSDoc placés dans les fichiers JavaScript.
+
+La syntaxe est décrite dans la documentation de documentation https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md
+
+Avec l'éditeur Atom, le package https://atom.io/packages/docblockr est conseillé.
 
 ## Crédits
 

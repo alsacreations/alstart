@@ -20,7 +20,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     gulpSync = require('gulp-sync')(gulp),
     argv = require('yargs').argv,
-    del = require('del');
+    del = require('del'),
+    documentation = require('gulp-documentation');
 
 
 /**
@@ -36,7 +37,8 @@ var project = {
     browserSync: {
       status: true, // utilisation du plugin browserSync lors du Watch ?
       proxyMode: false, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
-    }
+    },
+    babel: false // utilisation de Babel pour JavaScript
   },
   configuration: { // configuration des différents composants de ce projet
     cssbeautify: {
@@ -66,6 +68,7 @@ var paths = {
   root: './', // dossier actuel
   src: './src/', // dossier de travail
   dest: './dist/', // dossier destiné à la livraison
+  doc: './doc/', // dossier destiné à la documentation
   vendors: './node_modules/', // dossier des dépendances du projet
   assets: 'assets/',
   styles: {
@@ -94,7 +97,7 @@ var paths = {
   },
   php: '{,includes/}*.php', // fichiers & dossiers PHP à copier
   fonts: 'assets/css/fonts/', // fichiers typographiques à copier,
-  images: 'assets/{,css/}img/*.{png,jpg,jpeg,gif,svg}', // fichiers images à compresser
+  images: 'assets/{,css/}img/{,*/}*.{png,jpg,jpeg,gif,svg}', // fichiers images à compresser
   misc: '*.{ico,htaccess,txt}', // fichiers divers à copier
   maps: '/maps', // fichiers provenant de sourcemaps
 };
@@ -141,7 +144,7 @@ gulp.task('css', function () {
     .pipe($.sass())
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
-    .pipe($.autoprefixer())
+    .pipe($.autoprefixer({ grid: true }))
     .pipe(gulp.dest(paths.dest + paths.styles.root))
     .pipe($.if(isProduction, $.rename({suffix: '.min'})))
     .pipe($.if(isProduction, $.csso()))
@@ -167,7 +170,7 @@ gulp.task('php', function () {
 gulp.task('js', function () {
   return gulp.src(jsFiles)
     .pipe($.plumber(onError))
-    .pipe($.babel({presets:['env']}))
+    .pipe($.if(project.plugins.babel,$.babel({presets:['env']})))
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
     .pipe($.if(isProduction, $.concat(paths.scripts.mainFile)))
     .pipe($.if(isProduction, $.uglify()))
@@ -198,9 +201,8 @@ gulp.task('misc', function () {
 });
 
 
-
 /* ------------------------------------------------
- * Tâches autonomes : styleguide, zip, clean
+ * Tâches autonomes : styleguide, zip, clean, doc
  * ------------------------------------------------
  */
 
@@ -213,6 +215,20 @@ gulp.task('guide', function () {
       filename: 'styleguide.html'
     }))
     .pipe(gulp.dest(paths.dest));
+});
+
+// Tâche DOC : documentation JavaScript du projet vers Markdown
+gulp.task('doc-md', function () {
+  return gulp.src(paths.src+'**/*.js')
+    .pipe(documentation('md'))
+    .pipe(gulp.dest(paths.doc));
+});
+
+// Tâche DOC : documentation JavaScript du projet vers HTML
+gulp.task('doc-html', function () {
+  return gulp.src(paths.src+'**/*.js')
+    .pipe(documentation('html'))
+    .pipe(gulp.dest(paths.doc));
 });
 
 // Tâche ZIP : création de fichier .zip du projet
