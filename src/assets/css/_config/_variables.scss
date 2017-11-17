@@ -1,4 +1,4 @@
-// Config file and project variables
+// Project variables (used by KNACSS)
 
 // font sizes
 $base-font-size : 1.6rem !default; // ex. 1.6rem would be "16px" equivalent
@@ -23,9 +23,9 @@ $color4    : #000 !default;
 $color5    : #6FA939 !default;
 
 // colors used in project
-$base-color: $color1;
-$link-color: $color3;
-$base-background : $color2;
+$color-base: $color1;
+$color-link: $color3;
+$background-base: $color2;
 $link-hover-color: $color4;
 $brand-primary: $color5;
 

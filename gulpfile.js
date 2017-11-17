@@ -30,9 +30,8 @@ var project = {
   name: 'projectName', // nom du projet, utilisé notamment pour le fichier ZIP
   url: 'http://localhost/', // url du projet, utilisée par browserSync en mode proxy
   zip: {
-    namespace: 'alsacreations', // préfixe du fichier ZIP
+    namespace: 'bretzel', // préfixe du fichier ZIP
   },
-  globalJSFile: 'global.min.js', // nom du fichier JS après concaténation
   plugins: { // activation ou désactivation de certains plugins à la carte
     browserSync: {
       status: true, // utilisation du plugin browserSync lors du Watch ?
@@ -83,6 +82,7 @@ var paths = {
   scripts: {
     root: 'assets/js/', // dossier contenant les fichiers JavaScript
     files: 'assets/js/*.js', // fichiers JavaScript (hors vendor)
+    mainFile: 'global.min.js', // nom du fichier JS après concaténation
   },
   html: {
     racine: '*.html', // fichiers & dossiers HTML à compiler / copier à la racine uniquement
@@ -103,10 +103,10 @@ var paths = {
 /**
  * Ressources JavaScript utilisées par ce projet (vendors + scripts JS spécifiques)
  */
-var vendors = [
-  paths.vendors + 'jquery/dist/jquery.min.js',
-  paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
-  paths.vendors + 'swiper/dist/js/swiper.min.js',
+var jsFiles = [
+  // paths.vendors + 'jquery/dist/jquery.min.js',
+  // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
+  // paths.vendors + 'swiper/dist/js/swiper.min.js',
   paths.src + paths.scripts.files,
 ];
 
@@ -165,11 +165,11 @@ gulp.task('php', function () {
 
 // Tâche JS : copie des fichiers JS et vendor + babel (+ concat et uglify si prod)
 gulp.task('js', function () {
-  return gulp.src(vendors)
+  return gulp.src(jsFiles)
     .pipe($.plumber(onError))
-    .pipe($.babel({presets:['es2015','es2016']})) // ,'es2017'
+    .pipe($.babel({presets:['env']}))
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
-    .pipe($.if(isProduction, $.concat(project.globalJSFile)))
+    .pipe($.if(isProduction, $.concat(paths.scripts.mainFile)))
     .pipe($.if(isProduction, $.uglify()))
     .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
@@ -235,7 +235,7 @@ gulp.task('clean', function () {
   return del([
     paths.dest + paths.scripts.files, // on supprime tous les fichiers JS de production
     paths.dest + paths.styles.css.files, // on supprime tous les fichiers CSS de production
-    '!' + paths.dest + paths.scripts.root + project.globalJSFile, // sauf les JS concaténés finaux
+    '!' + paths.dest + paths.scripts.root + paths.scripts.mainFile, // sauf les JS concaténés finaux
     '!' + paths.dest + paths.styles.root + 'styles.min.css', // sauf les CSS concaténés finaux
   ]);
 });
