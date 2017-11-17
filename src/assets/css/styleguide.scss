@@ -1,10 +1,10 @@
 /*
  * Styleguide
  * Layout & mixins
- * par Alsacréations - 2016
+ * by Alsacréations - 2016-2017
  */
 
- // variables list for Styleguide (if used)
+ // Variables list for Styleguide (if used)
  $colors: (
    color1: $color1,
    color2: $color2,
@@ -17,11 +17,11 @@
    link-hover-color: $color4,
    brand-primary: $color5
  );
- 
+
 /*
  * Sass Mixins
  */
-// mixin pour afficher la valeur de font-size
+// mixin that displays font-size value
 @mixin fontsize($fontsize) {
   &::after {
     content: "#{$fontsize}";
@@ -32,7 +32,7 @@
   }
 }
 
-// mixin pour afficher le code hexadécimal d'une couleur
+// mixin that displays hexadecimal code of a color
 @mixin hexa($sassvar, $sasscolor) {
   &::before {
     background: #{$sasscolor};
@@ -42,7 +42,7 @@
   }
 }
 
-// mixin pour afficher la font-family
+// mixin that displays font-family
 @mixin font($font) {
   &::before {
     content: "#{$font}";
@@ -116,6 +116,8 @@ h1 {margin-top: 0; margin-bottom: 0}
     display: block;
   }
 }
+
+
 /* Menu with Tocify */
 .tocify-header {
   margin: 0;
@@ -297,8 +299,6 @@ code.sg,
 }
 
 
-
-
 /*
  * Colors section
  */
@@ -332,14 +332,14 @@ code.sg,
     height: 80px;
   }
 
-  // code hexadécimal
+  // hexadecimal code
   &::after {
     display: block;
     @extend .sg-code-inline;
   }
 
-  // Couleurs
-  $i: 0;
+  // Colors
+  $i: 1;
   @each $var, $col in $colors {
     &:nth-child(#{$i}) {
       $i : $i + 1;
@@ -350,7 +350,6 @@ code.sg,
 }
 
 
-
 /*
  * Fonts section
  */
@@ -359,7 +358,7 @@ code.sg,
     margin-top: $medium-value;
   }
 }
-// pour cacher le bouton "show markup"
+// hides "show markup" button
 .sg-section-fonts {
   .sg-code-toggle {
     display: none;
@@ -378,6 +377,7 @@ code.sg,
   @include font($font-stack-monospace);
 }
 
+
 /*
  * Title section
  */
@@ -389,6 +389,7 @@ code.sg,
   h5 { @include fontsize(h5-size); }
   h6 { @include fontsize(h6-size); }
 }
+
 
 /*
  * Grids section
@@ -406,7 +407,7 @@ code.sg,
 
 
 /*
- * Bloc alignment section
+ * Block alignment section
  */
 .sg-align-block {
   padding: $medium-value;
