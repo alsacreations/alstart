@@ -4,19 +4,29 @@
  * by Alsacréations - 2016-2017
  */
 
- // Variables list for Styleguide (if used)
- $colors: (
-   color1: $color1,
-   color2: $color2,
-   color3: $color3,
-   color4: $color4,
-   color5: $color5,
-   base-color: $color1,
-   link-color: $color3,
-   base-background : $color2,
-   link-hover-color: $color4,
-   brand-primary: $color5
- );
+ // Config things (mêmes imports que pour styles.scss ; contrainte : aucun des 3 ne doit générer de règle CSS => seulement définir des mixins et variables)
+ //
+ // Mixins
+ @import "_config/_mixins";
+ // Breakpoints
+ @import "_config/_breakpoints";
+ // Same variables than for project
+ @import "_config/_variables";
+
+
+// Variables list for Styleguide (if used)
+$colors: (
+  color1: $color1,
+  color2: $color2,
+  color3: $color3,
+  color4: $color4,
+  color5: $color5,
+  base-color: $color1,
+  link-color: $color3,
+  base-background : $color2,
+  link-hover-color: $color4,
+  brand-primary: $color5
+);
 
 /*
  * Sass Mixins
@@ -420,7 +430,15 @@ code.sg,
 .sg-align-float {
   padding: $medium-value;
   background: #f8f8f8;
-  @extend .clearfix;
+
+  // @extend .clearfix; @NOTE Ne fonctionne pas si on compile styleguide.scss à part et donc sans importer KNACSS. On l'écrit en dur plutôt que de le @extend
+  // Clearfix
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+    border-collapse: collapse;
+  }
 
   & + & {
     margin-top: $medium-value;

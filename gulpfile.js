@@ -79,13 +79,15 @@ var paths = {
     },
     sass: {
       mainFile: 'assets/css/styles.scss', // fichier Sass principal
-      files: 'assets/css/{,includes/}*.scss', // fichiers Sass à surveiller
+      styleguideFile: 'assets/css/styleguide.scss', // fichier Sass spécifique au Styleguide
+      files: 'assets/css/{,*/}*.scss', // fichiers Sass à surveiller (css/ et tous ses sous-répertoires)
     },
   },
   scripts: {
     root: 'assets/js/', // dossier contenant les fichiers JavaScript
     files: 'assets/js/*.js', // fichiers JavaScript (hors vendor)
     mainFile: 'global.min.js', // nom du fichier JS après concaténation
+    sgFiles: 'assets/js/styleguide-scroll.js', // fichier(s) JS spécifiques au styleguide
   },
   html: {
     racine: '*.html', // fichiers & dossiers HTML à compiler / copier à la racine uniquement
@@ -106,12 +108,19 @@ var paths = {
 /**
  * Ressources JavaScript utilisées par ce projet (vendors + scripts JS spécifiques)
  */
-var jsFiles = [
-  // paths.vendors + 'jquery/dist/jquery.min.js',
-  // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
-  // paths.vendors + 'swiper/dist/js/swiper.min.js',
-  paths.src + paths.scripts.files,
+ var jsFiles = [
+   paths.vendors + 'jquery/dist/jquery.min.js',
+   // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
+   // paths.vendors + 'swiper/dist/js/swiper.min.js',
+   paths.src + paths.scripts.files,
+   '!' + paths.src + paths.scripts.sgFiles, // exclusion des JS spécifiques au styleguide de la liste construite précédemment
+ ];
+// Spécifique au styleguide
+var jsSgFiles = [ // @TODO was vendorsSg
+  paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
+  paths.src + paths.scripts.sgFiles,
 ];
+
 
 
 /**
@@ -137,7 +146,8 @@ var isProduction = argv.prod;
  */
 
 // Tâche CSS : Sass + Autoprefixer + CSScomb + beautify + minify (si prod)
-gulp.task('css', function () {
+// (1/2) Pour LA CSS du projet
+gulp.task('css:main', function () {
   return gulp.src(paths.src + paths.styles.sass.mainFile)
     .pipe($.plumber(onError))
     .pipe($.sourcemaps.init())
@@ -151,6 +161,23 @@ gulp.task('css', function () {
     .pipe($.sourcemaps.write(paths.maps))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
+// (2/2) Styles spécifiques au styleguide qui n'ont pas à figurer dans les pages du site
+gulp.task('css:guide', function () {
+  return gulp.src(paths.src + paths.styles.sass.styleguideFile)
+    .pipe($.plumber(onError))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass())
+    .pipe($.csscomb())
+    .pipe($.cssbeautify(project.configuration.cssbeautify))
+    .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
+    .pipe(gulp.dest(paths.dest + paths.styles.root))
+    .pipe($.rename({suffix: '.min'}))
+    .pipe($.if(isProduction, $.csso()))
+    .pipe($.sourcemaps.write(paths.maps))
+    .pipe(gulp.dest(paths.dest + paths.styles.root));
+});
+gulp.task('css', ['css:main', 'css:guide']);
+
 
 // Tâche HTML : includes HTML
 gulp.task('html', function () {
@@ -166,8 +193,10 @@ gulp.task('php', function () {
     .pipe(gulp.dest(paths.dest));
 });
 
-// Tâche JS : copie des fichiers JS et vendor + babel (+ concat et uglify si prod)
-gulp.task('js', function () {
+// Tâches JS : copie des fichiers JS et vendor + babel (+ concat et uglify dans global.min.js si prod)
+//             pour le projet puis ce qui est spécifique au Styleguide (évite d'inclure
+//             ces derniers dans global.min.js)
+gulp.task('js:main', function () {
   return gulp.src(jsFiles)
     .pipe($.plumber(onError))
     .pipe($.if(project.plugins.babel,$.babel({presets:['env']})))
@@ -176,6 +205,14 @@ gulp.task('js', function () {
     .pipe($.if(isProduction, $.uglify()))
     .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
+gulp.task('js:sg', function () {
+  return gulp.src(jsSgFiles)
+    .pipe($.plumber(onError))
+    // .pipe($.babel({presets:['es2015','es2016']})) // ,'es2017'
+    .pipe(gulp.dest(paths.dest + paths.scripts.root))
+});
+gulp.task('js', ['js:main', 'js:sg']);
+
 
 // Tâche IMG : optimisation des images
 gulp.task('img', function () {
@@ -231,7 +268,7 @@ gulp.task('doc-html', function () {
     .pipe(gulp.dest(paths.doc));
 });
 
-// Tâche ZIP : création de fichier .zip du projet
+// Tâche ARCHIVE (voir ZIP ci-dessous) : création de fichier .zip du projet
 gulp.task('archive', function () {
   if(argv.prod) {
     project.zip.name = 'prod';
