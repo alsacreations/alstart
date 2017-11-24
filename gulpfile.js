@@ -344,9 +344,11 @@ gulp.task('watch', function () {
     browserSync.init(browserSyncConf);
   }
 
+  // Watch des _partials Scss, du code HTML, du JS et des includes du styleguide
   gulp.watch([paths.src + paths.styles.sass.files], ['css', browserSync.reload]);
   gulp.watch([paths.src + paths.html.allFiles, paths.src + paths.php], ['html', 'php', browserSync.reload]);
   gulp.watch([paths.src + paths.scripts.files], ['js', browserSync.reload]);
+  gulp.watch([paths.src + paths.styleguide.files], ['guide', browserSync.reload]);
 });
 
 // Tâche par défaut
