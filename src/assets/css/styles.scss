@@ -10,9 +10,78 @@
 // -----------------
 @import "knacss";
 
-// styleguide
-// @import "styleguide.scss";
-
 // your own styles
 // -----------------
 
+//
+// Configuration
+//
+// Mixins
+@import "_config/_mixins";
+
+// Breakpoints
+@import "_config/_breakpoints";
+
+// Variables
+@import "_config/_variables";
+
+
+//
+// Common things
+//
+// Extend
+// @import "_global/_extend";
+
+// Header
+// @import "_global/_header";
+
+// Navigation
+// @import "_global/_navigation";
+
+// Footer
+// @import "_global/_footer";
+
+// Footer
+// @import "_global/_footer";
+
+// Icons
+// @import "_global/_font-icons";
+
+// Fonts
+// @import "_global/_fonts";
+
+// Helpers
+// @import "_global/_helpers";
+
+// Buttons
+// @import "_global/_buttons";
+
+// Typographic stuff
+// @import "_global/_type";
+
+// Forms
+// @import "_global/_forms";
+
+
+//
+// Layout
+//
+// Layout
+// @import "_template/_layout";
+
+// Page {name of page 1}
+// @import "_template/_page-1";
+
+
+//
+// Page {name of page 1} - components
+//
+// Component {name of component}
+// @import "_components/_component-name";
+
+
+//
+// Global
+// CSS styles applied after all other ones
+//
+// @import "_global/_global";
