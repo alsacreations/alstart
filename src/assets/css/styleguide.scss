@@ -75,11 +75,21 @@ $colors: (
 .sg {
   position: relative;
   padding: 0;
-  background-color: #fff;
-  font-family: Segoe UI, Frutiger, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  // font-family: Segoe UI, Frutiger, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  font-family: $font-stack-common;
+  background-color: $background-base;
 }
-h1, h2, h3 {font-weight: normal}
-h1 {margin-top: 0; margin-bottom: 0}
+
+h1,
+h2,
+h3 {
+  font-weight: normal;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 
 /* Header */
@@ -395,15 +405,13 @@ code.sg,
 
 
 /*
- * Title section
+ * Headings section
  */
+$eltHeadings: (h1, h2, h3, h4, h5, h6);
 .sg-section-titres {
-  h1 { @include fontsize(h1-size); }
-  h2 { @include fontsize(h2-size); }
-  h3 { @include fontsize(h3-size); }
-  h4 { @include fontsize(h4-size); }
-  h5 { @include fontsize(h5-size); }
-  h6 { @include fontsize(h6-size); }
+  @each $h in $eltHeadings {
+    #{$h}:not(.sg) { @include fontsize(#{$h}-size); }
+  }
 }
 
 
