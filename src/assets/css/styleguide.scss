@@ -375,6 +375,37 @@ code.sg,
 
 }
 
+/*
+ * Icons
+ */
+/*
+.sg-icon {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > [class*="icon-"] {
+    width: calc(100% / 2);
+    margin: 0 0 $large-value;
+    text-align: center;
+
+    @include respond-to("small-up") {
+      width: calc(100% / 5);
+    }
+
+    code {
+      font-size: 1.2rem;
+    }
+
+    &:before {
+      display: block;
+      margin-bottom: $small-value;
+      font-size: 4rem;
+      text-align: center;
+    }
+  }
+}
+*/
+
 
 /*
  * Fonts section
