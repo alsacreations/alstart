@@ -87,7 +87,8 @@ var paths = {
     root: 'assets/js/', // dossier contenant les fichiers JavaScript
     files: 'assets/js/*.js', // fichiers JavaScript (hors vendor)
     mainFile: 'global.min.js', // nom du fichier JS après concaténation
-    sgFiles: 'assets/js/styleguide-scroll.js', // fichier(s) JS spécifiques au styleguide
+    styleguideFiles: 'assets/js/styleguide-scroll.js', // fichier(s) JS spécifiques au styleguide
+    destStyleguideFiles: 'styleguide.min.js', // nom du fichier JS que chargera spécifiquement le styleguide (contiendra son ou ses scritps concaténés et minifiés)
   },
   html: {
     racine: '*.html', // fichiers & dossiers HTML à compiler / copier à la racine uniquement
@@ -113,14 +114,13 @@ var paths = {
    // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
    // paths.vendors + 'swiper/dist/js/swiper.min.js',
    paths.src + paths.scripts.files,
-   '!' + paths.src + paths.scripts.sgFiles, // exclusion des JS spécifiques au styleguide de la liste construite précédemment
+   '!' + paths.src + paths.scripts.styleguideFiles, // exclusion des JS spécifiques au styleguide de la liste construite précédemment
  ];
 // Spécifique au styleguide
-var jsSgFiles = [ // @TODO was vendorsSg
+var jsStyleguideFiles = [
   paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
-  paths.src + paths.scripts.sgFiles,
+  paths.src + paths.scripts.styleguideFiles,
 ];
-
 
 
 /**
@@ -205,14 +205,14 @@ gulp.task('js:main', function () {
     .pipe($.if(isProduction, $.uglify()))
     .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
-gulp.task('js:sg', function () {
-  return gulp.src(jsSgFiles)
+gulp.task('js:styleguide', function () {
+  return gulp.src(jsStyleguideFiles)
     .pipe($.plumber(onError))
-    // .pipe($.babel({presets:['es2015','es2016']})) // ,'es2017'
+    .pipe($.concat(paths.scripts.destStyleguideFiles))
+    .pipe($.uglify())
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
 });
-gulp.task('js', ['js:main', 'js:sg']);
-
+gulp.task('js', ['js:main', 'js:styleguide']);
 
 // Tâche IMG : optimisation des images
 gulp.task('img', function () {

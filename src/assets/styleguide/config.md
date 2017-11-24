@@ -4,6 +4,7 @@
 
     link(rel="stylesheet" href="assets/css/styles.css")
     title styleguide HTML CSS
+    link(rel="stylesheet" href="assets/css/styleguide.css")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no")
 
 ### Body
@@ -21,5 +22,5 @@
         .sg-copyright &copy; Alsacréations
 
     <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/styleguide-scroll.js"></script>
     <script src="assets/js/styleguide.min.js"></script>
+    <!-- <script src="assets/js/global.min.js"></script> -->
