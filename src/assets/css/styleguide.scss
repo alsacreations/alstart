@@ -16,16 +16,22 @@
 
 // Variables list for Styleguide (if used)
 $colors: (
+  brand-primary      : $brand-primary,
+  brand-secondary    : $brand-secondary,
+  color-base: $color-base,
+  color-link: $color-link,
+  background-base: $background-base,
+  gray-light   : $gray-light,
+  gray-lightest: $gray-lightest,
+  gray-a11y    : $gray-a11y,
   color1: $color1,
   color2: $color2,
   color3: $color3,
   color4: $color4,
   color5: $color5,
-  base-color: $color1,
-  link-color: $color3,
-  base-background : $color2,
-  link-hover-color: $color4,
-  brand-primary: $color5
+  color6: $color6,
+  color-error: $color-error,
+  color-success: $color-success,
 );
 
 /*
@@ -52,7 +58,7 @@ $colors: (
   }
 }
 
-// mixin that displays font-family
+// Mixin that displays font-family
 @mixin font($font) {
   &::before {
     content: "#{$font}";
@@ -89,7 +95,7 @@ h1 {margin-top: 0; margin-bottom: 0}
   }
   h2 {
     margin-top: 0;
-    color: #777;
+    color: $gray-a11y;
     font-size: 2rem;
   }
 
@@ -351,7 +357,7 @@ code.sg,
   // Colors
   $i: 1;
   @each $var, $col in $colors {
-    &:nth-child(#{$i}) {
+    &:nth-of-type(#{$i}) {
       $i : $i + 1;
       @include hexa($var, $col);
     }
