@@ -97,6 +97,7 @@ var paths = {
   styleguide: {
     config: 'assets/styleguide/config.md', // fichier config du styleguide
     files: 'assets/styleguide/patterns/*.md', // fichiers .MD du styleguide
+    title: "Styleguide HTML CSS", // value for the title element in the head of the Styleguide
   },
   php: '{,includes/}*.php', // fichiers & dossiers PHP à copier
   fonts: 'assets/css/fonts/', // fichiers typographiques à copier,
@@ -249,6 +250,18 @@ gulp.task('guide', function () {
     .pipe($.plumber(onError))
     .pipe($.styledown({
       config: paths.src + paths.styleguide.config,
+      template:
+        [
+          "<!doctype html>",
+          "<html lang='fr'>",
+          "<head>",
+          "<meta charset='utf-8'>",
+          "<title>" + paths.styleguide.title + "</title>",
+          "</head>",
+          "<body>",
+          "</body>",
+          "</html>"
+        ].join("\n"),
       filename: 'styleguide.html'
     }))
     .pipe(gulp.dest(paths.dest));
