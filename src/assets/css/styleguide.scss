@@ -476,7 +476,7 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
   padding: $medium-value;
   background: #f8f8f8;
 
-  // @extend .clearfix; @NOTE Ne fonctionne pas si on compile styleguide.scss à part et donc sans importer KNACSS. On l'écrit en dur plutôt que de le @extend
+  // @extend .clearfix; @NOTE Sass compilation crashes if styleguide.scss is compiled by itself (without importing KNACSS), thus clearfix :pseudo rule is hard coded here without the help of an @extend
   // Clearfix
   &::after {
     content: "";
