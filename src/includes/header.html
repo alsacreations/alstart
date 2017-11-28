@@ -1,0 +1,47 @@
+    <header role="banner" class="header-wrapper" id="header">
+      <!-- "quick access" links -->
+      <ul class="header-links">
+        <li class="header-links-item">
+          <a href="#">Aller au contenu</a>
+        </li>
+      </ul>
+
+      <div class="site-header">
+        <div class="site-header-logo">
+          <a href="#">
+            <img src="assets/img/logo-myProject.svg" alt="Retour à l'accueil - myProject" width="200" height="100">
+          </a>
+        </div>
+
+        <!-- @NOTE Bouton affiché en résolution mobile uniquement. La classe .is-active est ajouté en JS lorsque la nav est ouverte ; on cachera donc le 1er état et affichera le 2e (au chargement c'est l'inverse) -->
+        <button class="header-btn-burger js-menuburger" data-target=".navigation-wrapper" data-selector-when-active="body">
+          <span class="header-btn-burger-state-nav-closed">
+            <i class="icon-burger" aria-hidden="true"></i>
+            <span class="visually-hidden">Ouvrir le menu</span>
+          </span><span class="header-btn-burger-state-nav-opened">
+            <i class="icon-cross" aria-hidden="true"></i>
+            <span class="visually-hidden">Fermer le menu</span>
+          </span>
+        </button>
+
+        <!-- Contrainte mobile : la recherche vient après le "menu burger" puisqu'elle est (par défaut cachée et) s'affiche en même temps que la navigation -->
+        <div class="site-header-links-search">
+          <div class="header-search">
+            <p class="form-item">
+              <label class="visually-hidden" for="search">Recherche</label>
+
+              <span class="input-group">
+                <input type="text" class="form-input-txt js-searchfield" id="search" placeholder="Rechercher sur le site" value="Ijkl!1">
+
+                <span class="input-group-btn">
+                  <input type="submit" class="btn" value="Rechercher">
+                </span>
+              </span>
+            </p>
+          </div><!-- /.header-search -->
+        </div><!-- /.site-header-links-search -->
+
+        <!-- Navigation -->
+        <!-- @@include = navigation.html -->
+      </div>
+    </header>
