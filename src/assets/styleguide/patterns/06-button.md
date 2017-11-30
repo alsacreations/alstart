@@ -2,23 +2,32 @@
 
 ### Liens ayant le style d'un bouton
 
-La classe CSS <code>.btn</code> peut être appliquée sur l'élément `<a>` pour le styler visuellement comme les éléments `<button>` et `<input type="submit">`.  
-Les classes <code>.btn-primary</code>, <code>.btn-secondary</code>
-ou <code>.btn-tertiary</code>
-peuvent être ajoutées pour le styler comme le serait un bouton de formulaire ayant l'une de ces classes.  
-<em>Note</em>&nbsp;: ne pas utiliser un lien là où il faudrait utiliser un bouton de formulaire&nbsp;!
+La classe CSS `.btn`
+peut être appliquée sur l'élément `<a>`
+pour le styler visuellement comme les éléments `<button>`
+et `<input type="submit">`.  
+Les classes `.btn-primary`,
+`.btn-secondary`
+ou `.btn-tertiary`
+peuvent être ajoutées pour le styler comme le serait un bouton de formulaire
+ayant l'une de ces classes.
+
+*Note*&nbsp;: ne pas utiliser un lien là où il faudrait utiliser un bouton de formulaire&nbsp;!
 
     @example
     p Link that looks like a button with style:
-      | <a class="btn" href="#">Default</a>
-      | <a class="btn btn-primary" href="#">Primary</a>
-      | <a class="btn btn-secondary" href="#">Secondary</a>
-      | <a class="btn btn-tertiary" href="#">Tertiary</a>
+        a.btn(href="#") Default
+        a.btn.btn-primary(href='#') Primary
+        a.btn.btn-secondary(href='#') Secondary
+        a.btn.btn-tertiary(href='#') Tertiary
 
 ### Boutons avec une icône
 
-La classe CSS <code>.icon-</code>
-peut être appliquée sur les éléments suivants : `<i>`. 
+La classe CSS
+`.icon-`
+peut être appliquée sur les éléments suivants&nbsp;: `<i>`.
 
     @example
-    <a class="btn btn-primary" href="#"><i class="icon-arrow" aria-hidden="true"></i>Primary</a>
+    a.btn.btn-primary(href="#")
+        i.icon-arrow(aria-hidden="true")
+        | Primary
