@@ -1,13 +1,43 @@
 /*
  * Styleguide
  * Layout & mixins
- * par Alsacréations - 2016
+ * by Alsacréations - 2016-2017
  */
+
+ // Config things (mêmes imports que pour styles.scss ; contrainte : aucun des 3 ne doit générer de règle CSS => seulement définir des mixins et variables)
+ //
+ // Mixins
+ @import "_config/_mixins";
+ // Breakpoints
+ @import "_config/_breakpoints";
+ // Same variables than for project
+ @import "_config/_variables";
+
+
+// Variables list for Styleguide (if used)
+$colors: (
+  brand-primary      : $brand-primary,
+  brand-secondary    : $brand-secondary,
+  color-base: $color-base,
+  color-link: $color-link,
+  background-base: $background-base,
+  gray-light   : $gray-light,
+  gray-lightest: $gray-lightest,
+  gray-a11y    : $gray-a11y,
+  color1: $color1,
+  color2: $color2,
+  color3: $color3,
+  color4: $color4,
+  color5: $color5,
+  color6: $color6,
+  color-error: $color-error,
+  color-success: $color-success,
+);
 
 /*
  * Sass Mixins
  */
-// mixin pour afficher la valeur de font-size
+// mixin that displays font-size value
 @mixin fontsize($fontsize) {
   &::after {
     content: "#{$fontsize}";
@@ -18,7 +48,7 @@
   }
 }
 
-// mixin pour afficher le code hexadécimal d'une couleur
+// mixin that displays hexadecimal code of a color
 @mixin hexa($sassvar, $sasscolor) {
   &::before {
     background: #{$sasscolor};
@@ -28,7 +58,7 @@
   }
 }
 
-// mixin pour afficher la font-family
+// Mixin that displays font-family
 @mixin font($font) {
   &::before {
     content: "#{$font}";
@@ -45,11 +75,21 @@
 .sg {
   position: relative;
   padding: 0;
-  background-color: #fff;
-  font-family: Segoe UI, Frutiger, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  // font-family: Segoe UI, Frutiger, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  font-family: $font-stack-common;
+  background-color: $background-base;
 }
-h1, h2, h3 {font-weight: normal}
-h1 {margin-top: 0; margin-bottom: 0}
+
+h1,
+h2,
+h3 {
+  font-weight: normal;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 
 /* Header */
@@ -65,7 +105,7 @@ h1 {margin-top: 0; margin-bottom: 0}
   }
   h2 {
     margin-top: 0;
-    color: #777;
+    color: $gray-a11y;
     font-size: 2rem;
   }
 
@@ -102,6 +142,8 @@ h1 {margin-top: 0; margin-bottom: 0}
     display: block;
   }
 }
+
+
 /* Menu with Tocify */
 .tocify-header {
   margin: 0;
@@ -187,12 +229,17 @@ h1 {margin-top: 0; margin-bottom: 0}
  */
 .sg-content {
   position: relative;
-  padding: $medium-value;
-}
-@media (min-width: 768px) {
-  .sg-content {
+  padding: $small-plus-value;
+
+  @media (min-width: 768px) {
     margin-left: 24rem;
     padding: $medium-value $large-value;
+  }
+
+  @media (min-width: 1580px) {
+    max-width: 1080px;
+    margin: auto;
+    padding: $medium-value;
   }
 }
 
@@ -278,8 +325,6 @@ code.sg,
 }
 
 
-
-
 /*
  * Colors section
  */
@@ -313,16 +358,16 @@ code.sg,
     height: 80px;
   }
 
-  // code hexadécimal
+  // hexadecimal code
   &::after {
     display: block;
     @extend .sg-code-inline;
   }
 
-  // Couleurs
-  $i: 0;
+  // Colors
+  $i: 1;
   @each $var, $col in $colors {
-    &:nth-child(#{$i}) {
+    &:nth-of-type(#{$i}) {
       $i : $i + 1;
       @include hexa($var, $col);
     }
@@ -330,6 +375,36 @@ code.sg,
 
 }
 
+/*
+ * Icons
+ */
+/*
+.sg-icon {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > [class*="icon-"] {
+    width: calc(100% / 2);
+    margin: 0 0 $large-value;
+    text-align: center;
+
+    @include respond-to("small-up") {
+      width: calc(100% / 5);
+    }
+
+    code {
+      font-size: 1.2rem;
+    }
+
+    &:before {
+      display: block;
+      margin-bottom: $small-value;
+      font-size: 4rem;
+      text-align: center;
+    }
+  }
+}
+*/
 
 
 /*
@@ -340,7 +415,7 @@ code.sg,
     margin-top: $medium-value;
   }
 }
-// pour cacher le bouton "show markup"
+// hides "show markup" button
 .sg-section-fonts {
   .sg-code-toggle {
     display: none;
@@ -359,17 +434,17 @@ code.sg,
   @include font($font-stack-monospace);
 }
 
+
 /*
- * Title section
+ * Headings section
  */
+$eltHeadings: (h1, h2, h3, h4, h5, h6);
 .sg-section-titres {
-  h1 { @include fontsize(h1-size); }
-  h2 { @include fontsize(h2-size); }
-  h3 { @include fontsize(h3-size); }
-  h4 { @include fontsize(h4-size); }
-  h5 { @include fontsize(h5-size); }
-  h6 { @include fontsize(h6-size); }
+  @each $h in $eltHeadings {
+    #{$h}:not(.sg) { @include fontsize(#{$h}-size); }
+  }
 }
+
 
 /*
  * Grids section
@@ -387,7 +462,7 @@ code.sg,
 
 
 /*
- * Bloc alignment section
+ * Block alignment section
  */
 .sg-align-block {
   padding: $medium-value;
@@ -400,7 +475,15 @@ code.sg,
 .sg-align-float {
   padding: $medium-value;
   background: #f8f8f8;
-  @extend .clearfix;
+
+  // @extend .clearfix; @NOTE Sass compilation crashes if styleguide.scss is compiled by itself (without importing KNACSS), thus clearfix :pseudo rule is hard coded here without the help of an @extend
+  // Clearfix
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+    border-collapse: collapse;
+  }
 
   & + & {
     margin-top: $medium-value;
