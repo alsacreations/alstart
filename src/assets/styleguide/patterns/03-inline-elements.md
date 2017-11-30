@@ -42,7 +42,7 @@ que celle utilisée pour le texte environnant.
     @example
     p
         | C'est que
-        em sa planète d'origine
+        small sa planète d'origine
         | &nbsp;était à peine plus grande qu'une maison.
 
 

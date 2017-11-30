@@ -28,7 +28,7 @@
             tr
                 th
                 th(scope="col") Ville
-                th(scole="col") Pays
+                th(scope="col") Pays
         tbody
             tr
                 th(scope="row") Jour 1

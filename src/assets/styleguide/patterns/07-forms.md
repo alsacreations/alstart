@@ -16,14 +16,14 @@ et `color`.
 
     p.form-item
         label(for='a1')
-        | Champ texte (placeholder)
-        span.form-required(title='Champs obligatoire') *
+            | Champ texte (placeholder)
+            span.form-required(title='Champs obligatoire') *
         input#a1.form-txt(type='text', placeholder='dessine-moi un mouton', required='')
 
     p.form-item
         label(for='a2')
-        | Champ texte (value)
-        span.form-required(title='Champs obligatoire') *
+            | Champ texte (value)
+            span.form-required(title='Champs obligatoire') *
         input#a2.form-txt(type='text', value="je t'ai donné un tout petit mouton", required='')
 
     p.form-item

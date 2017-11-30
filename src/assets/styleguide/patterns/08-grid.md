@@ -85,14 +85,14 @@ de colonnes peuvent aller de 2 à 12.
     @example
     .sg-grid.grid-3
         each i in new Array(5)
-            div
+            div lorem
 
 Cela fonctionne également avec l'indication de gouttière `.has-gutter`.
 
     @example
     .sg-grid.grid-3.has-gutter
         each i in new Array(5)
-            div
+            div lorem
 
 Cela fonctionne également avec des enfants dimensionnés explicitement.
 
@@ -177,11 +177,7 @@ taille de gouttière (`$grid-gutters`).
 Vous pouvez également concevoir vos propres colonnes.
 Le mixin suivant, appliqué à votre classe `.grid-perso`
 construira une grille de 4 colonnes sans gouttière&nbsp;:
-```scss
-.grid-perso { @include grid(4, 0); }
-```
+`.grid-perso { @include grid(4, 0); }`
 
 Avec gouttière personnalisée, cela pourrait donner&nbsp;:
-```scss
-.grid-perso { @include grid(4, 1rem); }
-```
+`.grid-perso { @include grid(4, 1rem); }`
