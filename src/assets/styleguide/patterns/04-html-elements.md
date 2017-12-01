@@ -6,14 +6,15 @@ Bloc de citation avec l'élément `<blockquote>`.
 
     @example
     blockquote
-        | Le petit prince traversa le désert et ne rencontra qu'une fleur.
-        | Une fleur à trois pétales, une fleur de rien du tout…
-        br
-        |   - Bonjour, dit le prince.
-        br
-        |   - Bonjour, dit la fleur.
-        br
-        |   - Où sont les hommes ? demanda poliment le petit prince;
+        p
+            | Le petit prince traversa le désert et ne rencontra qu'une fleur.
+            | Une fleur à trois pétales, une fleur de rien du tout…
+            br
+            |   - Bonjour, dit le prince.
+            br
+            |   - Bonjour, dit la fleur.
+            br
+            |   - Où sont les hommes ? demanda poliment le petit prince;
 
 
 ### Adresse
@@ -39,7 +40,7 @@ représente un contenu indépendant, habituellement accompagné d'une légende g
 
     @example
     figure
-        img(alt="" height="200" width="200" src="./assets/img/hello.jpg")
+        img(src="./assets/img/hello.jpg" width="200" height="200" alt="")
         figcaption Une légende pour cette magnifique photo
 
 ## Listes
