@@ -30,25 +30,27 @@ La valeur par défaut de la gouttière est `1rem`
 mais il est parfaitement possible de la modifier en optant pour la valeur et
 l'unité qui vous siéra (pixel, em, rem, %).
 
+La taille de la gouttière est configurable à l'aide de classes additionnelles :
+`.has-gutter-l`
+(gouttière x2)
+ou `.has-gutter-xl`
+(gouttière x4) (exemples 2 et 3 ci-dessous).
+
+
     @example
+    p.mbs Gouttière <code>.has-gutter</code>&nbsp;:
     .sg-grid.grid.has-gutter
         div je suis un div, sans class
         div hey moi aussi
         aside moi je suis un aside
 
-La taille de la gouttière est configurable à l'aide de classes additionnelles :
-`.has-gutter-l`
-(gouttière x2)
-ou `.has-gutter-xl`
-(gouttière x4).
-
-    @example
+    p.mtm.mbs Gouttière <code>.has-gutter-l</code>&nbsp;:
     .sg-grid.grid.has-gutter-l
         div je suis un div, sans class
         div hey moi aussi
         aside moi je suis un aside
 
-    @example
+    p.mtm.mbs Gouttière <code>.has-gutter-xl</code>&nbsp;:
     .sg-grid.grid.has-gutter-xl
         div je suis un div, sans class
         div hey moi aussi
@@ -62,15 +64,16 @@ contenu au sein du parent, grâce aux classes `.one-half`, `.one-third`,
 `.five-sixths`
 ou `.full`.
 
+Cela fonctionne également avec l'indication de gouttière `.has-gutter`
+(2e exemple ci-dessous).
+
     @example
     .sg-grid.grid
         .one-fifth .one-fifth
         div lorem ipsum
         div lorem ipsum
 
-Cela fonctionne également avec l'indication de gouttière `.has-gutter`.
-
-    @example
+    p.mtm.mbs Avec une gouttière&nbsp;:
     .sg-grid.grid.has-gutter
         .one-fifth .one-fifth
         div lorem ipsum
@@ -78,25 +81,26 @@ Cela fonctionne également avec l'indication de gouttière `.has-gutter`.
 
 ### Une grille multi-lignes
 
-À partir de l'objet `.grid`, il suffit d'ajouter un suffixe -N (par exemple -3)
+À partir de l'objet `.grid`, il suffit d'ajouter un suffixe -N (par exemple `.grid-3`)
 pour passer en **mode multi-lignes**. Les valeurs du suffixe, et donc le nombre
 de colonnes peuvent aller de 2 à 12.
+
+Cela fonctionne également avec l'indication de gouttière `.has-gutter`
+(2e exemple ci-dessous).
+
+Cela fonctionne également avec des enfants dimensionnés explicitement (3e exemple ci-dessous).
 
     @example
     .sg-grid.grid-3
         each i in new Array(5)
             div lorem
 
-Cela fonctionne également avec l'indication de gouttière `.has-gutter`.
-
-    @example
+    p.mtm.mbs Avec une gouttière&nbsp;:
     .sg-grid.grid-3.has-gutter
         each i in new Array(5)
             div lorem
 
-Cela fonctionne également avec des enfants dimensionnés explicitement.
-
-    @example
+    p.mtm.mbs Avec des enfants dimensionnés explicitement (et une gouttière)&nbsp;:
     .sg-grid.grid-3.has-gutter
         .one-half .one-half
         .one-half .one-half
@@ -146,7 +150,8 @@ suffixe `--reverse`.
 ### Taille d'écran intermédiaire
 
 Vous pouvez indiquer le nombre de colonnes souhaitées lorsque la taille d'écran
-est intermédiaire (entre *tiny* et *small*, soit entre 545px et 768px par défaut)
+est intermédiaire (entre *tiny*
+et *small*, soit entre 545px et 768px par défaut)
 à l'aide d'un suffixe `-small-N`
 (avec N entre 1 et 4).
 
@@ -154,15 +159,15 @@ Par exemple, un conteneur `.grid-3-small-2`
 disposera de 1 colonne en mobile (cas par défaut), puis 2 colonnes en écran
 intermédiaire, puis 3 colonnes sur grand écran.
 
+Cela fonctionne avec des gouttières (classe `.has-gutter`, voir le 2e exemple ci-dessous) ainsi qu'avec des
+dimensions explicites sur les enfants.
+
     @example
     .sg-grid.grid-3-small-2
         each i in new Array(3)
             div lorem
 
-Cela fonctionne avec des gouttières (classe `.has-gutter`) ainsi qu'avec des
-dimensions explicites sur les enfants.
-
-    @example
+    p.mtm.mbs  Avec une gouttière&nbsp;:
     .sg-grid.grid-3-small-2.has-gutter
         each i in new Array(3)
             div lorem

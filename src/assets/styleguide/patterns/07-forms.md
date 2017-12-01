@@ -8,7 +8,10 @@ peut s'appliquer sur les champs texte de type&nbsp;: `text`, `password`,
 et `color`.
 
     @example
-    p Les champs marqués d'un * sont obligatoires
+    p
+        | Les champs marqués d'un
+        span.form-required(title='Champs obligatoire') *
+        | &nbsp;sont obligatoires
 
     p.form-item
         label(for="a0") Champ texte
@@ -150,24 +153,24 @@ unique doit être son 1er enfant.
     fieldset
         legend Un choix multiple avec bouton radio
         p.form-item-radio
-            input#br1.form-radio(type='radio', name='br', value='1', checked='')
+            input#br1.form-radio(type='radio', name='br', value='1', checked)
             // NOTE: or checked="checked" or checked=""
             label(for='br1') Une réponse possible (checked)
         p.form-item-radio
             input#br2.form-radio(type='radio', name='br', value='2')
             label(for='br2') Une réponse possible
         p.form-item-radio
-            input#br3.form-radio(type='radio', name='br', value='3', disabled='')
+            input#br3.form-radio(type='radio', name='br', value='3', disabled)
             label(for='br3') Réponse (disabled)
     hr
     fieldset
         legend Un choix multiple avec checkbox
         p.form-item-checkbox
-            input#cb1.form-checkbox(type='checkbox', name='cb', value='1', checked='')
+            input#cb1.form-checkbox(type='checkbox', name='cb', value='1', checked)
             label(for='cb1') Une réponse possible (checked)
         p.form-item-checkbox
             input#cb2.form-checkbox(type='checkbox', name='cb', value='2')
             label(for='cb2') Une réponse possible
         p.form-item-checkbox
-            input#cb3.form-checkbox(type='checkbox', name='cb', value='3', disabled='')
+            input#cb3.form-checkbox(type='checkbox', name='cb', value='3', disabled)
             label(for='br3') Réponse (disabled)

@@ -34,6 +34,10 @@ $colors: (
   color-success: $color-success,
 );
 
+// Classes on section are compiled from their heading and it can easily change. Let's use some variables for that
+$section-color: '.sg-section-palette-de-couleurs';
+
+
 /*
  * Sass Mixins
  */
@@ -328,10 +332,15 @@ code.sg,
 /*
  * Colors section
  */
-// pour cacher le bouton "show markup"
-.sg-section-couleurs {
+#{$section-color} {
+  // No need for a "show markup" toggle here
   .sg-code-toggle {
     display: none;
+  }
+
+  // <hr> white on white (but we keep its vertical margin and semantics)
+  hr {
+    background-color: $background-base;
   }
 }
 
