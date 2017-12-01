@@ -35,8 +35,8 @@ $colors: (
 );
 
 // Classes on section are compiled from their heading and it can easily change. Let's use some variables for that
-$section-color: '.sg-section-palette-de-couleurs';
-
+$section-color: '.sg-section-' + 'palette-de-couleurs';
+$section-grid : '.sg-section-' + 'grilles';
 
 /*
  * Sass Mixins
@@ -332,7 +332,7 @@ code.sg,
 /*
  * Colors section
  */
-#{$section-color} {
+#{ $section-color } {
   // No need for a "show markup" toggle here
   .sg-code-toggle {
     display: none;
@@ -458,14 +458,17 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
 /*
  * Grids section
  */
-.sg-grid {
-  & + & {
-    margin-top: $medium-value;
-  }
+#{ $section-grid } {
+  .grid,
+  [class^="grid"] {
+    & + & {
+      margin-top: $medium-value;
+    }
 
-  & > * {
-    padding: $medium-value;
-    background: #f8f8f8;
+    & > * {
+      padding: $medium-value;
+      background: #f8f8f8;
+    }
   }
 }
 

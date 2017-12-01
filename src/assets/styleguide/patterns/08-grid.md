@@ -15,7 +15,7 @@ manière équitable les uns à côté des autres
 pour ce styleguide, elles sont inutiles en production.**
 
     @example
-    .sg-grid.grid
+    .grid
         div je suis un div, sans class
         div hey moi aussi
         aside moi je suis un aside
@@ -39,19 +39,19 @@ ou `.has-gutter-xl`
 
     @example
     p.mbs Gouttière <code>.has-gutter</code>&nbsp;:
-    .sg-grid.grid.has-gutter
+    .grid.has-gutter
         div je suis un div, sans class
         div hey moi aussi
         aside moi je suis un aside
 
     p.mtm.mbs Gouttière <code>.has-gutter-l</code>&nbsp;:
-    .sg-grid.grid.has-gutter-l
+    .grid.has-gutter-l
         div je suis un div, sans class
         div hey moi aussi
         aside moi je suis un aside
 
     p.mtm.mbs Gouttière <code>.has-gutter-xl</code>&nbsp;:
-    .sg-grid.grid.has-gutter-xl
+    .grid.has-gutter-xl
         div je suis un div, sans class
         div hey moi aussi
         aside moi je suis un aside
@@ -68,13 +68,13 @@ Cela fonctionne également avec l'indication de gouttière `.has-gutter`
 (2e exemple ci-dessous).
 
     @example
-    .sg-grid.grid
+    .grid
         .one-fifth .one-fifth
         div lorem ipsum
         div lorem ipsum
 
     p.mtm.mbs Avec une gouttière&nbsp;:
-    .sg-grid.grid.has-gutter
+    .grid.has-gutter
         .one-fifth .one-fifth
         div lorem ipsum
         .one-fifth .one-fifth
@@ -91,17 +91,17 @@ Cela fonctionne également avec l'indication de gouttière `.has-gutter`
 Cela fonctionne également avec des enfants dimensionnés explicitement (3e exemple ci-dessous).
 
     @example
-    .sg-grid.grid-3
+    .grid-3
         each i in new Array(5)
             div lorem
 
     p.mtm.mbs Avec une gouttière&nbsp;:
-    .sg-grid.grid-3.has-gutter
+    .grid-3.has-gutter
         each i in new Array(5)
             div lorem
 
     p.mtm.mbs Avec des enfants dimensionnés explicitement (et une gouttière)&nbsp;:
-    .sg-grid.grid-3.has-gutter
+    .grid-3.has-gutter
         .one-half .one-half
         .one-half .one-half
         .one-third .one-third
@@ -117,7 +117,7 @@ ou `.push`
 pour pousser un enfant vers sa droite ou sa gauche.
 
     @example
-    .sg-grid.grid-5
+    .grid-5
         div lorem
         div lorem
         .push .push
@@ -130,7 +130,7 @@ et `.item-last`
 servent à réordonner visuellement les éléments.
 
     @example
-    .sg-grid.grid-3
+    .grid-3
         div lorem
         div lorem
         .item-first .item-first
@@ -142,7 +142,7 @@ Il est possible d'inverser totalement le sens de lecture de la grille grâce au
 suffixe `--reverse`.
 
     @example
-    .sg-grid.grid-3--reverse
+    .grid-3--reverse
         div premier
         div deuxième
         div troisième
@@ -163,12 +163,12 @@ Cela fonctionne avec des gouttières (classe `.has-gutter`, voir le 2e exemple c
 dimensions explicites sur les enfants.
 
     @example
-    .sg-grid.grid-3-small-2
+    .grid-3-small-2
         each i in new Array(3)
             div lorem
 
     p.mtm.mbs  Avec une gouttière&nbsp;:
-    .sg-grid.grid-3-small-2.has-gutter
+    .grid-3-small-2.has-gutter
         each i in new Array(3)
             div lorem
 
