@@ -10,7 +10,7 @@ et `color`.
     @example
     p
         | Les champs marqués d'un
-        span.form-required(title='Champs obligatoire') *
+        span.form-required(title='Champ obligatoire') *
         | &nbsp;sont obligatoires
 
     p.form-item
@@ -20,13 +20,13 @@ et `color`.
     p.form-item
         label(for='a1')
             | Champ texte (placeholder)
-            span.form-required(title='Champs obligatoire') *
+            span.form-required(title='Champ obligatoire') *
         input#a1.form-txt(type='text', placeholder='dessine-moi un mouton', required='')
 
     p.form-item
         label(for='a2')
             | Champ texte (value)
-            span.form-required(title='Champs obligatoire') *
+            span.form-required(title='Champ obligatoire') *
         input#a2.form-txt(type='text', value="je t'ai donné un tout petit mouton", required='')
 
     p.form-item
@@ -49,31 +49,6 @@ et `color`.
         label(for='a2-6') Champ recherche
         input#a2-6.form-txt(type='search')
 
-
-### Boutons
-
-Boutons de validation d'un formulaire&nbsp;: `<button type="submit">`,
-`<input type="submit">`.  
-Les classes CSS `.btn-primary`, `.btn-secondary` ou `.btn-tertiary` peuvent être
-appliquées pour styler ces boutons de formulaire.
-
-    @example
-    p
-        span.inbl.w10 Default:
-        button(type='submit') Valider
-        input(type='submit', value='Valider')
-    p
-        span.inbl.w10 Primary:
-        button.btn-primary(type='submit') Valider
-        input.btn-primary(type='submit', value='Valider')
-    p
-        span.inbl.w10 Secondary:
-        button.btn-secondary(type='submit') Valider
-        input.btn-secondary(type='submit', value='Valider')
-    p
-        span.inbl.w10 Tertiary:
-        button.btn-tertiary(type='submit') Valider
-        input.btn-tertiary(type='submit', value='Valider')
 
 ### Champs Télécharger
 
@@ -112,6 +87,7 @@ Styles pour les 3 états suivants&nbsp;: succès, erreur ou avertissement.
             | Champ texte (success)
             input#a0-2.form-txt(type='text')
             span.form-help Ici mon message pour valider
+
 
 ### Liste déroulante
 
