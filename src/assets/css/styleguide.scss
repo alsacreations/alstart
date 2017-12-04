@@ -6,32 +6,37 @@
 
  // Config things (mêmes imports que pour styles.scss ; contrainte : aucun des 3 ne doit générer de règle CSS => seulement définir des mixins et variables)
  //
+ // Same variables than for project and KNACSS
+ @import "_config/_variables";
  // Mixins
  @import "_config/_mixins";
- // Breakpoints
- @import "_config/_breakpoints";
- // Same variables than for project
- @import "_config/_variables";
 
 
 // Variables list for Styleguide (if used)
 $colors: (
   brand-primary      : $brand-primary,
   brand-secondary    : $brand-secondary,
+
   color-base: $color-base,
-  color-link: $color-link,
+  color-link: $link-color,
   background-base: $background-base,
+
   gray-light   : $gray-light,
   gray-lightest: $gray-lightest,
   gray-a11y    : $gray-a11y,
-  color1: $color1,
-  color2: $color2,
-  color3: $color3,
-  color4: $color4,
-  color5: $color5,
-  color6: $color6,
-  color-error: $color-error,
+
+  color-brand: $color-brand,
+  color-primary: $color-primary,
   color-success: $color-success,
+  color-info: $color-info,
+  color-warning: $color-warning,
+  color-danger: $color-danger,
+  color-inverse: $color-inverse,
+  color-ghost: $color-ghost,
+  color-muted: $color-muted,
+
+  // color-error: $color-error,
+  // color-success: $color-success,
 );
 
 // Classes on section are compiled from their heading and it can easily change. Let's use some variables for that
@@ -46,7 +51,7 @@ $section-grid : '.sg-section-' + 'grilles';
   &::after {
     content: "#{$fontsize}";
     @extend .sg-code-inline;
-    margin-left: $small-value;
+    margin-left: $spacer-small;
     font-weight: normal;
     vertical-align: middle;
   }
@@ -80,7 +85,7 @@ $section-grid : '.sg-section-' + 'grilles';
   position: relative;
   padding: 0;
   // font-family: Segoe UI, Frutiger, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-  font-family: $font-stack-common;
+  font-family: $font-family-base;
   background-color: $background-base;
 }
 
@@ -99,8 +104,8 @@ h1 {
 /* Header */
 .sg-header {
   position: relative;
-  padding: $medium-value;
-  margin-bottom: $small-value;
+  padding: $spacer-medium;
+  margin-bottom: $spacer-small;
   text-align: center;
   background: #F8F8F8;
   h1 {
@@ -133,7 +138,7 @@ h1 {
     top: 19rem; left: 2rem;
   display: none;
   width: 22rem;
-  padding: $medium-value;
+  padding: $spacer-medium;
   background: #F8F8F8;
 
   &.is-fixed {
@@ -155,15 +160,15 @@ h1 {
   list-style-type: none;
 
   ul {
-    margin: 0 0 $small-value;
-    padding-left: $medium-value;
+    margin: 0 0 $spacer-small;
+    padding-left: $spacer-medium;
     list-style-type: none;
     font-size: 90%;
   }
 }
 .tocify-item {
   margin: 0;
-  padding: $tiny-value 0;
+  padding: $spacer-tiny 0;
 
   a {
     padding-bottom: .25rem;
@@ -194,8 +199,8 @@ h1 {
  */
 /* main title */
 .sg-title {
-  margin-top: $small-value;
-  font-size: $h1-size;
+  margin-top: $spacer-small;
+  @include font-size(h1);
 }
 /* copyright */
 .sg-copyright {
@@ -207,7 +212,7 @@ h1 {
 .sg-section {
   & > h2.sg {
     padding-bottom: .15em;
-    font-size: $h1-size;
+    @include font-size(h1);
     color: #333;
     border-bottom: 2px solid #eee;
   }
@@ -233,35 +238,35 @@ h1 {
  */
 .sg-content {
   position: relative;
-  padding: $small-plus-value;
+  padding: $spacer-small-plus;
 
   @media (min-width: 768px) {
     margin-left: 24rem;
-    padding: $medium-value $large-value;
+    padding: $spacer-medium $spacer-large;
   }
 
   @media (min-width: 1580px) {
     max-width: 1080px;
     margin: auto;
-    padding: $medium-value;
+    padding: $spacer-medium;
   }
 }
 
 /* section */
 .sg-section {
-  margin-bottom: $extra-large-value;
+  margin-bottom: $spacer-extra-large;
 }
 
 /* example & canvas */
 .sg-example {
-  margin-top: $small-value;
-  margin-bottom: $medium-value;
+  margin-top: $spacer-small;
+  margin-bottom: $spacer-medium;
   border: 1px solid #dddddd;
   border-radius: 3px;
 }
 .sg-canvas {
   position: relative;
-  padding: $large-value 3rem;
+  padding: $spacer-large 3rem;
   overflow-x: auto;
 }
 
@@ -275,7 +280,7 @@ code.sg,
 .sg-code-inline {
   display: inline-block;
   padding: .2rem .5rem;
-  font-family: $font-stack-monospace;
+  font-family: $font-family-monospace;
   font-size: 1.4rem;
   white-space: nowrap;
   border: solid 1px #eaeaea;
@@ -285,9 +290,9 @@ code.sg,
 
 /* block: <pre> */
 .sg-code {
-  padding: $medium-value;
+  padding: $spacer-medium;
   margin-top: 0;
-  font-family: $font-stack-monospace;
+  font-family: $font-family-monospace;
   font-size: 1.4rem;
   line-height: 1.6;
   border-top: solid 1px #eaeaea;
@@ -314,7 +319,7 @@ code.sg,
   position: absolute;
     right: 0; bottom: 0;
   width: 100px;
-  padding: $tiny-value;
+  padding: $spacer-tiny;
   text-align: center;
   font-size: 1.3rem;
   color: #777;
@@ -346,7 +351,7 @@ code.sg,
 
 .sg-color {
   & + & {
-    margin-top: $large-value;
+    margin-top: $spacer-large;
   }
 }
 
@@ -357,7 +362,7 @@ code.sg,
   border: solid 1px #eaeaea;
 
   & {
-    margin: $small-value;
+    margin: $spacer-small;
   }
 
   // color example
@@ -394,7 +399,7 @@ code.sg,
 
   & > [class*="icon-"] {
     width: calc(100% / 2);
-    margin: 0 0 $large-value;
+    margin: 0 0 $spacer-large;
     text-align: center;
 
     @include respond-to("small-up") {
@@ -407,7 +412,7 @@ code.sg,
 
     &:before {
       display: block;
-      margin-bottom: $small-value;
+      margin-bottom: $spacer-small;
       font-size: 4rem;
       text-align: center;
     }
@@ -421,7 +426,7 @@ code.sg,
  */
 [class*="sg-font-"] {
   & + & {
-    margin-top: $medium-value;
+    margin-top: $spacer-medium;
   }
 }
 // hides "show markup" button
@@ -431,16 +436,16 @@ code.sg,
   }
 }
 .sg-font-common {
-  font-family: $font-stack-common;
-  @include font($font-stack-common);
+  font-family: $font-family-base;
+  @include font($font-family-base);
 }
 .sg-font-headings {
-  font-family: $font-stack-headings;
-  @include font($font-stack-headings);
+  font-family: $font-family-headings;
+  @include font($font-family-headings);
 }
 .sg-font-monospace {
-  font-family: $font-stack-monospace;
-  @include font($font-stack-monospace);
+  font-family: $font-family-monospace;
+  @include font($font-family-monospace);
 }
 
 
@@ -462,11 +467,11 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
   .grid,
   [class^="grid"] {
     & + & {
-      margin-top: $medium-value;
+      margin-top: $spacer-medium;
     }
 
     & > * {
-      padding: $medium-value;
+      padding: $spacer-medium;
       background: #f8f8f8;
     }
   }
@@ -477,15 +482,15 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
  * Block alignment section
  */
 .sg-align-block {
-  padding: $medium-value;
+  padding: $spacer-medium;
   background: #f8f8f8;
 
   & + & {
-    margin-top: $medium-value;
+    margin-top: $spacer-medium;
   }
 }
 .sg-align-float {
-  padding: $medium-value;
+  padding: $spacer-medium;
   background: #f8f8f8;
 
   // @extend .clearfix; @NOTE Sass compilation crashes if styleguide.scss is compiled by itself (without importing KNACSS), thus clearfix :pseudo rule is hard coded here without the help of an @extend
@@ -498,11 +503,11 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
   }
 
   & + & {
-    margin-top: $medium-value;
+    margin-top: $spacer-medium;
   }
 
   & > div[class*="f"] {
-    padding: $small-value;
+    padding: $spacer-small;
     background: #ddd;
   }
 }
