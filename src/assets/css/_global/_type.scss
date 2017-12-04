@@ -1,0 +1,14 @@
+/*
+ * Type / Typography
+ * Override some styles over KNACSS for links, headings and other typographic Stuff
+ *
+ * @author: Jennifer - Alsacreations
+ */
+
+// WYSIWYG / user content
+.content {
+  // Links with surrounding text should be underlined (or else have another effect like bold, italic but we don't want that)
+  a {
+    text-decoration: underline;
+  }
+}
