@@ -41,6 +41,19 @@ var project = {
     babel: false // utilisation de Babel pour JavaScript
   },
   configuration: { // configuration des différents composants de ce projet
+    // Browserslist : chaîne des navigateurs supportés, paramètrage pour Autoprefixer (annoncé : IE11+, last Chr/Fx/Edge/Opera et iOS 9+, Android 5+ ; ici c'est plus large)
+    //  ⇒ Couverture (mondiale, pas française) de 94,73% (mai 2017) d'après
+    //  ⇒ http://browserl.ist/?q=%3E+1%25%2C+last+2+versions%2C+IE+%3E%3D+10%2C+Edge+%3E%3D+12%2C++Chrome+%3E%3D+42%2C++Firefox+%3E%3D+42%2C+Firefox+ESR%2C++Safari+%3E%3D+8%2C++ios_saf+%3E%3D+8%2C++Android+%3E%3D+4.4
+    //  ⇒ http://browserl.ist et > 1%, last 2 versions, IE >= 10, Edge >= 12,  Chrome >= 42,  Firefox >= 42, Firefox ESR,  Safari >= 8,  ios_saf >= 8,  Android >= 4.4
+    browsersList: [
+      '> 1%',
+      'last 2 versions',
+      'IE >= 10', 'Edge >= 12',
+      'Chrome >= 42',
+      'Firefox >= 42', 'Firefox ESR',
+      'Safari >= 8',
+      'ios_saf >= 8',
+      'Android >= 4.4'],
     cssbeautify: {
       indent: '  ',
     },
