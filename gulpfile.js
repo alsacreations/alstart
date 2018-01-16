@@ -168,7 +168,7 @@ gulp.task('css:main', function () {
     .pipe($.sass())
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
-    .pipe($.autoprefixer({ grid: true }))
+    .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
     .pipe(gulp.dest(paths.dest + paths.styles.root))
     .pipe($.if(isProduction, $.rename({suffix: '.min'})))
     .pipe($.if(isProduction, $.csso()))
