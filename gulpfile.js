@@ -149,10 +149,12 @@ var onError = {
 };
 
 /**
- * Tâche de production si ajout de l'argument "--prod"
+ * Tâche de production si ajout de l'argument "--prod" (seulement à la fin ?)
  */
 var isProduction = argv.prod;
-
+if (isProduction) {
+  console.log("VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !");
+}
 
 /* ------------------------------------------------
  * Tâches de Build : css, html, php, js, img, fonts
@@ -169,25 +171,23 @@ gulp.task('css:main', function () {
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
     .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
-    .pipe(gulp.dest(paths.dest + paths.styles.root))
+    // En dév, on évite d'écrire 2 fois le même fichier (ni renommage ni CSSO en dév et pourtant on écrit du CSS à 2 reprises… identique avec le même nom)
+    // En env. de prod, on écrit une CSS non-minifiée puis avec le suffixe .min.css une CSS minifiée
+    .pipe($.if(!isProduction, gulp.dest(paths.dest + paths.styles.root)))
     .pipe($.if(isProduction, $.rename({suffix: '.min'})))
     .pipe($.if(isProduction, $.csso()))
-    .pipe($.sourcemaps.write(paths.maps))
+    // En env de prod, pas de sourcemaps. En dév, les sourcemaps concernent la CSS non minifiée
+    .pipe($.if(!isProduction, $.sourcemaps.write(paths.maps)))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
-// (2/2) Styles spécifiques au styleguide qui n'ont pas à figurer dans les pages du site
+// (2/2) Styles spécifiques au styleguide qui n'ont pas à figurer dans les pages du site (on se dispense de sourcemap ou de minification ici…)
 gulp.task('css:guide', function () {
   return gulp.src(paths.src + paths.styles.sass.styleguideFile)
     .pipe($.plumber(onError))
-    .pipe($.sourcemaps.init())
     .pipe($.sass())
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
     .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
-    .pipe(gulp.dest(paths.dest + paths.styles.root))
-    .pipe($.rename({suffix: '.min'}))
-    .pipe($.if(isProduction, $.csso()))
-    .pipe($.sourcemaps.write(paths.maps))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
 gulp.task('css', ['css:main', 'css:guide']);
