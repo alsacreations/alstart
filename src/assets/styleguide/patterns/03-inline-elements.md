@@ -6,10 +6,11 @@ L'élément `<a>`
 définit un hyperlien, une cible de destination nommée pour un hyperlien, ou les deux à la fois.
 
     @example
-    p
-        | C'est que sa planète d'origine était à peine
-        a(href='#') plus grande qu'une maison
-        | .
+    .content
+        p
+            | C'est que sa planète d'origine était à peine
+            a(href='#') plus grande qu'une maison
+            | .
 
 ### Strong
 

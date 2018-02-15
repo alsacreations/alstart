@@ -1,5 +1,5 @@
 /*!
-* www.KNACSS.com v6.1.1 (21 avril 2017) @author: Alsacreations, Raphael Goetter
+* www.KNACSS.com v7.0.0 (??? 2017) @author: Alsacreations, Raphael Goetter
 * Licence WTFPL http://www.wtfpl.net/
 */
 
@@ -7,51 +7,62 @@
 /* ==Table Of Content            */
 /* ----------------------------- */
 
-/* 1- Normalize (basic reset) */
-/* 2- Base (basic styles) */
-/* 3- Print (print quick reset) */
-/* 4- Stylings (minor stylings) */
-/* 5- Misc (skip links, hyphens) */
-/* 6- Tables (data tables consistency) */
-/* 7- Forms (forms consistency) */
-/* 8- Media object */
-/* 9- Autogrid object */
-/* 10- Global Layout (alignment, modules, positionning) */
-/* 11- Helpers (width and spacers helpers) */
-/* (12- WordPress reset (disabled by default)) */
-/* 13- Responsive (Responsive Web Design helpers) */
-/* 14- Grid Layout (grillade) */
+/*
+1- Reboot (basic reset)
+2- Libraries  :
+  - Base
+  - Print
+  - Misc (hyphens)
+  - Layout (alignment, modules, positionning)
+  - Utilities (width and spacers helpers)
+  - Responsive helpers
+  - WordPress reset (disabled by default)
+3- Components :
+  - Media object
+  - Autogrid object
+  - Skip Links for accessibility
+  - Tables
+  - Forms
+  - Buttons
+  - Checkbox
+  - Tabs
+  - Tags
+  - Badges
+  - Alerts
+  - Grillade (Grid System)
+*/
 
-/* ---------------------------------- */
-/* ==Normalize (basic reset)          */
-/* ---------------------------------- */
-
-@import "./node_modules/knacss/sass/_vendor/_normalize.scss"; // normalize (basic reset)
+@import "./node_modules/knacss/sass/_vendor/_reboot"; // Bootstrap reboot (basic reset)
 
 // WARNING : you should comment the following @import (variables)
 // and move variables file from knacss folder to your own project folder!
-@import "_config/_variables.scss";
+// @import "_config/_variables.scss"; (bretzel: already imported by bretzel in styles.scss, before knacss.scss)
 
-@import "_config/_breakpoints.scss";
-@import "_config/_mixins.scss";
+// @import "_config/_mixins.scss"; (bretzel: already imported by bretzel in styles.scss, before knacss.scss)
 
 // Libraries
-@import "./node_modules/knacss/sass/library/_base.scss"; // basic styles
-@import "./node_modules/knacss/sass/library/_print.scss"; // print quick reset
-@import "./node_modules/knacss/sass/library/_styling.scss"; // minor stylings
-@import "./node_modules/knacss/sass/library/_misc.scss"; // skip links, hyphens
-@import "./node_modules/knacss/sass/library/_tables.scss"; // data tables consistency
-@import "./node_modules/knacss/sass/library/_forms.scss"; // forms consistency
+@import "./node_modules/knacss/sass/_library/_base.scss"; // basic styles
+@import "./node_modules/knacss/sass/_library/_print.scss"; // print quick reset
+@import "./node_modules/knacss/sass/_library/_misc.scss"; // skip links, hyphens
+@import "./node_modules/knacss/sass/_library/_layout.scss"; // alignment, modules, positionning
+@import "./node_modules/knacss/sass/_library/_utilities.scss"; // width and spacers helpers
+@import "./node_modules/knacss/sass/_library/_responsive.scss"; // Responsive Web Design helpers
+// @import "_library/_wordpress.scss"; // WordPress reset and basic styles
 
-// Objects
-@import "./node_modules/knacss/sass/objects/_media.scss"; // media object
-@import "./node_modules/knacss/sass/objects/_autogrid.scss"; // media autogrid
+// Components
+@import "./node_modules/knacss/sass/components/_media.scss"; // media object
+@import "./node_modules/knacss/sass/components/_autogrid.scss"; // media autogrid
+@import "./node_modules/knacss/sass/components/_skip-links.scss"; // skip links
+@import "./node_modules/knacss/sass/components/_tables.scss"; // data tables consistency
+@import "./node_modules/knacss/sass/components/_forms.scss"; // forms consistency and styles
+@import "./node_modules/knacss/sass/components/_buttons.scss"; // buttons styles
+@import "./node_modules/knacss/sass/components/_checkbox.scss"; // checkbox, radio, switch styles
+@import "./node_modules/knacss/sass/components/_tabs.scss"; // tabs styles
+@import "./node_modules/knacss/sass/components/_arrows.scss"; // arrows styles
+@import "./node_modules/knacss/sass/components/tags.scss"; // tags styles
+@import "./node_modules/knacss/sass/components/_badges.scss"; // badges styles
+@import "./node_modules/knacss/sass/components/_alerts.scss"; // alerts styles
 
-// Utilities
-@import "./node_modules/knacss/sass/utilities/_layout.scss"; // alignment, modules, positionning
-@import "./node_modules/knacss/sass/utilities/_helpers.scss"; // width and spacers helpers
-// @import "./node_modules/knacss/sass/utilities/_wordpress.scss"; // WordPress reset and basic styles
-@import "./node_modules/knacss/sass/utilities/_responsive.scss"; // Responsive Web Design helpers
-
-// Grids
-@import "./node_modules/knacss/sass/grids/_grillade.scss"; // grids
+// New Grid System by default (Grid Layout). If you prefer old "Flexbox" Grid System, replace file with "components/grillade-flex.scss"
+// Note that none of these file is prefixed by an underscore, in order to compile them.
+@import "./node_modules/knacss/sass/components/grillade-grid.scss"; // grid system with Grid Layout

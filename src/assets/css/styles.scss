@@ -6,25 +6,23 @@
  * @created: 2017-01-01
  */
 
+//
+// Configuration
+//
+// Variables
+@import "_config/_variables";
+
+// Mixins
+@import "_config/_mixins";
+
+
 // KNACSS imports
 // -----------------
 @import "knacss";
 
+
 // your own styles
 // -----------------
-
-//
-// Configuration
-//
-// Mixins
-@import "_config/_mixins";
-
-// Breakpoints
-@import "_config/_breakpoints";
-
-// Variables
-@import "_config/_variables";
-
 
 //
 // Common things
@@ -54,10 +52,10 @@
 // @import "_global/_helpers";
 
 // Buttons
-// @import "_global/_buttons";
+@import "_global/_buttons";
 
 // Typographic stuff
-// @import "_global/_type";
+@import "_global/_type";
 
 // Forms
 // @import "_global/_forms";
