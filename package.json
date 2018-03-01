@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "jquery": "^3.x",
-    "knacss": "alsacreations/KNACSS#v7",
+    "knacss": "7.x",
     "styledown-skins": "drakeh/styledown-skins"
   },
   "repository": {
