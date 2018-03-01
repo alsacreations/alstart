@@ -1,5 +1,5 @@
 /*!
-* www.KNACSS.com v7.0.3 (march, 1 2018) @author: Alsacreations, Raphael Goetter
+* www.KNACSS.com v7.0.0 (??? 2017) @author: Alsacreations, Raphael Goetter
 * Licence WTFPL http://www.wtfpl.net/
 */
 
@@ -12,13 +12,14 @@
 2- Libraries  :
   - Base
   - Print
+  - Misc (hyphens)
   - Layout (alignment, modules, positionning)
   - Utilities (width and spacers helpers)
   - Responsive helpers
   - WordPress reset (disabled by default)
-  - Grillade (Grid System)
 3- Components :
   - Media object
+  - Autogrid object
   - Skip Links for accessibility
   - Tables
   - Forms
@@ -28,6 +29,7 @@
   - Tags
   - Badges
   - Alerts
+  - Grillade (Grid System)
 */
 
 @import "./node_modules/knacss/sass/_vendor/_reboot"; // Bootstrap reboot (basic reset)
@@ -38,7 +40,7 @@
 
 // @import "_config/_mixins.scss"; (bretzel: already imported by bretzel in styles.scss, before knacss.scss)
 
-// Core libraries
+// Libraries
 @import "./node_modules/knacss/sass/_library/_base.scss"; // basic styles
 @import "./node_modules/knacss/sass/_library/_print.scss"; // print quick reset
 @import "./node_modules/knacss/sass/_library/_layout.scss"; // alignment, modules, positionning
