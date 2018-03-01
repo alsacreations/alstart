@@ -41,6 +41,19 @@ var project = {
     babel: false // utilisation de Babel pour JavaScript
   },
   configuration: { // configuration des différents composants de ce projet
+    // Browserslist : chaîne des navigateurs supportés, paramètrage pour Autoprefixer (annoncé : IE11+, last Chr/Fx/Edge/Opera et iOS 9+, Android 5+ ; ici c'est plus large)
+    //  ⇒ Couverture (mondiale, pas française) de 94,73% (mai 2017) d'après
+    //  ⇒ http://browserl.ist/?q=%3E+1%25%2C+last+2+versions%2C+IE+%3E%3D+10%2C+Edge+%3E%3D+12%2C++Chrome+%3E%3D+42%2C++Firefox+%3E%3D+42%2C+Firefox+ESR%2C++Safari+%3E%3D+8%2C++ios_saf+%3E%3D+8%2C++Android+%3E%3D+4.4
+    //  ⇒ http://browserl.ist et > 1%, last 2 versions, IE >= 10, Edge >= 12,  Chrome >= 42,  Firefox >= 42, Firefox ESR,  Safari >= 8,  ios_saf >= 8,  Android >= 4.4
+    browsersList: [
+      '> 1%',
+      'last 2 versions',
+      'IE >= 10', 'Edge >= 12',
+      'Chrome >= 42',
+      'Firefox >= 42', 'Firefox ESR',
+      'Safari >= 8',
+      'ios_saf >= 8',
+      'Android >= 4.4'],
     cssbeautify: {
       indent: '  ',
     },
@@ -136,10 +149,12 @@ var onError = {
 };
 
 /**
- * Tâche de production si ajout de l'argument "--prod"
+ * Tâche de production si ajout de l'argument "--prod" (seulement à la fin ?)
  */
 var isProduction = argv.prod;
-
+if (isProduction) {
+  console.log("VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !");
+}
 
 /* ------------------------------------------------
  * Tâches de Build : css, html, php, js, img, fonts
@@ -155,26 +170,24 @@ gulp.task('css:main', function () {
     .pipe($.sass())
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
-    .pipe($.autoprefixer(/*{ grid: true }@TODO*/))
-    .pipe(gulp.dest(paths.dest + paths.styles.root))
+    .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
+    // En dév, on évite d'écrire 2 fois le même fichier (ni renommage ni CSSO en dév et pourtant on écrit du CSS à 2 reprises… identique avec le même nom)
+    // En env. de prod, on écrit une CSS non-minifiée puis avec le suffixe .min.css une CSS minifiée
+    .pipe($.if(!isProduction, gulp.dest(paths.dest + paths.styles.root)))
     .pipe($.if(isProduction, $.rename({suffix: '.min'})))
     .pipe($.if(isProduction, $.csso()))
-    .pipe($.sourcemaps.write(paths.maps))
+    // En env de prod, pas de sourcemaps. En dév, les sourcemaps concernent la CSS non minifiée
+    .pipe($.if(!isProduction, $.sourcemaps.write(paths.maps)))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
-// (2/2) Styles spécifiques au styleguide qui n'ont pas à figurer dans les pages du site
+// (2/2) Styles spécifiques au styleguide qui n'ont pas à figurer dans les pages du site (on se dispense de sourcemap ou de minification ici…)
 gulp.task('css:guide', function () {
   return gulp.src(paths.src + paths.styles.sass.styleguideFile)
     .pipe($.plumber(onError))
-    .pipe($.sourcemaps.init())
     .pipe($.sass())
     .pipe($.csscomb())
     .pipe($.cssbeautify(project.configuration.cssbeautify))
-    .pipe($.autoprefixer( /*{browsers: project.configuration.browsersList} @TODO*/ ))
-    .pipe(gulp.dest(paths.dest + paths.styles.root))
-    .pipe($.rename({suffix: '.min'}))
-    .pipe($.if(isProduction, $.csso()))
-    .pipe($.sourcemaps.write(paths.maps))
+    .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
 gulp.task('css', ['css:main', 'css:guide']);
@@ -345,10 +358,10 @@ gulp.task('watch', function () {
   }
 
   // Watch des _partials Scss, du code HTML, du JS et des includes du styleguide
-  gulp.watch([paths.src + paths.styles.sass.files], ['css', browserSync.reload]);
-  gulp.watch([paths.src + paths.html.allFiles, paths.src + paths.php], ['html', 'php', browserSync.reload]);
-  gulp.watch([paths.src + paths.scripts.files], ['js', browserSync.reload]);
-  gulp.watch([paths.src + paths.styleguide.files], ['guide', browserSync.reload]);
+  gulp.watch([paths.styles.sass.files], {cwd: paths.src}, ['css', browserSync.reload]);
+  gulp.watch([paths.html.allFiles, paths.php], {cwd: paths.src}, ['html', 'php', browserSync.reload]);
+  gulp.watch([paths.scripts.files], {cwd: paths.src}, ['js', browserSync.reload]);
+  gulp.watch([paths.styleguide.files], {cwd: paths.src} ['guide', browserSync.reload]);
 });
 
 // Tâche par défaut
