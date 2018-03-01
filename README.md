@@ -4,8 +4,7 @@
 
 **Bretzel** *(Bretzel Project Starter)* est une base de départ pour des projets HTML / CSS et JS créée par l'agence Alsacréations.
 
-**Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, Sass et [KNACSS](http://knacss.com). Des connaissances minimales de ces outils sont un pré-requis.  
-Cette branche met en place la **version 7** de KNACSS (<abbr title="Work In Progress">WIP</abbr>)
+**Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, Sass et [KNACSS](http://knacss.com) (v7). Des connaissances minimales de ces outils sont un pré-requis.
 
 
 ## Fonctionnalités
