@@ -48,7 +48,7 @@
 
 // New Grid System by default (Grid Layout). If you prefer old "Flexbox" Grid System, replace file with "_library/grillade-flex.scss"
 // Note that none of these file is prefixed by an underscore, in order to compile them.
-@import "./node_modules/knacss/sass/_library/grillade-grid.scss"; // grid system with Grid Layout
+// @import "./node_modules/knacss/sass/_library/grillade-grid.scss"; // grid system with Grid Layout - Commented in bretzel
 
 // Components
 @import "./node_modules/knacss/sass/components/_media.scss"; // media object
