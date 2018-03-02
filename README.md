@@ -10,20 +10,20 @@
 ## Fonctionnalités
 
 - CSS / Sass :
-  - compilation Sass vers CSS
-  - ajout automatiques de préfixes CSS3 ([Autoprefixer](https://github.com/postcss/autoprefixer))
+  - compilation Scss vers CSS
+  - ajout automatiques de préfixes CSS3 ([Autoprefixer](https://github.com/postcss/autoprefixer) configuré via [Browserslist](https://github.com/ai/browserslist))
   - réordonnement des propriétés (csscomb)
   - réindentation du code (beautify)
-  - minification (csso), avec sourcemaps
+  - minification (csso), avec sourcemaps (en environnement de prod, voir ci-dessous)
 - HTML :
-  - possibilité de réaliser des *include* de fichiers (html-extend)
+  - possibilité de réaliser des *include* de fichiers ([gulp-html-extend](https://github.com/FrankFang/gulp-html-extend/), voir []`src/home.html`](https://github.com/alsacreations/bretzel/blob/master/src/home.html))
 - images :
   - optimisation des images .png, .jpg, .gif, .svg (imagemin)
 - scripts :
   - rassemblements des JS projet et des JS "vendor" dans le même dossier
   - transpilation avec [Babel](https://babeljs.io/) pour profiter des syntaxes EcmaScript récentes
-  - concaténation des fichiers (concat)
-  - minification (uglify)
+  - concaténation des fichiers (concat) en environnement de prod (voir ci-dessous)
+  - minification (uglify) en environnement de prod
 - copie automatique des fichiers `favicon.ico`, `.htaccess` et autres fichiers `.txt` présents à la racine
 - possibilité de créer automatiquement une archive `.zip` de *build* ou de production
 - workflow intelligent : les tâches ne sont exécutées que pour les fichiers modifiés ou ajoutés (HTML, PHP, images, fontes)
@@ -88,7 +88,7 @@ Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` :
 ```
   "dependencies": {
     "jquery": "^3.x", // dépendance npm
-    "knacss": "^4.4.4",
+    "knacss": "7.x",
     "styledown-skins": "drakeh/styledown-skins" // dépendance de type GitHub
   },
 ```
@@ -97,13 +97,13 @@ Vos dépendances JavaScript pourront être listées dans le fichier `gulpfile.js
 ```
 var vendors = [
   paths.vendors + 'jquery/dist/jquery.min.js',
-  paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
   paths.vendors + 'swiper/dist/js/swiper.min.js',
   paths.src + paths.scripts.files,
+  '!' + paths.src + paths.scripts.styleguideFiles, // exclusion des JS spécifiques au styleguide de la liste construite précédemment
 ];
 ```
 
-## editorconfig
+## .editorconfig
 
 Les  règles d'indentation (espace / tabulation) sont configurées via le fichier `.editorconfig` à la racine du projet.
 
@@ -127,10 +127,9 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 
 ## Usage avec KNACSS
 
-- Créez ou modifiez le fichier `_00-config.scss` dans votre dossier `src/assets/css/`
-- N'utilisez **pas** `src/vendor/knacss/scss/_00-config.scss`, car il sera écrasé à chaque mise à jour de KNACSS
-- Choisissez les fichiers KNACSS à importer au sein du fichier `knacss.scss`
-- Votre fichier de travail est `styles.scss` et commencera par : `@import "knacss";`, puis suivront vos styles perso.
+- Modifiez le fichier `_variables.scss` dans votre dossier `src/assets/css/_config` (c'est une copie modifiée de `./node_modules/knacss/sass/_config/_variables.scss`. Ce dernier n'est pas utlisé car il est écrasé à chaque mise à jour de KNACSS)
+- Choisissez les fichiers KNACSS à importer au sein du fichier `src/assets/css/knacss.scss`
+- Votre fichier de travail est `styles.scss` et commencera par l'import des 2 fichiers de configuration de KNACSS `_config/_variables` et `_config/_mixins` puis par `@import "knacss";` (ce dernier ne réimporte pas les 2 premiers _partials ; ils y sont commentés), puis suivront vos styles perso.
 
 ## Documentation
 
@@ -139,6 +138,10 @@ Bretzel utilise `gulp-documentation` basé sur http://documentation.js.org/ pour
 La syntaxe est décrite dans la documentation de documentation https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md
 
 Avec l'éditeur Atom, le package https://atom.io/packages/docblockr est conseillé.
+
+## Changelog
+
+Voir le [Changelog](CHANGELOG.md)
 
 ## Crédits
 

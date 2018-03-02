@@ -84,12 +84,12 @@
 Pas de changelog
 
 
-### v3.0.0 (1er mars 2016)
+## v3.0.0 (1er mars 2016)
 
 - passage de LESS vers Sass
 
 
-### v2.1.2 (28 janvier 2016)
+## v2.1.2 (28 janvier 2016)
 
 - suppression de unCSS et remplacement de `npm run setup` par `npm install` dans la procédure d'installation.
 
@@ -102,12 +102,12 @@ Pas de changelog
 - lanceur de projet via `npm run setup`
 
 
-### v2.0.1 (13 décembre 2015)
+## v2.0.1 (13 décembre 2015)
 
 - ajout de gulp-changed pour ne traiter que les fichiers modifiés ou ajoutés
 
 
-### v2.0.0 (11 décembre 2015)
+## v2.0.0 (11 décembre 2015)
 
 - renommage de "alstart" en "bretzel"
 - refonte complète du workflow (basé à présent sur une tâche de "build" et une tâche de "prod" différentes)
