@@ -13,15 +13,23 @@
 
 
 /**
- * Chargement et initialisation des composants utilisés
+ * Chargement et initialisation des composants utilisés (browserSync et documentation ne sont chargés ci-après que hors env. de production donc en l'absence de l'argument --prod)
  */
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
-    browserSync = require('browser-sync').create(),
     gulpSync = require('gulp-sync')(gulp),
     argv = require('yargs').argv,
-    del = require('del'),
-    documentation = require('gulp-documentation');
+    del = require('del');
+
+/**
+ * Tâche (et packages) de production si ajout de l'argument "--prod" (seulement à la fin ?)
+ */
+var isProduction = argv.prod;
+if (isProduction) {
+  var browserSync = (isProduction) ? null : require('browser-sync').create();
+  var documentation = (isProduction) ? null : require('gulp-documentation');
+    console.log("VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !");
+}
 
 
 /**
@@ -147,14 +155,6 @@ var onError = {
     this.emit('end');
   }
 };
-
-/**
- * Tâche de production si ajout de l'argument "--prod" (seulement à la fin ?)
- */
-var isProduction = argv.prod;
-if (isProduction) {
-  console.log("VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !");
-}
 
 /* ------------------------------------------------
  * Tâches de Build : css, html, php, js, img, fonts

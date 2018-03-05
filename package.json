@@ -3,11 +3,19 @@
   "version": "4.0.0",
   "description": "Base de départ pour des projets HTML / CSS / JS dans un environnement de développement Node.js, Gulp et KNACSS",
   "devDependencies": {
+    "browser-sync": "^2.x",
+    "documentation": "^5.2.x",
+    "gulp-documentation": "^3.2.x",
+    "gulp-zip": "^4.x",
+    "gulp-styledown": "^0.x",
+    "styledown-skins": "drakeh/styledown-skins"
+  },
+  "dependencies": {
+    "jquery": "^3.x",
+    "knacss": "7.x",
     "babel-core": "^6.x",
     "babel-preset-env": "^1.x",
-    "browser-sync": "^2.x",
     "del": "^3.x",
-    "documentation": "^5.2.x",
     "gulp": "^3.x",
     "gulp-autoprefixer": "^4.x",
     "gulp-babel": "^7.x",
@@ -16,7 +24,6 @@
     "gulp-cssbeautify": "^0.x",
     "gulp-csscomb": "^3.x",
     "gulp-csso": "^3.x",
-    "gulp-documentation": "^3.2.x",
     "gulp-html-extend": "^1.x",
     "gulp-if": "^2.x",
     "gulp-imagemin": "^3.x",
@@ -25,17 +32,10 @@
     "gulp-rename": "^1.x",
     "gulp-sass": "^3.x",
     "gulp-sourcemaps": "^2.x",
-    "gulp-styledown": "^0.x",
     "gulp-sync": "^0.x",
     "gulp-uglify": "^3.x",
     "gulp-util": "^3.x",
-    "gulp-zip": "^4.x",
     "yargs": "^9.x"
-  },
-  "dependencies": {
-    "jquery": "^3.x",
-    "knacss": "7.x",
-    "styledown-skins": "drakeh/styledown-skins"
   },
   "repository": {
     "type": "git",
