@@ -219,14 +219,14 @@ gulp.task('js:main', function () {
     .pipe($.if(isProduction, $.uglify()))
     .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
-gulp.task('js:styleguide', function () {
+gulp.task('js:guide', function () {
   return gulp.src(jsStyleguideFiles)
     .pipe($.plumber(onError))
     .pipe($.concat(paths.scripts.destStyleguideFiles))
     .pipe($.uglify())
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
 });
-gulp.task('js', ['js:main', 'js:styleguide']);
+gulp.task('js', ['js:main', 'js:guide']);
 
 // Tâche IMG : optimisation des images
 gulp.task('img', function () {
@@ -330,7 +330,7 @@ gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
 // Tâche PROD : tapez "gulp build --prod"
 
 // Tâche STYLEGUIDE : (tapez "gulp styleguide")
-gulp.task('styleguide', gulpSync.sync(['css', 'guide']));
+gulp.task('styleguide', gulpSync.sync(['css', 'guide', 'js:guide']));
 
 // Tâche ZIP : (tapez "gulp zip" ou "gulp zip --prod")
 gulp.task('zip', gulpSync.sync(['build', 'archive']));
