@@ -26,10 +26,10 @@ var gulp = require('gulp'),
  */
 var isProduction = argv.prod;
 if (isProduction) {
-  var browserSync = (isProduction) ? null : require('browser-sync').create();
-  var documentation = (isProduction) ? null : require('gulp-documentation');
-    console.log("VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !");
+  console.log("VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !");
 }
+var browserSync = (isProduction) ? null : require('browser-sync').create();
+var documentation = (isProduction) ? null : require('gulp-documentation');
 
 
 /**
