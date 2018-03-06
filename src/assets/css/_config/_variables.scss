@@ -143,10 +143,10 @@ $color-inverse  : $gray-800;
 $color-ghost    : transparent;
 $color-muted    : $gray-200;
 
-// (bretzel)
-$brand-primary: #6FA939 !default;;
-// $brand-primary-light : #6FA939 !default;
-// $brand-primary-dark : #6FA939 !default;
+// (modifié pour bretzel)
+$brand-primary: #4F842A !default;;
+// $brand-primary-light : #4F842A !default;
+// $brand-primary-dark : #4F842A !default;
 $brand-secondary: #0B7EB5 !default;;
 // $brand-secondary-light: #0B7EB5 !default;
 // $brand-secondary-dark: #0B7EB5 !default;
@@ -160,7 +160,8 @@ $gray-a11y: #767676;
 $color-base      : $gray-900;
 $background-base : $white;
 
-$link-color            : $gray-800;
+// Links
+$link-color            : $brand-primary;
 $link-color-hover      : darken($link-color, 15%);
 $link-decoration       : none; // et non underline, valeur par défaut de KNACSS. Les liens ayant un parent avec la classe .content sont soulignés par Bretzel.
 $link-decoration-hover : underline;
