@@ -128,9 +128,9 @@ $black    : #000 !default;
 
 $blue-300   : #5BC0DE !default;
 $blue-500   : #0275D8 !default;
-$green-500  : #5CB85C !default;
+$green-500  : #0C8A0C !default;
 $orange-500 : #F0AD4E !default;
-$red-500    : #D9534F !default;
+$red-500    : #CD4A47 !default; // suffisamment contrasté comme couleur de fond avec un texte blanc
 
 // Semantic colors
 $color-brand    : $green-500;
@@ -203,8 +203,8 @@ $table-footer-background    : transparent;
 $variants-list: (
   (primary,    $color-primary,    $white,    none),
   (success,    $color-success,    $white,    none),
-  (info,       $color-info,       $white,    none),
-  (warning,    $color-warning,    $white,    none),
+  (info,       $color-info,       $black,    none), // Texte noir parce qu'un fond bleu ciel suffisamment contrasté avec un texte blanc n'est pas souhaitable
+  (warning,    $color-warning,    $black,    none), // Texte noir parce qu'un fond orange suffisamment contrasté avec un texte blanc n'est plus vraiment orange…
   (danger,     $color-danger,     $white,    none),
   (inverse,    $color-inverse,    $white,    none),
   (ghost,      $color-ghost,      $white,    0 0 0 1px $white inset)
