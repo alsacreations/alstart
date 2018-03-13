@@ -348,6 +348,7 @@ gulp.task('watch', function () {
     } else {
       // sinon on initialise le mode standalone
       browserSyncConf = {
+        /* startPath: "url/index.html", */
         server: {
           baseDir: paths.dest,
         }
