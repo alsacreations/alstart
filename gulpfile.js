@@ -150,7 +150,6 @@ var jsStyleguideFiles = [
  */
 var onError = {
   errorHandler: function (err) {
-    $.util.beep();
     console.log(err);
     this.emit('end');
   }

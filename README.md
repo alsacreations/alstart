@@ -84,15 +84,17 @@ Au choix :
 
 Bretzel gère les dépendances directement via npm ou yarn (pas via Bower).
 
-Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` :
+Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` ou d'utiliser les commandes `npm install --save-dev` :
 
 ```json
   "dependencies": {
-    "jquery": "^3.x", // dépendance npm
+    "jquery": "^3.x",
     "knacss": "7.x",
-    "styledown-skins": "drakeh/styledown-skins" // dépendance de type GitHub
+    "styledown-skins": "drakeh/styledown-skins"
   },
 ```
+
+Dans cet exemple jQuery est une dépendance npm et styledown-skins de type GitHub.
 
 Vos dépendances JavaScript pourront être listées dans le fichier `gulpfile.js` sous cette forme pour être concaténées aux autres :
 

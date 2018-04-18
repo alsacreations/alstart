@@ -34,7 +34,6 @@
     "gulp-sourcemaps": "^2.x",
     "gulp-sync": "^0.x",
     "gulp-uglify": "^3.x",
-    "gulp-util": "^3.x",
     "yargs": "^9.x"
   },
   "repository": {
