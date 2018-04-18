@@ -6,7 +6,6 @@
 
 **Bretzel** est configuré pour fonctionner dans un environnement axé sur les outils Gulp, Sass et [KNACSS](http://knacss.com) (v7). Des connaissances minimales de ces outils sont un pré-requis.
 
-
 ## Fonctionnalités
 
 - CSS / Sass :
@@ -16,7 +15,7 @@
   - réindentation du code (beautify)
   - minification (csso), avec sourcemaps (en environnement de prod, voir ci-dessous)
 - HTML :
-  - possibilité de réaliser des *include* de fichiers ([gulp-html-extend](https://github.com/FrankFang/gulp-html-extend/), voir []`src/home.html`](https://github.com/alsacreations/bretzel/blob/master/src/home.html))
+  - possibilité de réaliser des *include* de fichiers avec [gulp-html-extend](https://github.com/FrankFang/gulp-html-extend/), voir `src/home.html`
 - images :
   - optimisation des images .png, .jpg, .gif, .svg (imagemin)
 - scripts :
@@ -35,12 +34,12 @@
 - fichier `.editorconfig` permettant d'assurer une cohérence dans les conventions d'indentations
 - fichier `.sass-lint.yml` de configuration pour outils de Linter `.scss`
 
-
-## Par où commencer ?
+## Par où commencer
 
 ### Choisissez un distributeur de Bretzels
 
 Récupérez ce repo :
+
 - avec `git clone https://github.com/alsacreations/bretzel`
 - ou avec `npm install alsacreations/bretzel`
 - ou avec le plugin npm [bretzel-start](https://github.com/alsacreations/bretzel-start) ❤
@@ -49,14 +48,16 @@ Récupérez ce repo :
 ### Prenez une Bretzel
 
 Au sein de votre dossier de projet :
+
 - lancez `npm install` ou `yarn` pour installer les plugins et dépendances nécessaires (notamment KNACSS et jQuery),
 - lancez une première fois la tâche `gulp` pour générer le dossier de destination `/dist`.
 
 En production, `npm install --production` n'installera que les dépendances requises et non les dépendances de développement local (`devDependencies`).
 
-### Mangez votre Bretzel !
+### Mangez votre Bretzel
 
 Au choix :
+
 - compilez vos fichiers avec `gulp` pour les tâches de base,
 - surveillez les changements de fichiers dans votre projet avec `gulp watch`,
 - créez le guide de styles avec  `gulp styleguide`.
@@ -79,13 +80,13 @@ Au choix :
 - `gulp clean` : suppression des fichiers inutiles en production
 - `gulp zip` et `gulp zip --prod` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2017-11-22-13h37.zip` ou `projectName-prod-2017-11-22-13h37.zip`
 
-
 ## Gérer les dépendances
 
 Bretzel gère les dépendances directement via npm ou yarn (pas via Bower).
 
 Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` :
-```
+
+```json
   "dependencies": {
     "jquery": "^3.x", // dépendance npm
     "knacss": "7.x",
@@ -94,7 +95,8 @@ Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` :
 ```
 
 Vos dépendances JavaScript pourront être listées dans le fichier `gulpfile.js` sous cette forme pour être concaténées aux autres :
-```
+
+```javascript
 var vendors = [
   paths.vendors + 'jquery/dist/jquery.min.js',
   paths.vendors + 'swiper/dist/js/swiper.min.js',
@@ -109,7 +111,6 @@ Les  règles d'indentation (espace / tabulation) sont configurées via le fichie
 
 Pour qu'elles s'appliquent, il suffit généralement de télécharger le plugin "editorconfig" dans votre éditeur.
 
-
 ## CSS / SCSS Lint
 
 Les fichiers Sass (`.scss`) de Bretzel sont rendus corrigés à l'aide d'un "linter" (outil de correction  et bonnes pratiques) dont les règles sont configurées via le fichier `.sass-lint.yml` à la racine du projet.
@@ -117,7 +118,6 @@ Les fichiers Sass (`.scss`) de Bretzel sont rendus corrigés à l'aide d'un "lin
 L'action de correction se fera à l'aide de plugins au sein de votre éditeur HTML, ou bien d'une tâche Gulp. Par exemple, sur l'éditeur Atom, les plugins nécessaires sont [Atom Linter](https://atom.io/packages/linter) et  [Atom Sass Lint](https://atom.io/packages/linter-sass-lint).
 
 Note : les  _warning_ subsistants dans le *linter*, sont connus et éventuellement à corriger selon les projets au cas par cas.
-
 
 ## Architecture Bretzel
 
@@ -133,11 +133,11 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 
 ## Documentation
 
-Bretzel utilise `gulp-documentation` basé sur http://documentation.js.org/ pour pouvoir générer une documentation au format HTML ou Markdown selon les blocs de commentaires JSDoc placés dans les fichiers JavaScript.
+Bretzel utilise `gulp-documentation` basé sur `http://documentation.js.org/` pour pouvoir générer une documentation au format HTML ou Markdown selon les blocs de commentaires JSDoc placés dans les fichiers JavaScript.
 
-La syntaxe est décrite dans la documentation de documentation https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md
+La syntaxe est décrite dans la documentation de documentation `https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md`
 
-Avec l'éditeur Atom, le package https://atom.io/packages/docblockr est conseillé.
+Avec l'éditeur Atom, le package `https://atom.io/packages/docblockr` est conseillé.
 
 ## Changelog
 
@@ -147,4 +147,4 @@ Voir le [Changelog](CHANGELOG.md)
 
 Projet lancé par [Matthieu Bousendorfer](https://github.com/edenpulse), et tenu à jour par Alsacréations.
 
-GitIgnore Mac OSX Crap : https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+GitIgnore Mac OSX Crap : `https://github.com/github/gitignore/blob/master/Global/OSX.gitignore`
