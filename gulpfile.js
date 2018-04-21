@@ -132,7 +132,7 @@ var paths = {
  * Ressources JavaScript utilisées par ce projet (vendors + scripts JS spécifiques)
  */
  var jsFiles = [
-   paths.vendors + 'jquery/dist/jquery.min.js',
+   // paths.vendors + 'jquery/dist/jquery.min.js',
    // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
    // paths.vendors + 'swiper/dist/js/swiper.min.js',
    paths.src + paths.scripts.files,
