@@ -1,5 +1,5 @@
 /*!
-* www.KNACSS.com v7.0.3 (march, 1 2018) @author: Alsacreations, Raphael Goetter
+* www.KNACSS.com v7.0.5 (may, 25 2018) @author: Alsacreations, Raphael Goetter
 * Licence WTFPL http://www.wtfpl.net/
 */
 
@@ -42,12 +42,12 @@
 @import "./node_modules/knacss/sass/_library/_base.scss"; // basic styles
 @import "./node_modules/knacss/sass/_library/_print.scss"; // print quick reset
 @import "./node_modules/knacss/sass/_library/_layout.scss"; // alignment, modules, positionning
-@import "./node_modules/knacss/sass/_library/_utilities.scss"; // width and spacers helpers
+@import "./node_modules/knacss/sass/_library/_utilities.scss"; // width and spacer helpers
 @import "./node_modules/knacss/sass/_library/_responsive.scss"; // Responsive Web Design helpers
 // @import "_library/_wordpress.scss"; // WordPress reset and basic styles
 
 // New Grid System by default (Grid Layout). If you prefer old "Flexbox" Grid System, replace file with "_library/grillade-flex.scss"
-// Note that none of these file is prefixed by an underscore, in order to compile them.
+// Note that none of these files are prefixed by an underscore, in order to compile them.
 // @import "./node_modules/knacss/sass/_library/grillade-grid.scss"; // grid system with Grid Layout - Commented in bretzel
 
 // Components

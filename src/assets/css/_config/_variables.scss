@@ -5,7 +5,7 @@
 // ----------------
 
 // Warning: you should use your own values, regardless of the devices
-// Best practise is Mobile First: (min-width: $breakpoint)
+// Best practice is Mobile First: (min-width: $breakpoint)
 $tiny        : 480px !default; // or 'em' if you prefer, of course
 $small       : 576px !default;
 $medium      : 768px !default;
@@ -182,12 +182,17 @@ $quote-color     : $gray-200;
 $arrow-color     : $black;
 
 // Components: checkboxes, radios, switches
-$checkbox-color         : $gray-800;
-$checkbox-size          : 2rem;
-$checkbox-border-radius : 4px;
-$switch-color           : $gray-800;
-$switch-size            : 2rem;
-$switch-border-radius   : 3em;
+// Components: checkboxes, radios, switches
+$checkbox-color: $white;
+$checkbox-background: $gray-800;
+$checkbox-size: 2rem;
+$checkbox-border-radius: 4px;
+$radio-color: $gray-800;
+$radio-background: $white;
+$switch-color: $white;
+$switch-background: $gray-800;
+$switch-size: 2rem;
+$switch-border-radius: 3em;
 
 // Component: tables
 $table-border               : $gray-500;
