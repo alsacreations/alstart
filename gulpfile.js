@@ -143,6 +143,10 @@ var jsStyleguideFiles = [
   paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
   paths.src + paths.scripts.styleguideFiles,
 ];
+// Copie du vendor jQuery (hors des scripts du projet et du styleguide). Ne sera pas concaténé même en env. de prod
+var jqueryFile = [
+  paths.vendors + 'jquery/dist/jquery.min.js',
+];
 
 
 /**
@@ -209,6 +213,7 @@ gulp.task('php', function () {
 // Tâches JS : copie des fichiers JS et vendor + babel (+ concat et uglify dans global.min.js si prod)
 //             pour le projet puis ce qui est spécifique au Styleguide (évite d'inclure
 //             ces derniers dans global.min.js)
+//             puis le vendor jQuery
 gulp.task('js:main', function () {
   return gulp.src(jsFiles)
     .pipe($.plumber(onError))
@@ -225,7 +230,14 @@ gulp.task('js:guide', function () {
     .pipe($.uglify())
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
 });
-gulp.task('js', ['js:main', 'js:guide']);
+// Copie du vendor jQuery 3.x
+gulp.task('js:jquery', function () {
+  return gulp.src(jqueryFile)
+    .pipe($.plumber(onError))
+    // .pipe($.uglify()) déjà minifié
+    .pipe(gulp.dest(paths.dest + paths.scripts.root))
+});
+gulp.task('js', ['js:main', 'js:guide', 'js:jquery']);
 
 // Tâche IMG : optimisation des images
 gulp.task('img', function () {
@@ -329,7 +341,7 @@ gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
 // Tâche PROD : tapez "gulp build --prod"
 
 // Tâche STYLEGUIDE : (tapez "gulp styleguide")
-gulp.task('styleguide', gulpSync.sync(['css', 'guide', 'js:guide']));
+gulp.task('styleguide', gulpSync.sync(['css', 'guide', 'js:guide', 'js:jquery']));
 
 // Tâche ZIP : (tapez "gulp zip" ou "gulp zip --prod")
 gulp.task('zip', gulpSync.sync(['build', 'archive']));

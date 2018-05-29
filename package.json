@@ -1,6 +1,6 @@
 {
   "name": "bretzel",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Base de départ pour des projets HTML / CSS / JS dans un environnement de développement Node.js, Gulp et KNACSS",
   "devDependencies": {
     "@philippevay/gulp-styledown": "latest",
