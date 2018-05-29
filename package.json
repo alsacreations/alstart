@@ -15,16 +15,16 @@
     "babel-preset-env": "^1.x",
     "del": "^3.x",
     "gulp": "^3.x",
-    "gulp-autoprefixer": "^4.x",
+    "gulp-autoprefixer": "^5.x",
     "gulp-babel": "^7.x",
     "gulp-changed": "^3.x",
     "gulp-concat": "^2.x",
-    "gulp-cssbeautify": "^0.x",
+    "gulp-cssbeautify": "^1.x",
     "gulp-csscomb": "^3.x",
     "gulp-csso": "^3.x",
     "gulp-html-extend": "^1.x",
     "gulp-if": "^2.x",
-    "gulp-imagemin": "^3.x",
+    "gulp-imagemin": "^4.x",
     "gulp-load-plugins": "^1.x",
     "gulp-plumber": "^1.x",
     "gulp-rename": "^1.x",
@@ -34,7 +34,7 @@
     "gulp-uglify": "^3.x",
     "jquery": "^3.x",
     "knacss": "^7.0.5",
-    "yargs": "^9.x"
+    "yargs": "^11.x"
   },
   "repository": {
     "type": "git",
