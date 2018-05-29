@@ -3,16 +3,14 @@
   "version": "4.0.0",
   "description": "Base de départ pour des projets HTML / CSS / JS dans un environnement de développement Node.js, Gulp et KNACSS",
   "devDependencies": {
+    "@philippevay/gulp-styledown": "latest",
     "browser-sync": "^2.x",
     "documentation": "^5.2.x",
     "gulp-documentation": "^3.2.x",
     "gulp-zip": "^4.x",
-    "gulp-styledown": "^0.x",
-    "styledown-skins": "drakeh/styledown-skins"
+    "styledown-skins": "github:drakeh/styledown-skins"
   },
   "dependencies": {
-    "jquery": "^3.x",
-    "knacss": "7.x",
     "babel-core": "^6.x",
     "babel-preset-env": "^1.x",
     "del": "^3.x",
@@ -34,6 +32,8 @@
     "gulp-sourcemaps": "^2.x",
     "gulp-sync": "^0.x",
     "gulp-uglify": "^3.x",
+    "jquery": "^3.x",
+    "knacss": "^7.0.5",
     "yargs": "^9.x"
   },
   "repository": {

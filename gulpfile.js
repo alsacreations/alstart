@@ -260,7 +260,7 @@ gulp.task('misc', function () {
 gulp.task('guide', function () {
   return gulp.src(paths.src + paths.styleguide.files)
     .pipe($.plumber(onError))
-    .pipe($.styledown({
+    .pipe($.philippevay.styledown({
       config: paths.src + paths.styleguide.config,
       template:
         [
