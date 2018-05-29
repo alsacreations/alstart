@@ -28,7 +28,7 @@
     "gulp-load-plugins": "^1.x",
     "gulp-plumber": "^1.x",
     "gulp-rename": "^1.x",
-    "gulp-sass": "^3.x",
+    "gulp-sass": "^4.x",
     "gulp-sourcemaps": "^2.x",
     "gulp-sync": "^0.x",
     "gulp-uglify": "^3.x",
