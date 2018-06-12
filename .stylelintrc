@@ -1,0 +1,146 @@
+{
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-standard",
+    "stylelint-config-recommended-scss"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "order/order": [
+      "custom-properties",
+      "declarations",
+			"at-rules",
+			"rules"
+    ],
+    "order/properties-order": [
+			"content",
+			"counter-reset", "counter-style",
+			"quotes",
+
+			"box-sizing",
+			"all",
+			"direction",
+			"visibility",
+			"overflow", "overflow-x", "overflow-y",
+
+			"display",
+			"grid",
+			"grid-auto-flow",
+			"grid-template",
+      {
+	      "order": "flexible",
+    		"properties": [
+          "grid-template-columns", "grid-template-rows",
+    			"grid-auto-columns", "grid-auto-rows",
+    			"grid-template-areas",
+        ],
+      },
+			"grid-gap", "grid-row-gap", "grid-column-gap",
+			"grid-area", "grid-column", "grid-column-start", "grid-column-end", "grid-row", "grid-row-start", "grid-row-end",
+			"flex-flow", "flex-direction", "flex-wrap",
+			"justify-content", "align-content", "align-items",
+		  "align-self",
+			"flex", "flex-grow", "flex-shrink", "flex-basis",
+			"gap",
+			"order",
+			"justify-items", "justify-self",
+			"columns",
+      {
+        "order": "flexible",
+        "properties": [
+          "column-span",
+          "column-width",
+          "column-count",
+          "column-fill",
+          "column-gap",
+          "column-rule",
+          "column-rule-color",
+          "column-rule-style",
+          "column-rule-width",
+        ],
+    	},
+			"table-layout", "border-collapse", "empty-cells", "border-spacing", "caption-side",
+
+			"position",
+      {
+        "order": "flexible",
+        "properties": [
+          "z-index",
+          "top",
+          "bottom",
+          "left",
+          "right",
+        ],
+    	},
+			"float", "clear",
+			"vertical-align",
+
+			"width", "min-width", "max-width",
+			"height", "min-height", "max-height",
+			"border",
+			"border-width", "border-top-width", "border-right-width", "border-bottom-width", "border-left-width",
+			"border-style", "border-top-style", "border-right-style", "border-bottom-style", "border-left-style",
+			"border-color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color",
+			"margin", "margin-top", "margin-bottom", "margin-left", "margin-right",
+			"padding", "padding-top", "padding-bottom", "padding-left", "padding-right",
+
+			"line-height",
+			"text-align",
+			"white-space",
+			"text-decoration",
+			"text-indent",
+			"word-spacing",
+			"letter-spacing",
+
+			"font",
+			"font-size", "font-family", "font-weight", "font-style", "font-variant",
+
+			"list-style",
+			"list-style-type", "list-style-image", "list-style-position",
+
+			"color",
+			"background", "background-color", "background-image", "background-attachment", "background-size", "background-position", "background-clip", "background-origin", "background-repeat",
+
+			"border-image",
+      {
+	      "order": "flexible",
+    		"properties": [
+    			"border-image-source",
+    			"border-image-slice",
+    			"border-image-width",
+    			"border-image-outset",
+    			"border-image-repeat",
+        ],
+      },
+
+			"border-radius",
+			"border-top-left-radius",
+			"border-top-right-radius",
+			"border-bottom-right-radius",
+			"border-bottom-left-radius",
+
+			"transform", "transform-origin",
+
+			"transition",
+      {
+	      "order": "flexible",
+    		"properties": [
+          "transition-delay",
+          "transition-duration",
+          "transition-property",
+          "transition-timing",
+    		],
+    	},
+
+			"cursor",
+
+			"page-break-before", "page-break-after", "page-break-inside",
+			"orphans", "widows",
+
+			"outline", "outline-width", "outline-style", "outline-color"
+		]
+  }
+}

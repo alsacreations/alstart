@@ -263,9 +263,9 @@ gulp.task('misc', function () {
 });
 
 
-/* ------------------------------------------------
- * Tâches autonomes : styleguide, zip, clean, doc
- * ------------------------------------------------
+/* ---------------------------------------------------------
+ * Tâches autonomes : styleguide, zip, clean, doc, lint-scss
+ * ---------------------------------------------------------
  */
 
 // Tâche STYLEGUIDE : création automatique d'un guide des styles
@@ -328,6 +328,25 @@ gulp.task('clean', function () {
     '!' + paths.dest + paths.scripts.root + paths.scripts.mainFile, // sauf les JS concaténés finaux
     '!' + paths.dest + paths.styles.root + 'styles.min.css', // sauf les CSS concaténés finaux
   ]);
+});
+
+// Tâche lint-scss : passe (gulp-)stylelint sur les sources Scss
+gulp.task('lint-scss', function lintScss() {
+  return gulp.src('src/assets/css/*.scss')
+    .pipe($.stylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
+});
+// Tâche lint-css : passe (gulp-)stylelint sur les CSS compilées (WIP)
+gulp.task('lint-css', function lintCss() {
+  return gulp.src('dist/assets/css/*.css')
+    .pipe($.stylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
 });
 
 /* ----------------------------------
