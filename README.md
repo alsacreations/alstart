@@ -131,7 +131,7 @@ Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empê
 
 - Modifiez le fichier `_variables.scss` dans votre dossier `src/assets/css/_config` (c'est une copie modifiée de `./node_modules/knacss/sass/_config/_variables.scss`. Ce dernier n'est pas utlisé car il est écrasé à chaque mise à jour de KNACSS)
 - Choisissez les fichiers KNACSS à importer au sein du fichier `src/assets/css/knacss.scss`
-- Votre fichier de travail est `styles.scss` et commencera par l'import des 2 fichiers de configuration de KNACSS `_config/_variables` et `_config/_mixins` puis par `@import "knacss";` (ce dernier ne réimporte pas les 2 premiers _partials ; ils y sont commentés), puis suivront vos styles perso.
+- Votre fichier de travail est `styles.scss` et commencera par l'import des 2 fichiers de configuration de KNACSS `_config/_variables` et `_config/_mixins` puis par `@import "knacss";` (ce dernier ne réimporte pas les 2 premiers _partials ; ils y sont commentés), puis suivront vos styles personnalisés.
 
 ## Documentation
 
@@ -140,6 +140,34 @@ Bretzel utilise `gulp-documentation` basé sur `http://documentation.js.org/` po
 La syntaxe est décrite dans la documentation de documentation `https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md`
 
 Avec l'éditeur Atom, le package `https://atom.io/packages/docblockr` est conseillé.
+
+## Publication sur AWS S3
+
+Pour publier les fichiers compilés vers Amazon Web Services S3 (Simple Storage Service) par exemple pour héberger un site statique, utiliser le module [gulp-awspublish](https://www.npmjs.com/package/gulp-awspublish).
+
+Installation :
+```
+npm install --save-dev gulp-awspublish
+```
+
+Les droits doivent être configurés côté AWS (via IAM) pour donner les capacités d'écriture à un utilisateur doté d'une _access key_ et d'une _secret key_.
+
+Création de la configuration dans le fichier `aws-credentials.json`
+
+```json
+{
+  "params": {
+    "Bucket": "<nom_du_bucket_S3>"
+  },
+  "accessKeyId": "<aws_access_key>",
+  "secretAccessKey": "<aws_secret_key>",
+  "region":"<code_region>"
+}
+```
+
+Le code région est celui donné par la région hébergeant le bucket S3. Par exemple `eu-central-1` pour Francfort.
+
+Lancement de la synchronisation : `gulp s3` (va utiliser tous les fichiers dans `/dist/` par défaut). Il est possible de définir dans quel sous-dossier du bucket envoyer les fichiers, et d'ignorer certains types. Pour ceci modifier `gulpfile.js`.
 
 ## Changelog
 
