@@ -330,6 +330,60 @@ gulp.task('clean', function () {
   ]);
 });
 
+// Tâche d'upload vers AWS S3 (facultatif)
+gulp.task('s3', function() {
+
+  // Fichier contenant les identifiants d'accès
+  const awsCredentialsFile = 'aws-credentials.json';
+
+  // Dossier du bucket dans lequel synchroniser
+  const s3_dir = '';
+
+  var fs = require('fs');
+  var awspublish;
+
+  if(!fs.existsSync(awsCredentialsFile)) {
+    console.error('Le fichier '+awsCredentialsFile+' est absent. Consultez la documentation pour le créer.');
+    return false;
+  }
+  try {
+    awspublish = require('gulp-awspublish');
+  } catch (e) {
+    console.error('Le module gulp-awspublish est absent. Consultez la documentation pour l\'installer :');
+    console.error('npm install --save-dev gulp-awspublish');
+    throw e;
+    return false;
+  }
+
+  var credentials = JSON.parse(fs.readFileSync(awsCredentialsFile, 'utf8'));
+  var publisher = awspublish.create(credentials);
+
+  // Custom headers
+  var headers = {
+    // 'Cache-Control': 'max-age=315360000, no-transform, public'
+    // ...
+  };
+
+  return gulp.src(paths.dest+'**')
+    // gzip, en-t$ete Content-Encoding et extension .gz
+    // .pipe(awspublish.gzip({ ext: '.gz' }))
+
+    // publisher ajoute les en-têtes Content-Length, Content-Type et headers (déclaré avant)
+    // Si rien d'autre n'est indiqué, x-amz-acl est à public-read par défaut
+    .pipe(publisher.publish(headers))
+
+    // Cache pour accélérer les syncs successifs
+    .pipe(publisher.cache())
+
+    // Sync (envoie, et efface les fichiers distants si nécessaire)
+    .pipe(publisher.sync(s3_dir))
+    // Variante : On ignore *.pdf pour ne pas les effacer du bucket lors de la sync
+    // .pipe(publisher.sync(s3_dir, [/\.pdf$/]))
+
+    // Informations à la console
+    .pipe(awspublish.reporter());
+});
+
 /* ----------------------------------
  * Tâches principales : récapitulatif
  * ----------------------------------
