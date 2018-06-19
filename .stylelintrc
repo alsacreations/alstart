@@ -2,7 +2,8 @@
   "extends": [
     "stylelint-config-recommended",
     "stylelint-config-standard",
-    "stylelint-config-recommended-scss"
+    "stylelint-config-recommended-scss",
+    "stylelint-config-strict-scss"
   ],
   "plugins": [
     "stylelint-order",
@@ -175,6 +176,7 @@
 			"outline", "outline-width", "outline-style", "outline-color"
 		],
     "property-no-vendor-prefix": true,
+    "scss/media-feature-value-dollar-variable": "always",
     "selector-attribute-quotes": "always",
     "selector-list-comma-newline-after": "always",
     "selector-list-comma-newline-before": "never-multi-line",
