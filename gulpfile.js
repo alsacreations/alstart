@@ -333,7 +333,7 @@ gulp.task('clean', function () {
 // Tâche lint-scss : passe (gulp-)stylelint sur les sources Scss
 gulp.task('lint-scss', function lintScss() {
   const sassFiles = 'src/assets/css/**/*.scss';
-  console.log(sassFiles);
+  console.log('LINT Scss: ', sassFiles);
   return gulp.src(sassFiles)
     .pipe($.stylelint({
       // fix: true,
@@ -344,8 +344,11 @@ gulp.task('lint-scss', function lintScss() {
 });
 // Tâche lint-css : passe (gulp-)stylelint sur les CSS compilées (WIP)
 gulp.task('lint-css', function lintCss() {
-  return gulp.src('dist/assets/css/*.css')
+  const cssFiles = 'dist/assets/css/**/*.css';
+  console.log('LINT CSS: ', cssFiles);
+  return gulp.src(cssFiles)
     .pipe($.stylelint({
+      // fix: true,
       reporters: [
         {formatter: 'string', console: true}
       ]
