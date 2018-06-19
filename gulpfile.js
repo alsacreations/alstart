@@ -332,8 +332,11 @@ gulp.task('clean', function () {
 
 // Tâche lint-scss : passe (gulp-)stylelint sur les sources Scss
 gulp.task('lint-scss', function lintScss() {
-  return gulp.src('src/assets/css/*.scss')
+  const sassFiles = 'src/assets/css/**/*.scss';
+  console.log(sassFiles);
+  return gulp.src(sassFiles)
     .pipe($.stylelint({
+      // fix: true,
       reporters: [
         {formatter: 'string', console: true}
       ]
