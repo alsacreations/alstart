@@ -12,6 +12,7 @@
   "rules": {
     "at-rule-empty-line-before": null,
     "at-rule-name-space-after": "always",
+    "at-rule-no-unknown": null,
     "at-rule-no-vendor-prefix": true,
     "at-rule-semicolon-space-before": "never",
     "block-closing-brace-empty-line-before": "never",
@@ -178,7 +179,12 @@
       "outline", "outline-width", "outline-style", "outline-color"
     ],
     "property-no-vendor-prefix": true,
+    "scss/at-function-named-arguments": null,
+    "scss/at-mixin-named-arguments": null,
+    "scss/at-rule-no-unknown": true,
     "scss/media-feature-value-dollar-variable": "always",
+    "scss/no-duplicate-dollar-variables": null,
+    "scss/selector-no-redundant-nesting-selector": null,
     "selector-attribute-quotes": "always",
     "selector-list-comma-newline-after": "always",
     "selector-list-comma-newline-before": "never-multi-line",
