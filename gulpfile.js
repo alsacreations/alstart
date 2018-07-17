@@ -427,7 +427,7 @@ gulp.task('watch', function () {
   gulp.watch([paths.styles.sass.files], {cwd: paths.src}, ['css', browserSync.reload]);
   gulp.watch([paths.html.allFiles, paths.php], {cwd: paths.src}, ['html', 'php', browserSync.reload]);
   gulp.watch([paths.scripts.files], {cwd: paths.src}, ['js', browserSync.reload]);
-  gulp.watch([paths.styleguide.files], {cwd: paths.src} ['guide', browserSync.reload]);
+  gulp.watch([paths.styleguide.files], {cwd: paths.src}, ['guide', browserSync.reload]);
 });
 
 // Tâche par défaut
