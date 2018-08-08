@@ -41,7 +41,6 @@
 Récupérez ce repo :
 
 - avec `git clone https://github.com/alsacreations/bretzel`
-- ou avec `npm install alsacreations/bretzel`
 - ou avec le plugin npm [bretzel-start](https://github.com/alsacreations/bretzel-start) ❤
 - ou [en enregistrant le .zip](https://github.com/alsacreations/bretzel/archive/master.zip)
 
