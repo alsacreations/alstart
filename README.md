@@ -38,7 +38,7 @@
 
 ### Choisissez un distributeur de Bretzels
 
-Récupérez ce repo :
+Récupérez ce repo, soit :
 
 - avec `git clone https://github.com/alsacreations/bretzel`
 - ou avec le plugin npm [bretzel-start](https://github.com/alsacreations/bretzel-start) ❤
@@ -46,38 +46,36 @@ Récupérez ce repo :
 
 ### Prenez une Bretzel
 
-Au sein de votre dossier de projet :
+À la racine de votre dossier de projet :
 
-- lancez `npm install` ou `yarn` pour installer les plugins et dépendances nécessaires (notamment KNACSS et jQuery),
+- lancez `npm install` ou `yarn` pour installer automatiquement les plugins et dépendances nécessaires qui sont listées dans `package.json`,
+- installez gulp et gulp-cli en global avec `npm i -g gulp gulp-cli`,
 - lancez une première fois la tâche `gulp` pour générer le dossier de destination `/dist`.
 
-En production, `npm install --production` n'installera que les dépendances requises et non les dépendances de développement local (`devDependencies`).
+Note : en production, `npm install --production` n'installera que les dépendances requises et non les dépendances de développement local (`devDependencies`).
 
 ### Mangez votre Bretzel
 
-Au choix :
-
-- compilez vos fichiers avec `gulp` pour les tâches de base,
-- surveillez les changements de fichiers dans votre projet avec `gulp watch`,
-- créez le guide de styles avec  `gulp styleguide`.
+Compilez vos fichiers avec `gulp` pour les tâches de base, ou surveillez les fichiers dans votre projet avec `gulp watch` pour relancer les tâches de base lorsqu'ils sont modifiés. Voir ci-après pour les tâches détaillées.
 
 ## Tâches Gulp
 
 ### Tâches principales
 
-- **`gulp`** : tous les fichiers de `/src` sont compilés dans `/dist` et ne sont ni minifiés ni concaténés. Le client peut modifier, améliorer et mettre en prod lui-même. (`gulp` est alias de `gulp build`)
-- **`gulp --prod`** : tous les fichiers de `/src` sont compilés dans `/dist` et sont - en plus - concaténés, minifiés, optimisés. Le client utilise tel quel ou doit recompiler lui-même.
+- **`gulp`** ou `gulp build` : tous les fichiers de `/src` sont compilés dans `/dist` mais ne sont ni minifiés ni concaténés. Le destinataire de ces fichiers peut modifier, améliorer et mettre en production lui-même.
+- **`gulp --prod`** : tous les fichiers de `/src` sont compilés dans `/dist` et sont en plus concaténés, minifiés, optimisés. Le destinataire de ces fichiers les utilise tel quel ou peut recompiler lui-même.
 - `gulp watch` : surveille styles, html, php (facultatif) et scripts.
 
 ### Tâches individuelles
 
 - `gulp css` : compile uniquement les fichiers Sass
-- `gulp js`, `gulp html`, `gulp php`, `gulp img`, `gulp fonts` : toi même tu sais
+- `gulp js`, `gulp html`, `gulp php`, `gulp img`, `gulp fonts` : _toi même tu sais_
 - `gulp styleguide` : création d'un guide de styles
 - `gulp doc-md` : génère une documentation des sources JavaScript vers Markdown
 - `gulp doc-html` : génère une documentation des sources JavaScript vers HTML
 - `gulp clean` : suppression des fichiers inutiles en production
-- `gulp zip` et `gulp zip --prod` : tâche `build` ou `prod` puis création d'une archive zip. Ex. `projectName-build-2017-11-22-13h37.zip` ou `projectName-prod-2017-11-22-13h37.zip`
+- `gulp zip` et `gulp zip --prod` : crée une archive compressée et datée du projet en exécutant `build` ou `prod` puis `archive`. Par exemple `projectName-build-2019-01-21-13h37.zip` ou `projectName-prod-2019-01-21-13h37.zip`
+- `gulp s3` : publie sur Amazon Web Services (AWS) S3, voir détails plus loin
 
 ## Gérer les dépendances
 

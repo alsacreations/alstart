@@ -17,7 +17,6 @@
  */
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
-    gulpSync = require('gulp-sync')(gulp),
     argv = require('yargs').argv,
     del = require('del');
 
@@ -46,7 +45,7 @@ var project = {
       status: true, // utilisation du plugin browserSync lors du Watch ?
       proxyMode: false, // utilisation du plugin browserSync en mode proxy (si false en mode standalone)
     },
-    babel: false // utilisation de Babel pour JavaScript
+    babel: false // utilisation de Babel pour transpiler JavaScript
   },
   configuration: { // configuration des différents composants de ce projet
     // Browserslist : chaîne des navigateurs supportés, paramètrage pour Autoprefixer (annoncé : IE11+, last Chr/Fx/Edge/Opera et iOS 9+, Android 5+ ; ici c'est plus large)
@@ -166,7 +165,7 @@ var onError = {
 
 // Tâche CSS : Sass + Autoprefixer + CSScomb + beautify + minify (si prod)
 // (1/2) Pour LA CSS du projet
-gulp.task('css:main', function () {
+gulp.task('css:main', () => {
   return gulp.src(paths.src + paths.styles.sass.mainFile)
     .pipe($.plumber(onError))
     .pipe($.sourcemaps.init())
@@ -184,7 +183,7 @@ gulp.task('css:main', function () {
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
 // (2/2) Styles spécifiques au styleguide qui n'ont pas à figurer dans les pages du site (on se dispense de sourcemap ou de minification ici…)
-gulp.task('css:guide', function () {
+gulp.task('css:guide', () => {
   return gulp.src(paths.src + paths.styles.sass.styleguideFile)
     .pipe($.plumber(onError))
     .pipe($.sass())
@@ -193,19 +192,19 @@ gulp.task('css:guide', function () {
     .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
-gulp.task('css', ['css:main', 'css:guide']);
+gulp.task('css', gulp.series('css:main', 'css:guide'));
 
 
 // Tâche HTML : includes HTML
-gulp.task('html', function () {
+gulp.task('html', () => {
   return gulp.src(paths.src + paths.html.allFiles)
     .pipe($.plumber(onError))
     .pipe($.htmlExtend(project.configuration.htmlExtend))
     .pipe(gulp.dest(paths.dest));
 });
 
-// Tâche PHP : simple copie des fichiers PHP
-gulp.task('php', function () {
+// Tâche PHP : simple copie des fichiers PHP (s'il y en a)
+gulp.task('php', () => {
   return gulp.src(paths.src + paths.php)
     .pipe(gulp.dest(paths.dest));
 });
@@ -214,7 +213,7 @@ gulp.task('php', function () {
 //             pour le projet puis ce qui est spécifique au Styleguide (évite d'inclure
 //             ces derniers dans global.min.js)
 //             puis le vendor jQuery
-gulp.task('js:main', function () {
+gulp.task('js:main', () => {
   return gulp.src(jsFiles)
     .pipe($.plumber(onError))
     .pipe($.if(project.plugins.babel,$.babel({presets:['env']})))
@@ -223,7 +222,7 @@ gulp.task('js:main', function () {
     .pipe($.if(isProduction, $.uglify()))
     .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
-gulp.task('js:guide', function () {
+gulp.task('js:guide', () => {
   return gulp.src(jsStyleguideFiles)
     .pipe($.plumber(onError))
     .pipe($.concat(paths.scripts.destStyleguideFiles))
@@ -231,16 +230,16 @@ gulp.task('js:guide', function () {
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
 });
 // Copie du vendor jQuery 3.x
-gulp.task('js:jquery', function () {
+gulp.task('js:jquery', () => {
   return gulp.src(jqueryFile)
     .pipe($.plumber(onError))
     // .pipe($.uglify()) déjà minifié
     .pipe(gulp.dest(paths.dest + paths.scripts.root))
 });
-gulp.task('js', ['js:main', 'js:guide', 'js:jquery']);
+gulp.task('js', gulp.series('js:main', 'js:guide', 'js:jquery'));
 
 // Tâche IMG : optimisation des images
-gulp.task('img', function () {
+gulp.task('img', () => {
   return gulp.src(paths.src + paths.images)
     .pipe($.changed(paths.dest + paths.assets))
     .pipe($.imagemin(project.configuration.imagemin))
@@ -248,14 +247,14 @@ gulp.task('img', function () {
 });
 
 // Tâche FONTS : copie des fichiers typographiques
-gulp.task('fonts', function () {
+gulp.task('fonts', () => {
   return gulp.src(paths.src + paths.fonts + '**/*')
     .pipe($.changed(paths.dest + paths.fonts))
     .pipe(gulp.dest(paths.dest + paths.fonts));
 });
 
-// Tâche MISC : copie des fichiers divers
-gulp.task('misc', function () {
+// Tâche MISC : copie des fichiers divers depuis la source vers la destination, y compris les .dotfiles
+gulp.task('misc', () => {
   var dottedFiles = { dot: true };
   return gulp.src(paths.src + paths.misc, dottedFiles)
     .pipe($.changed(paths.dest))
@@ -269,7 +268,7 @@ gulp.task('misc', function () {
  */
 
 // Tâche STYLEGUIDE : création automatique d'un guide des styles
-gulp.task('guide', function () {
+gulp.task('styleguide:styledown', () => {
   return gulp.src(paths.src + paths.styleguide.files)
     .pipe($.plumber(onError))
     .pipe($.philippevay.styledown({
@@ -292,21 +291,21 @@ gulp.task('guide', function () {
 });
 
 // Tâche DOC : documentation JavaScript du projet vers Markdown
-gulp.task('doc-md', function () {
+gulp.task('doc-md', () => {
   return gulp.src(paths.src+'**/*.js')
     .pipe(documentation('md'))
-    .pipe(gulp.dest(paths.doc));
+    .pipe(gulp.dest('paths.doc'));
 });
 
 // Tâche DOC : documentation JavaScript du projet vers HTML
-gulp.task('doc-html', function () {
+gulp.task('doc-html', () => {
   return gulp.src(paths.src+'**/*.js')
     .pipe(documentation('html'))
     .pipe(gulp.dest(paths.doc));
 });
 
 // Tâche ARCHIVE (voir ZIP ci-dessous) : création de fichier .zip du projet
-gulp.task('archive', function () {
+gulp.task('archive', () => {
   if(argv.prod) {
     project.zip.name = 'prod';
   } else {
@@ -321,8 +320,9 @@ gulp.task('archive', function () {
 });
 
 // Tâche CLEAN : supprime les fichiers CSS et JavaScript inutiles en production
-gulp.task('clean', function () {
+gulp.task('clean', () => {
   return del([
+    paths.doc, // on supprime la documentation
     paths.dest + paths.scripts.files, // on supprime tous les fichiers JS de production
     paths.dest + paths.styles.css.files, // on supprime tous les fichiers CSS de production
     '!' + paths.dest + paths.scripts.root + paths.scripts.mainFile, // sauf les JS concaténés finaux
@@ -331,7 +331,7 @@ gulp.task('clean', function () {
 });
 
 // Tâche d'upload vers AWS S3 (facultatif)
-gulp.task('s3', function() {
+gulp.task('s3', () => {
 
   // Fichier contenant les identifiants d'accès
   const awsCredentialsFile = 'aws-credentials.json';
@@ -390,18 +390,18 @@ gulp.task('s3', function() {
  */
 
 // Tâche BUILD : tapez "gulp" ou "gulp build"
-gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'php', 'misc']);
+gulp.task('build', gulp.series('css', 'js', 'html', 'img', 'fonts', 'php', 'misc'));
 
 // Tâche PROD : tapez "gulp build --prod"
 
 // Tâche STYLEGUIDE : (tapez "gulp styleguide")
-gulp.task('styleguide', gulpSync.sync(['css', 'guide', 'js:guide', 'js:jquery']));
+gulp.task('styleguide', gulp.series('css', 'styleguide:styledown', 'js:guide', 'js:jquery'));
 
 // Tâche ZIP : (tapez "gulp zip" ou "gulp zip --prod")
-gulp.task('zip', gulpSync.sync(['build', 'archive']));
+gulp.task('zip', gulp.series('build', 'archive'));
 
 // Tâche WATCH : surveillance Sass, HTML et PHP
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   // si demandé, on créé la configuration du plugin browserSync et on l'initialise
   if (project.plugins.browserSync.status === true) {
     var browserSyncConf; // variable contenant la configuration de browserSync
@@ -424,11 +424,11 @@ gulp.task('watch', function () {
   }
 
   // Watch des _partials Scss, du code HTML, du JS et des includes du styleguide
-  gulp.watch([paths.styles.sass.files], {cwd: paths.src}, ['css', browserSync.reload]);
-  gulp.watch([paths.html.allFiles, paths.php], {cwd: paths.src}, ['html', 'php', browserSync.reload]);
-  gulp.watch([paths.scripts.files], {cwd: paths.src}, ['js', browserSync.reload]);
-  gulp.watch([paths.styleguide.files], {cwd: paths.src}, ['guide', browserSync.reload]);
+  gulp.watch([paths.styles.sass.files], {cwd: paths.src}, gulp.series('css', browserSync.reload));
+  gulp.watch([paths.html.allFiles, paths.php], {cwd: paths.src}, gulp.series('html', 'php', browserSync.reload));
+  gulp.watch([paths.scripts.files], {cwd: paths.src}, gulp.series('js', browserSync.reload));
+  gulp.watch([paths.styleguide.files], {cwd: paths.src}, gulp.series('styleguide:styledown', browserSync.reload));
 });
 
 // Tâche par défaut
-gulp.task('default', ['build']);
+gulp.task('default', gulp.series('build'));
