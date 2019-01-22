@@ -1,9 +1,15 @@
 # Changelog de alsacreations/bretzel
 
+## 5.0.0 (22 janvier 2019)
+
+- passage à Gulp 4.x
+- réactualisation des versions des packages
+- optimisation de quelques sous-tâches
+- mise à jour du Readme
+
 ## 4.0.1 (2 mars 2018)
 
 - ajout de ce changelog
-
 
 ## 4.0.0 (1er ou 2 mars 2018)
 
