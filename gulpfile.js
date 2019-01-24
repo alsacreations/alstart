@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* jshint node: true */
 'use strict';
 
@@ -16,16 +17,16 @@
  * Chargement et initialisation des composants utilisés (browserSync et documentation ne sont chargés ci-après que hors env. de production donc en l'absence de l'argument --prod)
  */
 var gulp = require('gulp'),
-    $ = require('gulp-load-plugins')(),
-    argv = require('yargs').argv,
-    del = require('del');
+  $ = require('gulp-load-plugins')(),
+  argv = require('yargs').argv,
+  del = require('del');
 
 /**
  * Tâche (et packages) de production si ajout de l'argument "--prod" (seulement à la fin ?)
  */
 var isProduction = argv.prod;
 if (isProduction) {
-  console.log("VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !");
+  console.log('VOUS ÊTES EN ENVIRONNEMENT DE PRODUCTION !');
 }
 var browserSync = (isProduction) ? null : require('browser-sync').create();
 var documentation = (isProduction) ? null : require('gulp-documentation');
@@ -48,7 +49,7 @@ var project = {
     babel: false // utilisation de Babel pour transpiler JavaScript
   },
   configuration: { // configuration des différents composants de ce projet
-    // Browserslist : chaîne des navigateurs supportés, paramètrage pour Autoprefixer (annoncé : IE11+, last Chr/Fx/Edge/Opera et iOS 9+, Android 5+ ; ici c'est plus large)
+    // Browserslist : chaîne des navigateurs supportés, paramètrage pour Autoprefixer (annoncé : IE11+, last Chr/Fx/Edge/Opera et iOS 9+, Android 5+ ; ici c'est plus large)
     //  ⇒ Couverture (mondiale, pas française) de 94,73% (mai 2017) d'après
     //  ⇒ http://browserl.ist/?q=%3E+1%25%2C+last+2+versions%2C+IE+%3E%3D+10%2C+Edge+%3E%3D+12%2C++Chrome+%3E%3D+42%2C++Firefox+%3E%3D+42%2C+Firefox+ESR%2C++Safari+%3E%3D+8%2C++ios_saf+%3E%3D+8%2C++Android+%3E%3D+4.4
     //  ⇒ http://browserl.ist et > 1%, last 2 versions, IE >= 10, Edge >= 12,  Chrome >= 42,  Firefox >= 42, Firefox ESR,  Safari >= 8,  ios_saf >= 8,  Android >= 4.4
@@ -117,7 +118,7 @@ var paths = {
   styleguide: {
     config: 'assets/styleguide/config.md', // fichier config du styleguide
     files: 'assets/styleguide/patterns/*.md', // fichiers .MD du styleguide
-    title: "Styleguide HTML CSS", // value for the title element in the head of the Styleguide
+    title: 'Styleguide HTML CSS', // value for the title element in the head of the Styleguide
   },
   php: '{,includes/}*.php', // fichiers & dossiers PHP à copier
   fonts: 'assets/css/fonts/', // fichiers typographiques à copier,
@@ -130,13 +131,13 @@ var paths = {
 /**
  * Ressources JavaScript utilisées par ce projet (vendors + scripts JS spécifiques)
  */
- var jsFiles = [
-   // paths.vendors + 'jquery/dist/jquery.min.js',
-   // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
-   // paths.vendors + 'swiper/dist/js/swiper.min.js',
-   paths.src + paths.scripts.files,
-   '!' + paths.src + paths.scripts.styleguideFiles, // exclusion des JS spécifiques au styleguide de la liste construite précédemment
- ];
+var jsFiles = [
+  // paths.vendors + 'jquery/dist/jquery.min.js',
+  // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
+  // paths.vendors + 'swiper/dist/js/swiper.min.js',
+  paths.src + paths.scripts.files,
+  '!' + paths.src + paths.scripts.styleguideFiles, // exclusion des JS spécifiques au styleguide de la liste construite précédemment
+];
 // Spécifique au styleguide
 var jsStyleguideFiles = [
   paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
@@ -227,14 +228,14 @@ gulp.task('js:guide', () => {
     .pipe($.plumber(onError))
     .pipe($.concat(paths.scripts.destStyleguideFiles))
     .pipe($.uglify())
-    .pipe(gulp.dest(paths.dest + paths.scripts.root))
+    .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
 // Copie du vendor jQuery 3.x
 gulp.task('js:jquery', () => {
   return gulp.src(jqueryFile)
     .pipe($.plumber(onError))
     // .pipe($.uglify()) déjà minifié
-    .pipe(gulp.dest(paths.dest + paths.scripts.root))
+    .pipe(gulp.dest(paths.dest + paths.scripts.root));
 });
 gulp.task('js', gulp.series('js:main', 'js:guide', 'js:jquery'));
 
@@ -275,16 +276,16 @@ gulp.task('styleguide:styledown', () => {
       config: paths.src + paths.styleguide.config,
       template:
         [
-          "<!doctype html>",
-          "<html lang='fr'>",
-          "<head>",
-          "<meta charset='utf-8'>",
-          "<title>" + paths.styleguide.title + "</title>",
-          "</head>",
-          "<body>",
-          "</body>",
-          "</html>"
-        ].join("\n"),
+          '<!doctype html>',
+          '<html lang=\'fr\'>',
+          '<head>',
+          '<meta charset=\'utf-8\'>',
+          '<title>' + paths.styleguide.title + '</title>',
+          '</head>',
+          '<body>',
+          '</body>',
+          '</html>'
+        ].join('\n'),
       filename: 'styleguide.html'
     }))
     .pipe(gulp.dest(paths.dest));
@@ -312,8 +313,8 @@ gulp.task('archive', () => {
     project.zip.name = 'build';
   }
   var now = new Date(),
-      date = now.getFullYear() + '-' + ( now.getMonth() + 1 ) + '-' + now.getDate() + '-' + now.getHours() + 'h' + now.getMinutes(),
-      zipName = project.zip.namespace + '-' + project.name + '-' + project.zip.name + '-' + date + '.zip';
+    date = now.getFullYear() + '-' + ( now.getMonth() + 1 ) + '-' + now.getDate() + '-' + now.getHours() + 'h' + now.getMinutes(),
+    zipName = project.zip.namespace + '-' + project.name + '-' + project.zip.name + '-' + date + '.zip';
   return gulp.src(paths.dest + '/**/')
     .pipe($.zip(zipName))
     .pipe(gulp.dest(paths.root));
@@ -352,7 +353,6 @@ gulp.task('s3', () => {
     console.error('Le module gulp-awspublish est absent. Consultez la documentation pour l\'installer :');
     console.error('npm install --save-dev gulp-awspublish');
     throw e;
-    return false;
   }
 
   var credentials = JSON.parse(fs.readFileSync(awsCredentialsFile, 'utf8'));
