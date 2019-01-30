@@ -54,14 +54,15 @@ var project = {
     //  ⇒ http://browserl.ist/?q=%3E+1%25%2C+last+2+versions%2C+IE+%3E%3D+10%2C+Edge+%3E%3D+12%2C++Chrome+%3E%3D+42%2C++Firefox+%3E%3D+42%2C+Firefox+ESR%2C++Safari+%3E%3D+8%2C++ios_saf+%3E%3D+8%2C++Android+%3E%3D+4.4
     //  ⇒ http://browserl.ist et > 1%, last 2 versions, IE >= 10, Edge >= 12,  Chrome >= 42,  Firefox >= 42, Firefox ESR,  Safari >= 8,  ios_saf >= 8,  Android >= 4.4
     browsersList: [
-      '> 1%',
-      'last 2 versions',
-      'IE >= 10', 'Edge >= 12',
-      'Chrome >= 42',
-      'Firefox >= 42', 'Firefox ESR',
-      'Safari >= 8',
-      'ios_saf >= 8',
-      'Android >= 4.4'],
+      "> 1%",
+      "last 2 versions",
+      "IE >= 11", "Edge >= 16",
+      "Chrome >= 60",
+      "Firefox >= 50", "Firefox ESR",
+      "Safari >= 10",
+      "ios_saf >= 10",
+      "Android >= 5"
+    ],
     cssbeautify: {
       indent: '  ',
     },
