@@ -62,12 +62,12 @@ var project = {
       'Safari >= 8',
       'ios_saf >= 8',
       'Android >= 4.4'],
-    cssbeautify: {
-      indent: '  ',
-    },
     htmlExtend: {
       annotations: false,
       verbose: false,
+    },
+    sass: {
+      outputStyle: 'expanded' // CSS non minifiée plus lisible ('}' à la ligne)
     },
     imagemin: {
       svgoPlugins: [
@@ -164,15 +164,13 @@ var onError = {
  * ------------------------------------------------
  */
 
-// Tâche CSS : Sass + Autoprefixer + CSScomb + beautify + minify (si prod)
+// Tâche CSS : Sass + Autoprefixer + minify (si prod)
 // (1/2) Pour LA CSS du projet
 gulp.task('css:main', () => {
   return gulp.src(paths.src + paths.styles.sass.mainFile)
     .pipe($.plumber(onError))
     .pipe($.sourcemaps.init())
-    .pipe($.sass())
-    .pipe($.csscomb())
-    .pipe($.cssbeautify(project.configuration.cssbeautify))
+    .pipe($.sass(project.configuration.sass))
     .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
     // En dév, on évite d'écrire 2 fois le même fichier (ni renommage ni CSSO en dév et pourtant on écrit du CSS à 2 reprises… identique avec le même nom)
     // En env. de prod, on écrit une CSS non-minifiée puis avec le suffixe .min.css une CSS minifiée
@@ -187,9 +185,7 @@ gulp.task('css:main', () => {
 gulp.task('css:guide', () => {
   return gulp.src(paths.src + paths.styles.sass.styleguideFile)
     .pipe($.plumber(onError))
-    .pipe($.sass())
-    .pipe($.csscomb())
-    .pipe($.cssbeautify(project.configuration.cssbeautify))
+    .pipe($.sass(project.configuration.sass))
     .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
