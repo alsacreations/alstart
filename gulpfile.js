@@ -54,14 +54,15 @@ var project = {
     //  ⇒ http://browserl.ist/?q=%3E+1%25%2C+last+2+versions%2C+IE+%3E%3D+10%2C+Edge+%3E%3D+12%2C++Chrome+%3E%3D+42%2C++Firefox+%3E%3D+42%2C+Firefox+ESR%2C++Safari+%3E%3D+8%2C++ios_saf+%3E%3D+8%2C++Android+%3E%3D+4.4
     //  ⇒ http://browserl.ist et > 1%, last 2 versions, IE >= 10, Edge >= 12,  Chrome >= 42,  Firefox >= 42, Firefox ESR,  Safari >= 8,  ios_saf >= 8,  Android >= 4.4
     browsersList: [
-      '> 1%',
-      'last 2 versions',
-      'IE >= 10', 'Edge >= 12',
-      'Chrome >= 42',
-      'Firefox >= 42', 'Firefox ESR',
-      'Safari >= 8',
-      'ios_saf >= 8',
-      'Android >= 4.4'],
+      "> 1%",
+      "last 2 versions",
+      "IE >= 11", "Edge >= 16",
+      "Chrome >= 60",
+      "Firefox >= 50", "Firefox ESR",
+      "Safari >= 10",
+      "ios_saf >= 10",
+      "Android >= 5"
+    ],
     cssbeautify: {
       indent: '  ',
     },
@@ -355,6 +356,60 @@ gulp.task('lint-css', function lintCss() {
     }));
 });
 
+// Tâche d'upload vers AWS S3 (facultatif)
+gulp.task('s3', function() {
+
+  // Fichier contenant les identifiants d'accès
+  const awsCredentialsFile = 'aws-credentials.json';
+
+  // Dossier du bucket dans lequel synchroniser
+  const s3_dir = '';
+
+  var fs = require('fs');
+  var awspublish;
+
+  if(!fs.existsSync(awsCredentialsFile)) {
+    console.error('Le fichier '+awsCredentialsFile+' est absent. Consultez la documentation pour le créer.');
+    return false;
+  }
+  try {
+    awspublish = require('gulp-awspublish');
+  } catch (e) {
+    console.error('Le module gulp-awspublish est absent. Consultez la documentation pour l\'installer :');
+    console.error('npm install --save-dev gulp-awspublish');
+    throw e;
+    return false;
+  }
+
+  var credentials = JSON.parse(fs.readFileSync(awsCredentialsFile, 'utf8'));
+  var publisher = awspublish.create(credentials);
+
+  // Custom headers
+  var headers = {
+    // 'Cache-Control': 'max-age=315360000, no-transform, public'
+    // ...
+  };
+
+  return gulp.src(paths.dest+'**')
+    // gzip, en-t$ete Content-Encoding et extension .gz
+    // .pipe(awspublish.gzip({ ext: '.gz' }))
+
+    // publisher ajoute les en-têtes Content-Length, Content-Type et headers (déclaré avant)
+    // Si rien d'autre n'est indiqué, x-amz-acl est à public-read par défaut
+    .pipe(publisher.publish(headers))
+
+    // Cache pour accélérer les syncs successifs
+    .pipe(publisher.cache())
+
+    // Sync (envoie, et efface les fichiers distants si nécessaire)
+    .pipe(publisher.sync(s3_dir))
+    // Variante : On ignore *.pdf pour ne pas les effacer du bucket lors de la sync
+    // .pipe(publisher.sync(s3_dir, [/\.pdf$/]))
+
+    // Informations à la console
+    .pipe(awspublish.reporter());
+});
+
 /* ----------------------------------
  * Tâches principales : récapitulatif
  * ----------------------------------
@@ -398,7 +453,7 @@ gulp.task('watch', function () {
   gulp.watch([paths.styles.sass.files], {cwd: paths.src}, ['css', browserSync.reload]);
   gulp.watch([paths.html.allFiles, paths.php], {cwd: paths.src}, ['html', 'php', browserSync.reload]);
   gulp.watch([paths.scripts.files], {cwd: paths.src}, ['js', browserSync.reload]);
-  gulp.watch([paths.styleguide.files], {cwd: paths.src} ['guide', browserSync.reload]);
+  gulp.watch([paths.styleguide.files], {cwd: paths.src}, ['guide', browserSync.reload]);
 });
 
 // Tâche par défaut
