@@ -7,7 +7,8 @@
   ],
   "plugins": [
     "stylelint-order",
-    "stylelint-scss"
+    "stylelint-scss",
+    "stylelint-declaration-block-no-ignored-properties"
   ],
   "rules": {
     "at-rule-empty-line-before": null,
@@ -20,7 +21,6 @@
     "block-opening-brace-newline-after": "always-multi-line",
     "block-opening-brace-space-before": "always",
     "color-named": null,
-    "color-format/format": null,
     "comment-empty-line-before": [ "always", {
       "except": ["first-nested"],
       "ignore": ["after-comment", "stylelint-commands"],
@@ -32,6 +32,7 @@
     "declaration-no-important": true,
     "declaration-block-trailing-semicolon": "always",
     "font-family-name-quotes": "always-where-recommended",
+    "font-weight-notation": "named-where-possible",
     "function-url-no-scheme-relative": true,
     "function-url-quotes": "always",
     "length-zero-no-unit": true,
@@ -48,8 +49,7 @@
     "order/order": [
       "custom-properties",
       "declarations",
-      "at-rules",
-      "rules"
+      "rules",
     ],
     "order/properties-order": [
       "content",
@@ -61,6 +61,11 @@
       "direction",
       "visibility",
       "overflow", "overflow-x", "overflow-y",
+
+      "grid-area", "grid-column", "grid-column-start", "grid-column-end", "grid-row", "grid-row-start", "grid-row-end",
+       "justify-self", "align-self",
+      "flex", "flex-grow", "flex-shrink", "flex-basis",
+      "order",
 
       "display",
       "grid",
@@ -75,14 +80,10 @@
         ],
       },
       "grid-gap", "grid-row-gap", "grid-column-gap",
-      "grid-area", "grid-column", "grid-column-start", "grid-column-end", "grid-row", "grid-row-start", "grid-row-end",
       "flex-flow", "flex-direction", "flex-wrap",
       "justify-content", "align-content", "align-items",
-      "align-self",
-      "flex", "flex-grow", "flex-shrink", "flex-basis",
       "gap",
-      "order",
-      "justify-items", "justify-self",
+      "justify-items",
       "columns",
       {
         "order": "flexible",
@@ -111,17 +112,27 @@
           "right",
         ],
       },
-      "float", "clear",
-      "vertical-align",
+      "clear", "float",
 
       "width", "min-width", "max-width",
       "height", "min-height", "max-height",
       "border",
+      {
+        "order": "flexible",
+        "properties": [
+          "border-top",
+          "border-right",
+          "border-bottom",
+          "border-left",
+        ]
+      },
       "border-width", "border-top-width", "border-right-width", "border-bottom-width", "border-left-width",
       "border-style", "border-top-style", "border-right-style", "border-bottom-style", "border-left-style",
       "border-color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color",
       "margin", "margin-top", "margin-bottom", "margin-left", "margin-right",
       "padding", "padding-top", "padding-bottom", "padding-left", "padding-right",
+
+      "vertical-align",
 
       "line-height",
       "text-align",
@@ -132,7 +143,7 @@
       "letter-spacing",
 
       "font",
-      "font-size", "font-family", "font-weight", "font-style", "font-variant",
+      "font-size", "font-family", "font-weight", "font-style", "text-decoration", "font-variant",
 
       "list-style",
       "list-style-type", "list-style-image", "list-style-position",
@@ -203,9 +214,9 @@
     "selector-no-vendor-prefix": true,
     "string-quotes": "double",
     "value-keyword-case": "lower",
-    "value-list-comma-newline-after": "never-multi-line",
+    "value-list-comma-newline-after": "always-multi-line",
     "value-list-comma-newline-before": "never-multi-line",
-    "value-list-comma-space-after": "always",
+    "value-list-comma-space-after": "always-single-line",
     "value-no-vendor-prefix": true
   }
 }

@@ -7,16 +7,18 @@
     "browser-sync": "^2.x",
     "documentation": "^5.2.x",
     "gulp-documentation": "^3.2.x",
-    "gulp-stylelint": "^7.0.0",
+    "gulp-stylelint": "^9.0.0",
     "gulp-zip": "^4.x",
     "styledown-skins": "github:drakeh/styledown-skins",
-    "stylelint": "^9.2.1",
-    "stylelint-config-recommended": "^2.1.0",
-    "stylelint-config-recommended-scss": "^3.2.0",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-find-rules": "^1.1.1",
-    "stylelint-order": "^0.8.1",
-    "stylelint-scss": "^3.1.0"
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-config-strict-scss": "^0.5.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
+    "stylelint-find-rules": "^2.0.0",
+    "stylelint-order": "^3.0.0",
+    "stylelint-scss": "^3.9.0"
   },
   "dependencies": {
     "babel-core": "^6.x",
@@ -42,7 +44,6 @@
     "gulp-uglify": "^3.x",
     "jquery": "^3.x",
     "knacss": "^7.0.5",
-    "stylelint-config-strict-scss": "^0.5.0",
     "yargs": "^11.x"
   },
   "repository": {
