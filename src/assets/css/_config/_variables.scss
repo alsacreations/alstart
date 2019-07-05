@@ -1,4 +1,5 @@
 // Config file and project variables
+// stylelint-disable
 
 // ----------------
 // Breakpoints zone
@@ -231,3 +232,5 @@ $burger-hover-background  : transparent;
 $burger-size              : 2.6rem;
 $burger-weight            : 5px; // size of stripes
 $burger-padding           : 0;
+
+// stylelint-enable

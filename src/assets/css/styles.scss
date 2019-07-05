@@ -10,10 +10,10 @@
 // Configuration
 //
 // Variables
-@import "_config/_variables";
+@import "_config/variables";
 
 // Mixins
-@import "_config/_mixins";
+@import "_config/mixins";
 
 
 // KNACSS imports
@@ -28,58 +28,58 @@
 // Common things
 //
 // Extend
-// @import "_global/_extend";
+// @import "_global/extend";
 
 // Header
-// @import "_global/_header";
+// @import "_global/header";
 
 // Navigation
-// @import "_global/_navigation";
+// @import "_global/navigation";
 
 // Footer
-// @import "_global/_footer";
+// @import "_global/footer";
 
 // Footer
-// @import "_global/_footer";
+// @import "_global/footer";
 
 // Icons
-// @import "_global/_font-icons";
+// @import "_global/font-icons";
 
 // Fonts
-// @import "_global/_fonts";
+// @import "_global/fonts";
 
 // Helpers
-// @import "_global/_helpers";
+// @import "_global/helpers";
 
 // Buttons
-@import "_global/_buttons";
+@import "_global/buttons";
 
 // Typographic stuff
-@import "_global/_type";
+@import "_global/type";
 
 // Forms
-// @import "_global/_forms";
+// @import "_global/forms";
 
 
 //
 // Layout
 //
 // Layout
-// @import "_template/_layout";
+// @import "_template/layout";
 
 // Page {name of page 1}
-// @import "_template/_page-1";
+// @import "_template/page-1";
 
 
 //
 // Page {name of page 1} - components
 //
 // Component {name of component}
-// @import "_components/_component-name";
+// @import "_components/component-name";
 
 
 //
 // Global
 // CSS styles applied after all other ones
 //
-// @import "_global/_global";
+// @import "_global/global";

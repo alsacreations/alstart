@@ -4,12 +4,14 @@
  * by Alsacréations - 2016-2017
  */
 
- // Config things (mêmes imports que pour styles.scss ; contrainte : aucun des 3 ne doit générer de règle CSS => seulement définir des mixins et variables)
- //
- // Same variables than for project and KNACSS
- @import "_config/_variables";
- // Mixins
- @import "_config/_mixins";
+// stylelint-disable value-list-max-empty-lines, color-format/format, scale-unlimited/declaration-strict-value, scss/media-feature-value-dollar-variable, no-decending-specificity, selector-no-qualifying-type, scss/dollar-variable-colon-space-before
+
+// Config things (mêmes imports que pour styles.scss ; contrainte : aucun des 3 ne doit générer de règle CSS => seulement définir des mixins et variables)
+//
+// Same variables than for project and KNACSS
+@import "_config/variables";
+// Mixins
+@import "_config/mixins";
 
 
 // Variables list for Styleguide (if used)
@@ -40,35 +42,36 @@ $colors: (
 );
 
 // Classes on section are compiled from their heading and it can easily change. Let's use some variables for that
-$section-color: '.sg-section-' + 'palette-de-couleurs';
-$section-grid : '.sg-section-' + 'grilles';
+$section-color: ".sg-section-" + "palette-de-couleurs";
+$section-grid : ".sg-section-" + "grilles";
 
 /*
  * Sass Mixins
  */
 // mixin that displays font-size value
-@mixin fontsize($fontsize) {
+@mixin fontsize ($fontsize) {
   &::after {
     content: "#{$fontsize}";
-    @extend .sg-code-inline;
+    @extend %sg-code-inline;
     margin-left: $spacer-small;
-    font-weight: normal;
     vertical-align: middle;
+    font-weight: normal;
   }
 }
 
 // mixin that displays hexadecimal code of a color
-@mixin hexa($sassvar, $sasscolor) {
+@mixin hexa ($sassvar, $sasscolor) {
   &::before {
     background: #{$sasscolor};
   }
+
   &::after {
     content: "$#{$sassvar}";
   }
 }
 
 // Mixin that displays font-family
-@mixin font($font) {
+@mixin font ($font) {
   &::before {
     content: "#{$font}";
     font-weight: bold;
@@ -104,18 +107,20 @@ h1 {
 /* Header */
 .sg-header {
   position: relative;
-  padding: $spacer-medium;
   margin-bottom: $spacer-small;
+  padding: $spacer-medium;
   text-align: center;
-  background: #F8F8F8;
+  background: #f8f8f8;
+
   h1 {
     font-size: 4.5rem;
     color: $brand-primary;
   }
+
   h2 {
     margin-top: 0;
-    color: $gray-a11y;
     font-size: 2rem;
+    color: $gray-a11y;
   }
 
   .icon-kiwi-leaf {
@@ -124,6 +129,7 @@ h1 {
     height: 1em;
     fill: currentColor;
   }
+
   .icon-pepins {
     position: absolute;
     top: 2rem;
@@ -134,16 +140,17 @@ h1 {
 
 /* Sidebar/Menu */
 .sg-menu {
-  position: absolute;
-    top: 19rem; left: 2rem;
   display: none;
+  position: absolute;
+  top: 19rem;
+  left: 2rem;
   width: 22rem;
   padding: $spacer-medium;
-  background: #F8F8F8;
+  background: #f8f8f8;
 
   &.is-fixed {
     position: fixed;
-      top: 2rem;
+    top: 2rem;
   }
 }
 @media (min-width: 768px) {
@@ -162,35 +169,40 @@ h1 {
   ul {
     margin: 0 0 $spacer-small;
     padding-left: $spacer-medium;
-    list-style-type: none;
     font-size: 90%;
+    list-style-type: none;
   }
 }
+
 .tocify-item {
   margin: 0;
   padding: $spacer-tiny 0;
 
   a {
-    padding-bottom: .25rem;
-    text-decoration: none;
     border-bottom: 0 solid;
+    padding-bottom: 0.25rem;
+    text-decoration: none;
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
       border-bottom-width: 1px;
     }
   }
 }
+
 .tocify-focus {
-  a {
+  a { // stylelint-disable-line
     font-weight: bold;
     color: $brand-primary;
   }
 }
+
 .tocify-subheader {
   display: none;
 }
+
 .tocify-extend-page {
-  display: none !important;
+  display: none !important; // stylelint-disable-line declaration-no-important
 }
 
 
@@ -202,29 +214,34 @@ h1 {
   margin-top: $spacer-small;
   @include font-size(h1);
 }
+
 /* copyright */
 .sg-copyright {
   text-align: center;
   font-size: 1.2rem;
   color: #666;
 }
+
 /* section title */
 .sg-section {
   & > h2.sg {
-    padding-bottom: .15em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.15em;
     @include font-size(h1);
     color: #333;
-    border-bottom: 2px solid #eee;
   }
+
   &:first-child > h2.sg {
     margin-top: 0;
   }
 }
+
 .sg-text h3.sg {
-  color: #333;
   border-left: 4px solid $brand-primary;
   padding-left: 10px;
+  color: #333;
 }
+
 /* text */
 .sg-text {
   p {
@@ -253,21 +270,22 @@ h1 {
 }
 
 /* section */
-.sg-section {
+.sg-section { // stylelint-disable-line no-duplicate-selectors
   margin-bottom: $spacer-extra-large;
 }
 
 /* example & canvas */
 .sg-example {
+  border: 1px solid #ddd;
   margin-top: $spacer-small;
   margin-bottom: $spacer-medium;
-  border: 1px solid #dddddd;
   border-radius: 3px;
 }
+
 .sg-canvas {
+  overflow-x: auto;
   position: relative;
   padding: $spacer-large 3rem;
-  overflow-x: auto;
 }
 
 
@@ -275,60 +293,71 @@ h1 {
  * Code
  */
 /* inline: <code> */
+%sg-code-inline {
+  display: inline-block;
+  border: solid 1px #eaeaea;
+  padding: 0.2rem 0.5rem;
+  white-space: nowrap;
+  font-size: 1.4rem;
+  font-family: $font-family-monospace;
+  background-color: #f8f8f8;
+  border-radius: 2px;
+}
+
 code,
 code.sg,
 .sg-code-inline {
-  display: inline-block;
-  padding: .2rem .5rem;
-  font-family: $font-family-monospace;
-  font-size: 1.4rem;
-  white-space: nowrap;
-  border: solid 1px #eaeaea;
-  border-radius: 2px;
-  background-color: #f8f8f8;
+  @extend %sg-code-inline;
 }
 
 /* block: <pre> */
 .sg-code {
-  padding: $spacer-medium;
-  margin-top: 0;
-  font-family: $font-family-monospace;
-  font-size: 1.4rem;
-  line-height: 1.6;
   border-top: solid 1px #eaeaea;
+  margin-top: 0;
+  padding: $spacer-medium;
+  line-height: 1.6;
+  font-size: 1.4rem;
+  font-family: $font-family-monospace;
   background-color: #f8f8f8;
 }
+
 /* markup color */
 .sg-code .hljs-tag,
 .sg-code .hljs-title {
   color: #2f6f9f;
 }
+
 .sg-code .hljs-attribute {
   color: #4f9fcf;
 }
+
 .sg-code .hljs-string,
 .sg-code .hljs-number,
 .sg-code .hljs-value {
   color: #d44950;
 }
+
 .sg-code .hljs-comment {
-  color: #999988;
+  color: #998;
 }
+
 /* toggle button */
 .sg-code-toggle {
   position: absolute;
-    right: 0; bottom: 0;
+  bottom: 0;
+  right: 0;
   width: 100px;
+  border: 1px solid #ddd;
+  border-width: 1px 0 0 1px;
   padding: $spacer-tiny;
   text-align: center;
   font-size: 1.3rem;
   color: #777;
-  background-color: #FFF;
-  border: 1px solid #DDD;
-  border-width: 1px 0 0 1px;
+  background-color: white;
   border-top-left-radius: 3px;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     background-color: #f8f8f8;
   }
 }
@@ -357,17 +386,14 @@ code.sg,
 
 .sg-color-item {
   display: inline-block;
-  vertical-align: top;
   width: 150px;
   border: solid 1px #eaeaea;
-
-  & {
-    margin: $spacer-small;
-  }
+  margin: $spacer-small;
+  vertical-align: top;
 
   // color example
   &::before {
-    content: '';
+    content: "";
     display: block;
     height: 80px;
   }
@@ -375,18 +401,17 @@ code.sg,
   // hexadecimal code
   &::after {
     display: block;
-    @extend .sg-code-inline;
+    @extend %sg-code-inline;
   }
 
   // Colors
   $i: 1;
   @each $var, $col in $colors {
     &:nth-of-type(#{$i}) {
-      $i : $i + 1;
+      $i: $i + 1;
       @include hexa($var, $col);
     }
   }
-
 }
 
 /*
@@ -435,14 +460,17 @@ code.sg,
     display: none;
   }
 }
+
 .sg-font-common {
   font-family: $font-family-base;
   @include font($font-family-base);
 }
+
 .sg-font-headings {
   font-family: $font-family-headings;
   @include font($font-family-headings);
 }
+
 .sg-font-monospace {
   font-family: $font-family-monospace;
   @include font($font-family-monospace);
@@ -452,9 +480,10 @@ code.sg,
 /*
  * Headings section
  */
-$eltHeadings: (h1, h2, h3, h4, h5, h6);
+$elt-headings: (h1, h2, h3, h4, h5, h6);
+
 .sg-section-titres {
-  @each $h in $eltHeadings {
+  @each $h in $elt-headings {
     #{$h}:not(.sg) { @include fontsize(#{$h}-size); }
   }
 }
@@ -466,11 +495,11 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
 #{ $section-grid } {
   .grid,
   [class^="grid"] {
-    & + & {
+    & + & { // stylelint-disable-line selector-max-combinators, selector-max-compound-selectors
       margin-top: $spacer-medium;
     }
 
-    & > * {
+    & > * { // stylelint-disable-line selector-max-compound-selectors
       padding: $spacer-medium;
       background: #f8f8f8;
     }
@@ -489,6 +518,7 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
     margin-top: $spacer-medium;
   }
 }
+
 .sg-align-float {
   padding: $spacer-medium;
   background: #f8f8f8;
@@ -498,8 +528,8 @@ $eltHeadings: (h1, h2, h3, h4, h5, h6);
   &::after {
     content: "";
     display: table;
-    clear: both;
     border-collapse: collapse;
+    clear: both;
   }
 
   & + & {
