@@ -140,16 +140,42 @@ Avec l'éditeur Atom, le package `https://atom.io/packages/docblockr` est consei
 
 ## Publication sur AWS S3
 
-Pour publier les fichiers compilés vers Amazon Web Services S3 (Simple Storage Service) par exemple pour héberger un site statique, utiliser le module [gulp-awspublish](https://www.npmjs.com/package/gulp-awspublish).
+Pour publier les fichiers compilés vers Amazon Web Services S3 (Simple Storage Service) en une seule commande, par exemple pour héberger un site statique ou front-end, utiliser le module [gulp-awspublish](https://www.npmjs.com/package/gulp-awspublish).
 
-Installation :
+Installation (non prévue par défaut dans `package.json`) :
 ```
 npm install --save-dev gulp-awspublish
 ```
 
-Les droits doivent être configurés côté AWS (via IAM) pour donner les capacités d'écriture à un utilisateur doté d'une _access key_ et d'une _secret key_.
+Les dossiers et droits doivent être configurés au préalable côté AWS (via les services S3+IAM) pour donner les capacités d'écriture/upload :
 
-Création de la configuration dans le fichier `aws-credentials.json`
+* Créer le bucket S3 si ce n'est pas déjà fait, par exemple "www.hopla.com", activer la proprité "Hébergement de site web statique"
+* Créer un groupe dans IAM par exemple "s3-hopla"
+* Attribuer à ce groupe une stratégie (de groupe) avec les droits suivants :
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1564418715000",
+      "Effect": "Allow",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::www.hopla.com",
+        "arn:aws:s3:::www.hopla.com/*"
+      ]
+    }
+  ]
+}
+```
+
+* Créer un nouvel utilisateur de type "programmatique", par exemple "s3-hopla" (aussi)
+* Le placer dans le groupe "s3-hopla" créé précédemment
+* Noter son _access key_ et sa _secret key_, les renseigner dans le fichier suivant
+* Ajouter ce fichier `aws-credentials.json` dans le projet (à la racine, en plus de `gulpfile.js`)
 
 ```json
 {
@@ -164,7 +190,7 @@ Création de la configuration dans le fichier `aws-credentials.json`
 
 Le code région est celui donné par la région hébergeant le bucket S3. Par exemple `eu-central-1` pour Francfort.
 
-Lancement de la synchronisation : `gulp s3` (va utiliser tous les fichiers dans `/dist/` par défaut). Il est possible de définir dans quel sous-dossier du bucket envoyer les fichiers, et d'ignorer certains types. Pour ceci modifier `gulpfile.js`.
+Lancement de la synchronisation : `gulp s3` (va utiliser tous les fichiers dans `/dist/` par défaut si c'est le chemin configuré dans les variables `paths`). Il est possible de définir dans quel sous-dossier du bucket envoyer les fichiers, et d'ignorer certains types. Pour ceci modifier `gulpfile.js`.
 
 ## Changelog
 
