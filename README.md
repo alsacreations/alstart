@@ -143,17 +143,18 @@ Avec l'éditeur Atom, le package `https://atom.io/packages/docblockr` est consei
 Pour publier les fichiers compilés vers Amazon Web Services S3 (Simple Storage Service) en une seule commande, par exemple pour héberger un site statique ou front-end, utiliser le module [gulp-awspublish](https://www.npmjs.com/package/gulp-awspublish).
 
 Installation (non prévue par défaut dans `package.json`) :
-```
+
+```sh
 npm install --save-dev gulp-awspublish
 ```
 
 Les dossiers et droits doivent être configurés au préalable côté AWS (via les services S3+IAM) pour donner les capacités d'écriture/upload :
 
-* Créer le bucket S3 si ce n'est pas déjà fait, par exemple "www.hopla.com", activer la proprité "Hébergement de site web statique"
-* Créer un groupe dans IAM par exemple "s3-hopla"
-* Attribuer à ce groupe une stratégie (de groupe) avec les droits suivants :
+- Créer le bucket S3 si ce n'est pas déjà fait, par exemple "www.hopla.com", activer la proprité "Hébergement de site web statique"
+- Créer un groupe dans IAM par exemple "s3-hopla"
+- Attribuer à ce groupe une stratégie (de groupe) avec les droits suivants :
 
-```
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -172,10 +173,10 @@ Les dossiers et droits doivent être configurés au préalable côté AWS (via l
 }
 ```
 
-* Créer un nouvel utilisateur de type "programmatique", par exemple "s3-hopla" (aussi)
-* Le placer dans le groupe "s3-hopla" créé précédemment
-* Noter son _access key_ et sa _secret key_, les renseigner dans le fichier suivant
-* Ajouter ce fichier `aws-credentials.json` dans le projet (à la racine, en plus de `gulpfile.js`)
+- Créer un nouvel utilisateur de type "programmatique", par exemple "s3-hopla" (aussi)
+- Le placer dans le groupe "s3-hopla" créé précédemment
+- Noter son _access key_ et sa _secret key_, les renseigner dans le fichier suivant
+- Ajouter ce fichier `aws-credentials.json` dans le projet (à la racine, en plus de `gulpfile.js`)
 
 ```json
 {
