@@ -49,20 +49,6 @@ var project = {
     babel: false // utilisation de Babel pour transpiler JavaScript
   },
   configuration: { // configuration des différents composants de ce projet
-    // Browserslist : chaîne des navigateurs supportés, paramètrage pour Autoprefixer (annoncé : IE11+, last Chr/Fx/Edge/Opera et iOS 9+, Android 5+ ; ici c'est plus large)
-    //  ⇒ Couverture (mondiale, pas française) de 94,73% (mai 2017) d'après
-    //  ⇒ http://browserl.ist/?q=%3E+1%25%2C+last+2+versions%2C+IE+%3E%3D+10%2C+Edge+%3E%3D+12%2C++Chrome+%3E%3D+42%2C++Firefox+%3E%3D+42%2C+Firefox+ESR%2C++Safari+%3E%3D+8%2C++ios_saf+%3E%3D+8%2C++Android+%3E%3D+4.4
-    //  ⇒ http://browserl.ist et > 1%, last 2 versions, IE >= 10, Edge >= 12,  Chrome >= 42,  Firefox >= 42, Firefox ESR,  Safari >= 8,  ios_saf >= 8,  Android >= 4.4
-    browsersList: [
-      "> 1%",
-      "last 2 versions",
-      "IE >= 11", "Edge >= 16",
-      "Chrome >= 60",
-      "Firefox >= 50", "Firefox ESR",
-      "Safari >= 10",
-      "ios_saf >= 10",
-      "Android >= 5"
-    ],
     cssbeautify: {
       indent: '  ',
     },
@@ -175,7 +161,7 @@ gulp.task('css:main', () => {
     .pipe($.plumber(onError))
     .pipe($.sourcemaps.init())
     .pipe($.sass(project.configuration.sass))
-    .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
+    .pipe($.autoprefixer())
     // En dév, on évite d'écrire 2 fois le même fichier (ni renommage ni CSSO en dév et pourtant on écrit du CSS à 2 reprises… identique avec le même nom)
     // En env. de prod, on écrit une CSS non-minifiée puis avec le suffixe .min.css une CSS minifiée
     .pipe($.if(!isProduction, gulp.dest(paths.dest + paths.styles.root)))
@@ -190,7 +176,7 @@ gulp.task('css:guide', () => {
   return gulp.src(paths.src + paths.styles.sass.styleguideFile)
     .pipe($.plumber(onError))
     .pipe($.sass(project.configuration.sass))
-    .pipe($.autoprefixer( {browsers: project.configuration.browsersList} ))
+    .pipe($.autoprefixer())
     .pipe(gulp.dest(paths.dest + paths.styles.root));
 });
 gulp.task('css', gulp.series('css:main', 'css:guide'));

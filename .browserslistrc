@@ -1,0 +1,17 @@
+# Support navigateurs pour Autoprefixer et autres outils
+
+# Documentation : https://github.com/browserslist/browserslist#browserslist-
+# Liste explicite à laquelle cela correspond : lancer `./node_modules/browserslist/cli.js`
+
+# Europe "region" (ça pourrait être FR)
+>0.25% in alt-EU
+
+last 10 chrome versions
+last 2 safari versions
+last 10 firefox versions
+Firefox ESR
+not ie <= 10
+
+
+# (sisi, on garde au moins temporairement) aucun Opera Mini
+# not op_mini all
