@@ -98,7 +98,7 @@ var paths = {
     root: 'assets/js/', // dossier contenant les fichiers JavaScript
     files: 'assets/js/*.js', // fichiers JavaScript (hors vendor)
     mainFile: 'global.min.js', // nom du fichier JS après concaténation
-    styleguideFiles: 'assets/js/styleguide-scroll.js', // fichier(s) JS spécifiques au styleguide
+    styleguideFiles: 'assets/js/styleguide.js', // fichier(s) JS spécifiques au styleguide
     destStyleguideFiles: 'styleguide.min.js', // nom du fichier JS que chargera spécifiquement le styleguide (contiendra son ou ses scritps concaténés et minifiés)
   },
   html: {
@@ -123,14 +123,12 @@ var paths = {
  */
 var jsFiles = [
   // paths.vendors + 'jquery/dist/jquery.min.js',
-  // paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
   // paths.vendors + 'swiper/dist/js/swiper.min.js',
   paths.src + paths.scripts.files,
   '!' + paths.src + paths.scripts.styleguideFiles, // exclusion des JS spécifiques au styleguide de la liste construite précédemment
 ];
 // Spécifique au styleguide
 var jsStyleguideFiles = [
-  paths.vendors + 'styledown-skins/dist/Default/styleguide.min.js',
   paths.src + paths.scripts.styleguideFiles,
 ];
 // Copie du vendor jQuery (hors des scripts du projet et du styleguide). Ne sera pas concaténé même en env. de prod
