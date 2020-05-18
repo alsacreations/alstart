@@ -6,6 +6,9 @@ npm-debug.log
 # gulp destination file ignore
 /dist/
 
+# archive ignore
+/*.zip
+
 #Mac Crap
 
 .DS_Store
