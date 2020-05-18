@@ -9,6 +9,10 @@ npm-debug.log
 # archive ignore
 /*.zip
 
+# documentation
+/paths.doc/
+/doc/
+
 #Mac Crap
 
 .DS_Store
