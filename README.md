@@ -38,11 +38,7 @@
 
 ### Choisissez un distributeur de Bretzels
 
-Récupérez ce repo, soit :
-
-- avec `git clone https://github.com/alsacreations/bretzel`
-- ou avec le plugin npm [bretzel-start](https://github.com/alsacreations/bretzel-start) ❤
-- ou [en enregistrant le .zip](https://github.com/alsacreations/bretzel/archive/master.zip)
+Récupérez ce repo avec `git clone https://github.com/alsacreations/bretzel`
 
 ### Prenez une Bretzel
 
@@ -62,9 +58,9 @@ Compilez vos fichiers avec `gulp` pour les tâches de base, ou surveillez les fi
 
 ### Tâches principales
 
-- **`gulp`** ou `gulp build` : tous les fichiers de `/src` sont compilés dans `/dist` mais ne sont ni minifiés ni concaténés. Le destinataire de ces fichiers peut modifier, améliorer et mettre en production lui-même.
+- **`gulp`** (alias `gulp build`) : tous les fichiers de `/src` sont compilés dans `/dist` mais ne sont pas optimisés (ni minifiés ni concaténés, etc). Le destinataire de ces fichiers peut modifier, améliorer et mettre en production lui-même.
 - **`gulp --prod`** : tous les fichiers de `/src` sont compilés dans `/dist` et sont en plus concaténés, minifiés, optimisés. Le destinataire de ces fichiers les utilise tel quel ou peut recompiler lui-même.
-- `gulp watch` : surveille styles, html, php (facultatif) et scripts.
+- `gulp watch` : surveille styles, html, php (facultatif) et scripts pendant le développement et provoque le rechargement de la page.
 
 ### Tâches individuelles
 
@@ -74,24 +70,21 @@ Compilez vos fichiers avec `gulp` pour les tâches de base, ou surveillez les fi
 - `gulp doc-md` : génère une documentation des sources JavaScript vers Markdown
 - `gulp doc-html` : génère une documentation des sources JavaScript vers HTML
 - `gulp clean` : suppression des fichiers inutiles en production
-- `gulp zip` et `gulp zip --prod` : crée une archive compressée et datée du projet en exécutant `build` ou `prod` puis `archive`. Par exemple `projectName-build-2019-01-21-13h37.zip` ou `projectName-prod-2019-01-21-13h37.zip`
+- `gulp zip` et `gulp zip --prod` : crée une archive compressée et datée du projet en exécutant `build` ou `prod` puis `archive`. Par exemple `projectName-build-2020-01-21-13h37.zip` ou `projectName-prod-2020-01-21-13h37.zip`
 - `gulp s3` : publie sur Amazon Web Services (AWS) S3, voir détails plus loin
 
 ## Gérer les dépendances
 
 Bretzel gère les dépendances directement via npm ou yarn (pas via Bower).
 
-Pour ajouter une dépendance, il suffit de modifier le fichier `package.json` ou d'utiliser les commandes `npm install --save-dev` :
+Pour ajouter une dépendance de développement, il suffit de modifier le fichier `package.json` ou d'utiliser les commandes `npm install --save-dev` :
 
 ```json
   "dependencies": {
     "jquery": "^3.x",
-    "knacss": "7.x",
-    "styledown-skins": "drakeh/styledown-skins"
+    "knacss": "7.x"
   },
 ```
-
-Dans cet exemple jQuery est une dépendance npm et styledown-skins de type GitHub.
 
 Vos dépendances JavaScript pourront être listées dans le fichier `gulpfile.js` sous cette forme pour être concaténées aux autres :
 
