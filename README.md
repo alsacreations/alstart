@@ -111,12 +111,6 @@ L'action de correction se fera à l'aide de plugins au sein de votre éditeur HT
 
 Note : les  _warning_ subsistants dans le *linter*, sont connus et éventuellement à corriger selon les projets au cas par cas.
 
-## Architecture Bretzel
-
-Voici comment est architecturé **bretzel** par défaut, mais rien ne vous empêche de modifier cette structure en changeant les variables présentes dans `gulpfile.js` :
-
-![Structure-type de l'arborescence des fichiers de bretzel](https://raw.githubusercontent.com/alsacreations/bretzel/master/src/assets/img/architecture.png)
-
 ## Usage avec KNACSS
 
 - Modifiez le fichier `_variables.scss` dans votre dossier `src/assets/css/_config` (c'est une copie modifiée de `./node_modules/knacss/sass/_config/_variables.scss`. Ce dernier n'est pas utlisé car il est écrasé à chaque mise à jour de KNACSS)
