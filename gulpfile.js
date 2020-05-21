@@ -408,10 +408,22 @@ gulp.task('watch', () => {
   }
 
   // Watch des _partials Scss, du code HTML, du JS et des includes du styleguide
-  gulp.watch([paths.styles.sass.files], {cwd: paths.src}, gulp.series('css', browserSync.reload));
-  gulp.watch([paths.html.allFiles, paths.php], {cwd: paths.src}, gulp.series('html', 'php', browserSync.reload));
-  gulp.watch([paths.scripts.files], {cwd: paths.src}, gulp.series('js', browserSync.reload));
-  gulp.watch([paths.styleguide.files], {cwd: paths.src}, gulp.series('styleguide:styledown', browserSync.reload));
+  gulp.watch([paths.styles.sass.files], {cwd: paths.src}, gulp.series('css', function (done) {
+    browserSync.reload();
+    done();
+  }));
+  gulp.watch([paths.html.allFiles, paths.php], {cwd: paths.src}, gulp.series('html', 'php', function (done) {
+    browserSync.reload();
+    done();
+  }));
+  gulp.watch([paths.scripts.files], {cwd: paths.src}, gulp.series('js', function (done) {
+    browserSync.reload();
+    done();
+  }));
+  gulp.watch([paths.styleguide.files], {cwd: paths.src}, gulp.series('styleguide:styledown', function (done) {
+    browserSync.reload();
+    done();
+  }));
 });
 
 // Tâche par défaut
